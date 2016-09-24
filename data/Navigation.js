@@ -58,10 +58,10 @@ sharpDox.navigationData = [
  
 
 		{
-			id: 'MEZBELE.Controllers.HomeController',
-			text: 'HomeController',
+			id: 'MEZBELE.Controllers.LandingController',
+			text: 'LandingController',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.HomeController/index' }
+			a_attr: { href : '#/type/MEZBELE.Controllers.LandingController/index' }
         },	
 
 
