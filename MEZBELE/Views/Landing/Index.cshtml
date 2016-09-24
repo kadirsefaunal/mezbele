@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+}
+
+
+@Html.Partial("~/Views/Shared/_FollowingMenu.cshtml")
+
+@Html.Partial("~/Views/Shared/_Sidebar.cshtml")
+
+
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                @Html.ActionLink("Anasayfa", "Index", "Landing", new { area = "" }, new { @class = "active item" })
+                <a class="item" href="#">Hakkımızda</a>
+                <a class="item" href="#">İletişim</a>
+                <div class="right item">
+                    <a class="ui inverted button">Giriş Yap</a>
+                    <a class="ui inverted button">Kayıt Ol</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                Mezbele
+            </h1>
+            <h2>Çaylaklar gibi proje yönetin.</h2>
+            <div class="ui huge primary button">Başlayın <i class="right arrow icon"></i></div>
+        </div>
+
+    </div>
+</div>
+
+@Scripts.Render("~/Content/js")

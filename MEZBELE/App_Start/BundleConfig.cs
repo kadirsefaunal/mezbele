@@ -23,6 +23,9 @@ namespace MEZBELE
                       "~/Scripts/semantic.min.js",
                       "~/Scripts/respond.min.js"));
 
+            bundles.Add(new ScriptBundle("~/Content/js").Include(
+                      "~/Scripts/site.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/semantic.min.css",
                       "~/Content/site.css"));

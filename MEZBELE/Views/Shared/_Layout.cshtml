@@ -3,28 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Mezbele</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="ui container">
-        <div class="ui menu">
-            <a class="item">MEZBELE</a>
-            <div class="right menu">
-                @Html.ActionLink("Anasayfa", "Index", "Home", null, new { @class = "item" })
-                @Html.ActionLink("Hakkımızda", "About", "Home", null, new { @class = "item" })
-                @Html.ActionLink("İletişim", "Contact", "Home", null, new { @class = "item" })
-            </div>
-        </div>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - MEZBELE</p>
-        </footer>
-    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/semantic")
+</head>
+<body>
+    @RenderBody()
+
+    @Html.Partial("~/Views/Shared/_Footer.cshtml")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

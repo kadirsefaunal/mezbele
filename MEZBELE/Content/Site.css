@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Lato, Open Sans, Roboto, Arial, Helvetica, sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +22,69 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+/* Index.cshtml */
+
+.hidden.menu {
+    display: none;
+}
+
+.masthead.segment {
+    min-height: 1000px;
+    padding: 1em 0em;
+}
+
+.masthead .logo.item img {
+    margin-right: 1em;
+}
+
+.masthead .ui.menu .ui.button {
+    margin-left: 0.5em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 5em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+.footer.segment {
+    padding: 5em 0em;
+}
+
+.secondary.pointing.menu .toc.item {
+    display: none;
+}
+
+@media only screen and (max-width: 700px) {
+    .ui.fixed.menu {
+        display: none !important;
+    }
+
+    .secondary.pointing.menu .item,
+    .secondary.pointing.menu .menu {
+        display: none;
+    }
+
+    .secondary.pointing.menu .toc.item {
+        display: block;
+    }
+
+    .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 8em;
+    }
+
+    .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+    }
 }
