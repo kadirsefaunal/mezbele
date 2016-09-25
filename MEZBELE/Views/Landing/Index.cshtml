@@ -9,6 +9,8 @@
 
 @Html.Partial("~/Views/Shared/_SignUp.cshtml")
 
+@Html.Partial("~/Views/Shared/_Login.cshtml")
+
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
 
@@ -21,7 +23,7 @@
                 <a class="item" href="#">Hakkımızda</a>
                 <a class="item" href="#">İletişim</a>
                 <div class="right item">
-                    <a class="ui inverted button">Giriş Yap</a>
+                    <a class="ui inverted button" onclick="showLoginModal()">Giriş Yap</a>
                     <a class="ui inverted button" onclick="showSignUpModal()">Kayıt Ol</a>
                 </div>
             </div>
