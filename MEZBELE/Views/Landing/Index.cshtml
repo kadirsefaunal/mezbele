@@ -7,6 +7,7 @@
 
 @Html.Partial("~/Views/Shared/_Sidebar.cshtml")
 
+@Html.Partial("~/Views/Shared/_SignUp.cshtml")
 
 <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segment">
@@ -21,7 +22,7 @@
                 <a class="item" href="#">İletişim</a>
                 <div class="right item">
                     <a class="ui inverted button">Giriş Yap</a>
-                    <a class="ui inverted button">Kayıt Ol</a>
+                    <a class="ui inverted button" onclick="showSignUpModal()">Kayıt Ol</a>
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
                 Mezbele
             </h1>
             <h2>Çaylaklar gibi proje yönetin.</h2>
-            <div class="ui huge primary button">Başlayın <i class="right arrow icon"></i></div>
+            <div class="ui huge teal button">Başlayın <i class="right arrow icon"></i></div>
         </div>
 
     </div>
