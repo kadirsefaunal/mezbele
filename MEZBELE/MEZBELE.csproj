@@ -146,6 +146,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609251730530_AddUserPassword.cs" />
+    <Compile Include="Migrations\201609251730530_AddUserPassword.Designer.cs">
+      <DependentUpon>201609251730530_AddUserPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609251738585_RemovedUserPassword.cs" />
+    <Compile Include="Migrations\201609251738585_RemovedUserPassword.Designer.cs">
+      <DependentUpon>201609251738585_RemovedUserPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609251739342_AddedUserPassword.cs" />
+    <Compile Include="Migrations\201609251739342_AddedUserPassword.Designer.cs">
+      <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Crews.cs" />
     <Compile Include="Models\Issues.cs" />
@@ -188,12 +201,12 @@
     <Content Include="Views\Shared\_FollowingMenu.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_SignUp.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -204,6 +217,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609251730530_AddUserPassword.resx">
+      <DependentUpon>201609251730530_AddUserPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609251738585_RemovedUserPassword.resx">
+      <DependentUpon>201609251738585_RemovedUserPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609251739342_AddedUserPassword.resx">
+      <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

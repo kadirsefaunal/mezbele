@@ -1,4 +1,6 @@
-﻿<div class="ui basic modal" id="signUpModal">
+﻿@model MEZBELE.Models.Users
+
+<div class="ui basic modal" id="signUpModal">
     <i class="close icon"></i>
     <div class="header">
     </div>
@@ -9,11 +11,14 @@
                     Kayıt Ol
                 </span>
             </h2>
-            <form class="ui large form">
-                <div class="ui stacked segment">
+            @using (Html.BeginForm("Index", "Landing", null, FormMethod.Post, htmlAttributes: new { @class = "ui large form" }))
+            {
+            @Html.AntiForgeryToken()
+
+                <div class="ui segment">
                     <div class="field">
                         <div class="ui big left corner labeled input">
-                            <input placeholder="Kullanıcı Adı" type="text" name="username">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @placeholder = "Kullanıcı Adı"} })
                             <div class="ui left corner label">
                                 <i class="user icon"></i>
                             </div>
@@ -21,7 +26,7 @@
                     </div>
                     <div class="field">
                         <div class="ui big left corner labeled input">
-                            <input placeholder="E-posta" type="text" name="email">
+                            @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @placeholder = "E-posta Adresi"} })
                             <div class="ui left corner label">
                                 <i class="mail icon"></i>
                             </div>
@@ -29,18 +34,15 @@
                     </div>
                     <div class="field">
                         <div class="ui big left corner labeled input">
-                            <input placeholder="Parola" type="password" name="password">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Parola", @type = "password" } })
                             <div class="ui left corner label">
                                 <i class="asterisk icon"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="ui fluid large teal submit button">Kaydol</div>
+                    <input class="ui large teal submit button" type="submit" value="Kaydol" />
                 </div>
-
-                <div class="ui error message"></div>
-
-            </form>
+            }
         </div>
     </div>
 </div>
