@@ -33,11 +33,23 @@ namespace MEZBELE.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "UserName,EMail,Password")] Users users)
         {
+            bool kontrol = false;
             if (ModelState.IsValid)
             {
-                db.Users.Add(users);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Users");
+                foreach (var item in db.Users)
+                {
+                    if (item.UserName == users.UserName)
+                    {
+                        kontrol = true;
+                        break;
+                    }
+                }
+                if (!kontrol)
+                {
+                    db.Users.Add(users);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Users");
+                }
             }
 
             return RedirectToAction("Index");
