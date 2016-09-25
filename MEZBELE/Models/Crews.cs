@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace MEZBELE.Models
 {
     public class Crews
     {
-        public int ID { get; set; }
-        public int OwnerID { get; set; }
+        public int Id { get; set; }
+        public int OwnerId { get; set; }
         public string CrewName { get; set; }
         public string CrewAvatar { get; set; }
 

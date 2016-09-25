@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MEZBELE.Models
 {
     public class Projects
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int OwnerID { get; set; }
         public bool IsIndividual { get; set; }
         public bool IsPrivate { get; set; }
