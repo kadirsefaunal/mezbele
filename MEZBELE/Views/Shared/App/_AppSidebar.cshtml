@@ -3,9 +3,9 @@
 <div class="ui visible inverted left vertical sidebar menu">
     <div class="item">
         <a class="ui logo icon image" href="/">
-            <img src="" style="height:50px;">@*model eklenecek*@
+            <img src="@Model.UserAvatar" style="height:50px;">
         </a>
-        <a href="/" style="padding-left: 1em;"><b>@Session["UserName"]</b></a>
+        <a href="/" style="padding-left: 1em;"><b>@Model.UserName</b></a>
     </div>
     <a class="item">
         <i class="home icon"></i> Home
