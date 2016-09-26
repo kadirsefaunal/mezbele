@@ -10,19 +10,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/semantic")
 </head>
-<body>
-    <div class="ui bottom attached segment pushable">
-
-        @Html.Partial("~/Views/Shared/App/_AppSidebar.cshtml")
-
-        <div class="pusher">
-            @RenderBody()
-        </div>
-
-        @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
-
-        @RenderSection("scripts", required: false)
-
+<body class="segment">
+    @Html.Partial("~/Views/Shared/App/_AppSidebar.cshtml")
+    <div class="ui container" style="height: 100%; padding-top:2em;">
+        @RenderBody()
     </div>
+    @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

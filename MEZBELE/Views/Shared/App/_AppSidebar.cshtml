@@ -4,13 +4,14 @@
     <div class="item">
         <div class="text">
             <img class="ui tiny avatar image" src="@Model.UserAvatar">
-            @Model.UserName
+            @Model.FirstName @Model.LastName
         </div>
     </div>
 
     <div class="item">
         <div class=" header">Kullanıcı</div>
         <div class="menu">
+            @Html.ActionLink("Kullanıcı Paneli", "Index", "Profile", new { area = "" }, new { @class = "item" })
             @Html.ActionLink("Çıkış", "LogOut", "App", new { area = "" }, new { @class = "item" })
         </div>
     </div>
