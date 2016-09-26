@@ -12,17 +12,6 @@
     <title>Index</title>
 </head>
 <body>
-        @if (Session["UserId"] != null && Session["UserName"] != null)
-        {
-            <h2>@Session["UserId"]</h2> <br>
-            <h2>@Session["UserName"]</h2>
-            @Html.ActionLink("Çıkış", "LogOut", "Landing");
-        }
-        else
-        {
-            Response.Redirect(Url.Action("Index", "Landing"));
-        }
-
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>

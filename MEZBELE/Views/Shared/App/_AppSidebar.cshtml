@@ -1,9 +1,11 @@
-﻿<div class="ui visible inverted left vertical sidebar menu">
+﻿@model MEZBELE.Models.Users
+
+<div class="ui visible inverted left vertical sidebar menu">
     <div class="item">
         <a class="ui logo icon image" href="/">
-            <img src="Content/logo.png" style="height:50px;">
+            <img src="" style="height:50px;">@*model eklenecek*@
         </a>
-        <a href="/" style="padding-left: 1em;"><b>Mezbele</b></a>
+        <a href="/" style="padding-left: 1em;"><b>@Session["UserName"]</b></a>
     </div>
     <a class="item">
         <i class="home icon"></i> Home

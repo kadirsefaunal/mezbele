@@ -26,7 +26,6 @@ namespace MEZBELE.Controllers
         /// Kullanıcı girişi yapar.
         /// </summary>
         /// <param name="users">Formdan gönderilen değerler ile oluşturulan Users nesnesi.</param>
-        /// <returns>Kullanıcı listesine yönlendirir.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "UserName,Password")] Users users)

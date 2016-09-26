@@ -11,7 +11,7 @@
                     Giriş Yap
                 </span>
             </h2>
-            @using (Html.BeginForm("Index", "Users", null, FormMethod.Post, htmlAttributes: new { @class = "ui large form" }))
+            @using (Html.BeginForm("Index", "App", null, FormMethod.Post, htmlAttributes: new { @class = "ui large form" }))
             {
             @Html.AntiForgeryToken()
 
