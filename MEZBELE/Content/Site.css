@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
     font-family: Lato, Open Sans, Roboto, Arial, Helvetica, sans-serif;
 }
@@ -87,4 +86,10 @@ textarea {
         margin-top: 0.5em;
         font-size: 1.5em;
     }
+}
+
+/* App Footer */
+
+.ui.footer.segment {
+    padding: 5em 0em;
 }

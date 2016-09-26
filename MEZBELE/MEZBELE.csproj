@@ -141,6 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\MezbeleContext.cs" />
+    <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\logo.png" />
     <Content Include="Content\semantic.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -207,6 +209,10 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shared\App\_AppLayout.cshtml" />
+    <Content Include="Views\App\Index.cshtml" />
+    <Content Include="Views\Shared\App\_AppFooter.cshtml" />
+    <Content Include="Views\Shared\App\_AppSidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

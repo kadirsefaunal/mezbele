@@ -1,0 +1,29 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mezbele</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/semantic")
+</head>
+<body>
+    <div class="ui bottom attached segment pushable">
+
+        @Html.Partial("~/Views/Shared/App/_AppSidebar.cshtml")
+
+        <div class="pusher">
+            @RenderBody()
+        </div>
+
+        @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
+
+        @RenderSection("scripts", required: false)
+
+    </div>
+</body>
+</html>
