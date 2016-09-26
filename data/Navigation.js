@@ -77,10 +77,22 @@ sharpDox.navigationData = [
  
 
 		{
+			id: 'MEZBELE.Controllers.AppController',
+			text: 'AppController',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Controllers.AppController/index' }
+        },	
+		{
 			id: 'MEZBELE.Controllers.LandingController',
 			text: 'LandingController',
 			icon: './assets/icons/class_public.png',
 			a_attr: { href : '#/type/MEZBELE.Controllers.LandingController/index' }
+        },	
+		{
+			id: 'MEZBELE.Controllers.ProfileController',
+			text: 'ProfileController',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Controllers.ProfileController/index' }
         },	
 		{
 			id: 'MEZBELE.Controllers.UsersController',
