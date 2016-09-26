@@ -143,6 +143,7 @@
     <Compile Include="Context\MezbeleContext.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,11 @@
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\Shared\App\_AppFooter.cshtml" />
     <Content Include="Views\Shared\App\_AppSidebar.cshtml" />
+    <Content Include="Views\Profile\Create.cshtml" />
+    <Content Include="Views\Profile\Delete.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
