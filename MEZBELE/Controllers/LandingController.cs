@@ -56,6 +56,19 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
+        /// Kullanıcının çıkış yapmasını sağlar.
+        /// </summary>
+        public ActionResult LogOut()
+        {
+            if(Session["UserId"] != null && Session["UserName"] != null)
+            {
+                Session["UserId"] = null;
+                Session["UserName"] = null;
+            }
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
         /// DB dispose metodu.
         /// </summary>
         /// <param name="disposing">Durum belirteci.</param>

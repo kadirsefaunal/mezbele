@@ -21,6 +21,43 @@ namespace MEZBELE.Controllers
             return View(db.Users.ToList());
         }
 
+
+        /// <summary>
+        /// Kullanıcı girişi yapar.
+        /// </summary>
+        /// <param name="users">Formdan gönderilen değerler ile oluşturulan Users nesnesi.</param>
+        /// <returns>Kullanıcı listesine yönlendirir.</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "UserName,Password")] Users users)
+        {
+            bool kontrol = false;
+            int userId = -1;
+            if (ModelState.IsValid)
+            {
+                foreach (var item in db.Users)
+                {
+                    if (item.UserName == users.UserName && item.Password == users.Password)
+                    {
+                        userId = item.Id;
+                        kontrol = true;
+                        break;
+                    }
+                }
+                if (kontrol && userId != -1)
+                {
+                    Session["UserId"] = userId;
+                    Session["UserName"] = users.UserName;
+                    return RedirectToAction("Index", "Users");
+                }
+                else
+                    return RedirectToAction("Index", "Landing");
+            }
+
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
