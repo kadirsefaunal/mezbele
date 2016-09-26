@@ -2,12 +2,24 @@
 
 <div class="ui visible inverted left vertical sidebar menu">
     <div class="item">
-        <a class="ui logo icon image" href="/">
-            <img src="@Model.UserAvatar" style="height:50px;">
-        </a>
-        <a href="/" style="padding-left: 1em;"><b>@Model.UserName</b></a>
+        <div class="text">
+            <img class="ui tiny avatar image" src="@Model.UserAvatar">
+            @Model.UserName
+        </div>
     </div>
+
+    <div class="item">
+        <div class=" header">Kullanıcı</div>
+        <div class="menu">
+            @Html.ActionLink("Çıkış", "LogOut", "App", new { area = "" }, new { @class = "item" })
+        </div>
+    </div>
+
     <a class="item">
         <i class="home icon"></i> Home
     </a>
 </div>
+
+<script type="text/javascript">
+    $('.ui.dropdown').dropdown();
+</script>

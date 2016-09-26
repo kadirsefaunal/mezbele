@@ -1,16 +1,6 @@
-﻿@model MEZBELE.Models.Users
-
-@{
+﻿@{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
-    if (Session["UserId"] != null && Session["UserName"] != null)
-    {
-        @Html.ActionLink("Çıkış", "LogOut", "App");
-    }
-    else
-    {
-        Response.Redirect(Url.Action("Index", "Landing"));
-    }
 }
 
 <div class="ui basic segment">
