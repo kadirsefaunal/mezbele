@@ -1,6 +1,5 @@
 ﻿using MEZBELE.Context;
 using MEZBELE.Models;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace MEZBELE.Controllers
@@ -10,6 +9,9 @@ namespace MEZBELE.Controllers
     /// </summary>
     public class AppController : Controller
     {
+        /// <summary>
+        /// Veritabanı.
+        /// </summary>
         private MezbeleContext db = new MezbeleContext();
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace MEZBELE.Controllers
                 else
                     return RedirectToAction("Index", "Landing");
             }
-            
+
             return View(user);
         }
 
@@ -59,10 +61,6 @@ namespace MEZBELE.Controllers
             return RedirectToAction("Index", "Landing");
         }
 
-        /// <summary>
-        /// DB dispose metodu.
-        /// </summary>
-        /// <param name="disposing">Durum belirteci.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

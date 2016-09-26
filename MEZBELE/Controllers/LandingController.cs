@@ -1,6 +1,5 @@
 ﻿using MEZBELE.Context;
 using MEZBELE.Models;
-using System.Net;
 using System.Web.Mvc;
 
 namespace MEZBELE.Controllers
@@ -15,12 +14,19 @@ namespace MEZBELE.Controllers
         /// Veritabanı.
         /// </summary>
         private MezbeleContext db = new MezbeleContext();
+
         /// <summary>
-        /// Anasayfa.
+        /// Kullanıcıyı, giriş yaptıysa uygulamaya, yapmadıysa karşılama sayfasına yönlendirir.
         /// </summary>
         /// <returns>Index isimli görünümü döndürür.</returns>
         public ActionResult Index()
         {
+            // KULLANICI giriş kontrolü.
+            //if (Session["UserId"] != null)
+            //{
+            //    return RedirectToAction("Index", "App");
+            //}
+
             return View();
         }
 
@@ -54,11 +60,7 @@ namespace MEZBELE.Controllers
 
             return RedirectToAction("Index");
         }
-        
-        /// <summary>
-        /// DB dispose metodu.
-        /// </summary>
-        /// <param name="disposing">Durum belirteci.</param>
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

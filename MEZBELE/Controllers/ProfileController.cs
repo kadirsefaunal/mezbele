@@ -8,9 +8,15 @@ namespace MEZBELE.Controllers
 {
     public class ProfileController : Controller
     {
+        /// <summary>
+        /// Veritabanı.
+        /// </summary>
         private MezbeleContext db = new MezbeleContext();
 
-        // GET: Profile
+        /// <summary>
+        /// Giriş yapmış kullanıcın profil bilgilerini gösterir.
+        /// </summary>
+        /// <returns>Kullanıcı bilgilerini içeren görünümü döndürür.</returns>
         public ActionResult Index()
         {
             if (Session["UserId"] == null)
@@ -25,59 +31,70 @@ namespace MEZBELE.Controllers
             return View(user);
         }
 
-        // GET: Profile/Edit/5
-        public ActionResult Edit(int? id)
+        /// <summary>
+        /// Kullanıcı bilgilerinin düzenlendiği görünüm.
+        /// </summary>
+        /// <returns>Edit görünümüne yönlendirir.</returns>
+        public ActionResult Edit()
         {
-            if (id == null)
+            if (Session["UserId"] == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Users user = db.Users.Find(Session["UserId"]);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(user);
         }
 
-        // POST: Profile/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Kullanıcı bilgilerini değiştirir ve veritabanına kaydeder.
+        /// </summary>
+        /// <param name="user">Yeni kullanıcı bilgileri.</param>
+        /// <returns>İşlem başarılıysa Index görünümüne yönlendirir.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Password,FirstName,LastName,EMail,UserAvatar")] Users users)
+        public ActionResult Edit([Bind(Include = "Id,UserName,Password,FirstName,LastName,EMail,UserAvatar")] Users user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(users).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(users);
+            return View(user);
         }
 
-        // GET: Profile/Delete/5
-        public ActionResult Delete(int? id)
+        /// <summary>
+        /// Kullanıcıyı sistemden silme işlemini kontrol eder.
+        /// </summary>
+        /// <returns>Index görünümüne yönlendirir.</returns>
+        public ActionResult Delete()
         {
-            if (id == null)
+            if (Session["UserId"] == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Users user = db.Users.Find(Session["UserId"]);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(user);
         }
 
-        // POST: Profile/Delete/5
+        /// <summary>
+        /// Silme işlemini onaylar.
+        /// </summary>
+        /// <returns>Index görünümüne yönlendirir.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed()
         {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
+            Users user = db.Users.Find(Session["UserId"]);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

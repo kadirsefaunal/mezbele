@@ -214,9 +214,7 @@
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\Shared\App\_AppFooter.cshtml" />
     <Content Include="Views\Shared\App\_AppSidebar.cshtml" />
-    <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>

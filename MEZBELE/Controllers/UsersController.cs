@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using MEZBELE.Context;
 using MEZBELE.Models;
 
 namespace MEZBELE.Controllers
 {
+    /// <summary>
+    /// Kullanıcı ile ilgili testler için kullanılan sınıf. Silinecek.
+    /// </summary>
     public class UsersController : Controller
     {
         private MezbeleContext db = new MezbeleContext();
@@ -43,8 +42,6 @@ namespace MEZBELE.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserName,Password,FirstName,LastName,EMail,UserAvatar")] Users users)
@@ -75,8 +72,6 @@ namespace MEZBELE.Controllers
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UserName,Password,FirstName,LastName,EMail,UserAvatar")] Users users)
