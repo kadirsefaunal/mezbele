@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Net;
 using System.Web.Mvc;
 using MEZBELE.Context;
 using MEZBELE.Models;

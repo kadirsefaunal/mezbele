@@ -161,6 +161,10 @@
     <Compile Include="Migrations\201609251739342_AddedUserPassword.Designer.cs">
       <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609271852357_AddedModelAttributes.cs" />
+    <Compile Include="Migrations\201609271852357_AddedModelAttributes.Designer.cs">
+      <DependentUpon>201609271852357_AddedModelAttributes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Crews.cs" />
@@ -238,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609251739342_AddedUserPassword.resx">
       <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609271852357_AddedModelAttributes.resx">
+      <DependentUpon>201609271852357_AddedModelAttributes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
