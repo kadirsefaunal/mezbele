@@ -57,6 +57,8 @@ namespace MEZBELE.Controllers
             if (ModelState.IsValid)
             {
                 db.Projects.Add(projects);
+                Users user = db.Users.Find(Session["UserId"]);
+                user.Projects.Add(projects);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

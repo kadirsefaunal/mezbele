@@ -19,8 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OwnerID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.OwnerID, new { htmlAttributes = new {@value = Session["UserId"], @class = "form-control" } })
             </div>
         </div>
 
@@ -28,7 +27,7 @@
             @Html.LabelFor(model => model.IsIndividual, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.IsIndividual)
+                    @Html.CheckBoxFor(model => model.IsIndividual, new { htmlAttributes = new { @Value = true } })
                     @Html.ValidationMessageFor(model => model.IsIndividual, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -38,7 +37,7 @@
             @Html.LabelFor(model => model.IsPrivate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.IsPrivate)
+                    @Html.CheckBoxFor(model => model.IsPrivate, new { htmlAttributes = new { @Value = true } })
                     @Html.ValidationMessageFor(model => model.IsPrivate, "", new { @class = "text-danger" })
                 </div>
             </div>
