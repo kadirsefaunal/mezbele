@@ -22,10 +22,10 @@ namespace MEZBELE.Controllers
         public ActionResult Index()
         {
             // KULLANICI giriş kontrolü.
-            //if (Session["UserId"] != null)
-            //{
-            //    return RedirectToAction("Index", "App");
-            //}
+            if (Session["UserId"] != null)
+            {
+                return RedirectToAction("Index", "Profile", new { id = Session["UserId"] });
+            }
 
             return View();
         }
