@@ -1,0 +1,12 @@
+﻿@model MEZBELE.Models.Users
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+
+@foreach (var item in Model.Projects)
+{
+    <p>@item.Name</p><br />
+}
+

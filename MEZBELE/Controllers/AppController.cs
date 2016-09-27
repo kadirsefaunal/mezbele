@@ -40,6 +40,7 @@ namespace MEZBELE.Controllers
                 if (kontrol)
                 {
                     Session["UserId"] = u.Id;
+                    Session["User"] = u;
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), true);
                     return View(u);
                 }
