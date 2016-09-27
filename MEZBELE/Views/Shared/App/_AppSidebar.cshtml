@@ -16,9 +16,19 @@
         </div>
     </div>
 
-    <a class="item">
-        <i class="home icon"></i> Home
-    </a>
+    <div class="item">
+        <div class=" header">Ekipler</div>
+        <div class="menu">
+            @Html.ActionLink("Ekip Paneli", "Index", "Crews", new { area = "" }, new { @class = "item" })
+        </div>
+    </div>
+
+    <div class="item">
+        <div class=" header">Projeler</div>
+        <div class="menu">
+            @Html.ActionLink("Proje Paneli", "Index", "Projects", new { area = "" }, new { @class = "item" })
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
