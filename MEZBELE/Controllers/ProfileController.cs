@@ -96,7 +96,7 @@ namespace MEZBELE.Controllers
             Users user = db.Users.Find(Session["UserId"]);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Landing");
         }
 
         protected override void Dispose(bool disposing)

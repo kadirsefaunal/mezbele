@@ -8,15 +8,28 @@
 <div>
     <h4>Üyeliği Sil</h4>
     <hr />
-    <h3>Üyeliğinizi silmek istediğinizden emin misiniz?</h3>
+    
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui raised segment">
+                <a class="ui red ribbon label">Üyeliğiniz Silinmek Üzere</a>
 
-    @using (Html.BeginForm())
-    {
-    @Html.AntiForgeryToken()
+                <br />
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Sil" class="btn btn-default" /> |
-            @Html.ActionLink("Geri Dön", "Index")
+                <h3>Üyeliğinizi silmek istediğinizden emin misiniz?</h3>
+                <br />
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+
+                    <div class="ui buttons">
+                        <input class="ui large orange submit button" type="submit" value="Sil" style="margin-left: 10px;" />
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui positive button" })
+                    </div>
+                }
+            </div>
         </div>
-    }
+    </div>
+
 </div>

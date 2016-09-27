@@ -5,76 +5,79 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Profil Bilgilerini Düzenle</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<h4>Profil Bilgilerini Düzenle</h4>
+<hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="ui one column grid">
+    <div class="column">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">Düzenlenecek Bilgiler</a>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <br /><br /><br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "red text" })
+                @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="field">
+                    <label>Kullanıcı Adı:</label>
+                    <div class="ui fluid left corner labeled input">
+                        @Html.EditorFor(model => model.UserName)
+                        <div class="ui left corner label">
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>E-posta Adresi:</label>
+                    <div class="ui fluid left corner labeled input">
+                        @Html.EditorFor(model => model.EMail)
+                        <div class="ui left corner label">
+                            <i class="mail icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Parola:</label>
+                    <div class="ui fluid left corner labeled input">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password" } })
+                        <div class="ui left corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>İsim:</label>
+                    <div class="ui fluid input">
+                        @Html.EditorFor(model => model.FirstName)
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Soyisim:</label>
+                    <div class="ui fluid input">
+                        @Html.EditorFor(model => model.LastName)
+                    </div>
+                </div>
+                    <div class="field">
+                        <label>Kullanıcı Resmi:</label>
+                        <div class="ui fluid input">
+                            @Html.EditorFor(model => model.UserAvatar)
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="ui buttons">
+                        <input class="ui large teal submit button" type="submit" value="Kaydet"  style="margin-left: 10px;"/>
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui negative button" })
+                    </div>
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EMail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserAvatar, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserAvatar, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserAvatar, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-default" />
-            </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Geri Dön", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
