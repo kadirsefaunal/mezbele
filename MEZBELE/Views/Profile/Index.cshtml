@@ -1,65 +1,89 @@
 ﻿@model MEZBELE.Models.Users
 
 @{
-    ViewBag.Title = "Profil";
+    ViewBag.Title = "Kullanıcı Paneli";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
 <div>
-    <h4>Profil Bilgileri</h4>
+    <h4>Kullanıcı Paneli</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EMail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EMail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserAvatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserAvatar)
-        </dd>
-
-    </dl>
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui raised segment">
+                <a class="ui red ribbon label">İstatistikler</a>
+                <br /><br /><br />
+                <!--TODO: Kullanıcı istatistiklerini göster. -->
+                <div class="ui four statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            EKİP
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            8
+                        </div>
+                        <div class="label">
+                            PROJE
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            5
+                        </div>
+                        <div class="label">
+                            İŞ
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            42
+                        </div>
+                        <div class="label">
+                            EKİP ARKADAŞI
+                        </div>
+                    </div>
+                </div>
+                <br /><br /><br />
+                <a class="ui blue ribbon label">Bilgiler</a>
+                <h2 class="ui center aligned icon header">
+                    <img class="ui tiny circular image" src="@Model.UserAvatar">
+                </h2>
+                <div class="ui center aligned header">
+                    <div class="ui list">
+                        <div class="item">
+                            Kullanıcı Adı:
+                            @Html.DisplayFor(model => model.UserName)
+                        </div>
+                        <div class="item">
+                            E-posta Adresi:
+                            @Html.DisplayFor(model => model.EMail)
+                        </div>
+                        <div class="item">
+                            İsim:
+                            @Html.DisplayFor(model => model.FirstName)
+                        </div>
+                        <div class="item">
+                            Soyisim:
+                            @Html.DisplayFor(model => model.LastName)
+                        </div>
+                        <div class="item">
+                            Parola:
+                            @Html.DisplayFor(model => model.Password)
+                        </div>
+                    </div>
+                    <div class="ui buttons">
+                        @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui positive button" })
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Sil", "Delete", new { id = Model.Id }, new { @class = "ui negative button" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) | 
-    @Html.ActionLink("Sil", "Delete", new { id = Model.Id })
-</p>
