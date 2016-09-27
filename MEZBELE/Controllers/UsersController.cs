@@ -10,6 +10,7 @@ namespace MEZBELE.Controllers
     /// <summary>
     /// Kullanıcı ile ilgili testler için kullanılan sınıf. Silinecek.
     /// </summary>
+    [_SessionControl]
     public class UsersController : Controller
     {
         private MezbeleContext db = new MezbeleContext();

@@ -6,6 +6,7 @@ using MEZBELE.Models;
 
 namespace MEZBELE.Controllers
 {
+    [_SessionControl]
     public class ProfileController : Controller
     {
         /// <summary>
@@ -19,10 +20,6 @@ namespace MEZBELE.Controllers
         /// <returns>Kullanıcı bilgilerini içeren görünümü döndürür.</returns>
         public ActionResult Index()
         {
-            if (Session["UserId"] == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Users user = db.Users.Find(Session["UserId"]);
             if (user == null)
             {
@@ -37,10 +34,6 @@ namespace MEZBELE.Controllers
         /// <returns>Edit görünümüne yönlendirir.</returns>
         public ActionResult Edit()
         {
-            if (Session["UserId"] == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Users user = db.Users.Find(Session["UserId"]);
             if (user == null)
             {
@@ -73,10 +66,6 @@ namespace MEZBELE.Controllers
         /// <returns>Index görünümüne yönlendirir.</returns>
         public ActionResult Delete()
         {
-            if (Session["UserId"] == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Users user = db.Users.Find(Session["UserId"]);
             if (user == null)
             {

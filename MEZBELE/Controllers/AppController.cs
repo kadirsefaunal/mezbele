@@ -1,6 +1,8 @@
 ﻿using MEZBELE.Context;
 using MEZBELE.Models;
+using System;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MEZBELE.Controllers
 {
@@ -14,52 +16,48 @@ namespace MEZBELE.Controllers
         /// </summary>
         private MezbeleContext db = new MezbeleContext();
 
-        /// <summary>
-        /// Kullanıcı girişi yapar.
-        /// </summary>
-        /// <param name="users">Formdan gönderilen değerler ile oluşturulan Users nesnesi.</param>
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "UserName,Password")] Users users)
+        #region Giriş Sistemi çalışması
+        public ActionResult Index()
         {
-            Users user = null;
-            bool kontrol = false;
+            return RedirectToAction("Index", "Landing");
+        }
+
+        [HttpPost]
+        public ActionResult Index([Bind(Include = "UserName,Password")] Users user)
+        {
+            Users u = null;
             if (ModelState.IsValid)
             {
+                bool kontrol = false;
                 foreach (var item in db.Users)
                 {
-                    if (item.UserName == users.UserName && item.Password == users.Password)
+                    if (item.UserName == user.UserName && item.Password == user.Password)
                     {
-                        user = item;
+                        u = item;
                         kontrol = true;
                         break;
                     }
                 }
                 if (kontrol)
                 {
-                    Session["UserId"] = user.Id;
-                    Session["UserName"] = user.UserName;
-                    return View(user);
+                    Session["UserId"] = u.Id;
+                    FormsAuthentication.SetAuthCookie(u.Id.ToString(), true);
+                    return View(u);
                 }
                 else
                     return RedirectToAction("Index", "Landing");
             }
-
-            return View(user);
+            return View(u);
         }
 
-        /// <summary>
-        /// Kullanıcının çıkış yapmasını sağlar.
-        /// </summary>
         public ActionResult LogOut()
         {
-            if (Session["UserId"] != null && Session["UserName"] != null)
-            {
-                Session["UserId"] = null;
-                Session["UserName"] = null;
-            }
+            FormsAuthentication.SignOut();
+            Session["UserId"] = null;
             return RedirectToAction("Index", "Landing");
         }
+
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
