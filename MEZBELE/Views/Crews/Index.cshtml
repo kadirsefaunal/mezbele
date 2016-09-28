@@ -1,40 +1,56 @@
 ﻿@model IEnumerable<MEZBELE.Models.Crews>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Ekip Paneli";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CrewName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CrewAvatar)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <h4>Ekip Paneli</h4>
+    <hr />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CrewName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CrewAvatar)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui raised segment">
+                <a class="ui red ribbon label">Ekipler</a>
 
-</table>
+                <br /><br /><br />
+
+                <p>
+                    @Html.ActionLink("Ekip Oluştur", "Create")
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CrewName)
+                        </th>
+                        <th style="padding-left:2em;">
+                            @Html.DisplayNameFor(model => model.CrewAvatar)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CrewName)
+                        </td>
+                        <td style="padding-left:2em;">
+                            @Html.DisplayFor(modelItem => item.CrewAvatar)
+                        </td>
+                        <td style="padding-left:2em;">
+                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

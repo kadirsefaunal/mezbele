@@ -1,41 +1,50 @@
 ﻿@model MEZBELE.Models.Crews
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Silinecek Ekip: " + Model.CrewName;
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Crews</h4>
+    <h4>Ekibi Sil</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CrewName)
-        </dt>
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui raised segment">
+                <a class="ui red ribbon label">Silinecek Ekip</a>
+                <span>Aşağıdaki bilgilere sahip ekibi silmek istediğinize emin misiniz?</span>
+                <br /><br /><br />
 
-        <dd>
-            @Html.DisplayFor(model => model.CrewName)
-        </dd>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CrewName)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CrewAvatar)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CrewName)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CrewAvatar)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CrewAvatar)
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.CrewAvatar)
+                    </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Sil" class="ui negative button" /> |
+                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index")
+                    </div>
+                }
+
+            </div>
         </div>
-    }
+    </div>
 </div>
