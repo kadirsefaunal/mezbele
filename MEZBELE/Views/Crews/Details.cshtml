@@ -1,0 +1,35 @@
+﻿@model MEZBELE.Models.Crews
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Crews</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CrewName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrewName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrewAvatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrewAvatar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
