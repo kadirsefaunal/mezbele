@@ -1,10 +1,12 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MEZBELE.Context;
 using MEZBELE.Models;
 using System;
+using System.Collections.Generic;
 
 namespace MEZBELE.Controllers
 {
@@ -53,23 +55,27 @@ namespace MEZBELE.Controllers
         // POST: Projects/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,IsPrivate,Name,Description")] Projects projects)
+        public ActionResult Create([Bind(Include = "Id,IsPrivate,Name,Description")] Projects project)
         {
             if (ModelState.IsValid)
             {
                 Users user = db.Users.Find(Session["UserId"]);
-                projects.OwnerID = user.Id;
-                projects.IsIndividual = true;
-                projects.IsPrivate = true;
-                projects.CreationDate = DateTime.Now;
-                projects.ChangeDate = DateTime.Now;
-                db.Projects.Add(projects);
-                user.Projects.Add(projects);
+                project.Users = new List<Users>();
+                project.Crews = new List<Crews>();
+                project.Issues = new List<Issues>();
+                project.OwnerID = user.Id;
+                project.IsIndividual = true;
+                project.IsPrivate = true;
+                project.CreationDate = DateTime.Now;
+                project.ChangeDate = DateTime.Now;
+                project.Users.Add(user);
+                user.Projects.Add(project);
+                db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(projects);
+            return View(project);
         }
 
         // GET: Projects/Edit/5
@@ -90,16 +96,19 @@ namespace MEZBELE.Controllers
         // POST: Projects/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IsIndividual,IsPrivate,Name,Description")] Projects projects)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Projects project)
         {
             if (ModelState.IsValid)
             {
-                projects.ChangeDate = DateTime.Now;
-                db.Entry(projects).State = EntityState.Modified;
+                project.ChangeDate = DateTime.Now;
+                db.Projects.Attach(project);
+                db.Entry(project).Property(e => e.Name).IsModified = true;
+                db.Entry(project).Property(e => e.Description).IsModified = true;
+                db.Entry(project).Property(e => e.ChangeDate).IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(projects);
+            return View(project);
         }
 
         // GET: Projects/Delete/5

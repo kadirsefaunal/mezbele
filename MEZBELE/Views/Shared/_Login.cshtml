@@ -19,7 +19,6 @@
                     <div class="field">
                         <div class="ui big left corner labeled input">
                             @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @placeholder = "Kullanıcı Adı" } })
-                            @*<input placeholder="Kullanıcı Adı" type="text" name="username">*@
                             <div class="ui left corner label">
                                 <i class="user icon"></i>
                             </div>
@@ -28,14 +27,12 @@
                     <div class="field">
                         <div class="ui big left corner labeled input">
                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Parola", @type = "password" } })
-                            @*<input placeholder="Parola" type="password" name="password">*@
                             <div class="ui left corner label">
                                 <i class="asterisk icon"></i>
                             </div>
                         </div>
                     </div>
-                    <input class="ui fluid large teal submit button" type="submit" value="Giriş Yap" />
-                    @*<div class="ui fluid large teal submit button">Giriş Yap</div>*@
+                    <input class="ui large teal submit button" type="submit" value="Giriş Yap" />
                 </div>
 
                 <div class="ui error message"></div>
