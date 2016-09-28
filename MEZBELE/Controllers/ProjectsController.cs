@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using MEZBELE.Context;
 using MEZBELE.Models;
+using System;
 
 namespace MEZBELE.Controllers
 {
@@ -52,12 +53,17 @@ namespace MEZBELE.Controllers
         // POST: Projects/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,OwnerID,IsIndividual,IsPrivate,Name,Description,CreationDate,ChangeDate")] Projects projects)
+        public ActionResult Create([Bind(Include = "Id,IsPrivate,Name,Description")] Projects projects)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(projects);
                 Users user = db.Users.Find(Session["UserId"]);
+                projects.OwnerID = user.Id;
+                projects.IsIndividual = true;
+                projects.IsPrivate = true;
+                projects.CreationDate = DateTime.Now;
+                projects.ChangeDate = DateTime.Now;
+                db.Projects.Add(projects);
                 user.Projects.Add(projects);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,10 +90,11 @@ namespace MEZBELE.Controllers
         // POST: Projects/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OwnerID,IsIndividual,IsPrivate,Name,Description,CreationDate,ChangeDate")] Projects projects)
+        public ActionResult Edit([Bind(Include = "Id,IsIndividual,IsPrivate,Name,Description")] Projects projects)
         {
             if (ModelState.IsValid)
             {
+                projects.ChangeDate = DateTime.Now;
                 db.Entry(projects).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
