@@ -77,10 +77,22 @@ sharpDox.navigationData = [
  
 
 		{
+			id: 'MEZBELE.Controllers._SessionControlAttribute',
+			text: '_SessionControlAttribute',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Controllers._SessionControlAttribute/index' }
+        },	
+		{
 			id: 'MEZBELE.Controllers.AppController',
 			text: 'AppController',
 			icon: './assets/icons/class_public.png',
 			a_attr: { href : '#/type/MEZBELE.Controllers.AppController/index' }
+        },	
+		{
+			id: 'MEZBELE.Controllers.CrewsController',
+			text: 'CrewsController',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Controllers.CrewsController/index' }
         },	
 		{
 			id: 'MEZBELE.Controllers.LandingController',
@@ -93,6 +105,12 @@ sharpDox.navigationData = [
 			text: 'ProfileController',
 			icon: './assets/icons/class_public.png',
 			a_attr: { href : '#/type/MEZBELE.Controllers.ProfileController/index' }
+        },	
+		{
+			id: 'MEZBELE.Controllers.ProjectsController',
+			text: 'ProjectsController',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Controllers.ProjectsController/index' }
         },	
 		{
 			id: 'MEZBELE.Controllers.UsersController',
@@ -113,6 +131,12 @@ sharpDox.navigationData = [
 			
  
 
+		{
+			id: 'MEZBELE.Migrations.AddedModelAttributes',
+			text: 'AddedModelAttributes',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Migrations.AddedModelAttributes/index' }
+        },	
 		{
 			id: 'MEZBELE.Migrations.AddedUserPassword',
 			text: 'AddedUserPassword',
