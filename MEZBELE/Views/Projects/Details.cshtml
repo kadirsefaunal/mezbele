@@ -1,11 +1,112 @@
 ﻿@model MEZBELE.Models.Projects
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Name + " - Proje Detayları";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div>
+    <h4>Ekip Detayları</h4>
+    <hr />
+
+    <div class="ui one column grid">
+        <div class="column">
+            <div class="ui raised segment">
+                <a class="ui red ribbon label">Ekip Bilgileri</a>
+
+                <br /><br /><br />
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.OwnerID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.OwnerID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsIndividual)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IsIndividual)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsPrivate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IsPrivate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CreationDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CreationDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ChangeDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ChangeDate)
+                    </dd>
+
+                </dl>
+                <p>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+                    @Html.ActionLink("Proje listesine dön", "Index")
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Details</h2>
 
 <div>
     <h4>Projects</h4>
@@ -72,4 +173,4 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
