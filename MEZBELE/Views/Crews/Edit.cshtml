@@ -1,7 +1,7 @@
 ﻿@model MEZBELE.Models.Crews
 
 @{
-    ViewBag.Title = Model.CrewName + " - Ekip Bilgilerini Düzenle";
+    ViewBag.Title = Model.Name + " - Ekip Bilgilerini Düzenle";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
@@ -24,18 +24,18 @@
                     @Html.HiddenFor(model => model.Id)
 
                     <div class="field">
-                        <label>@Html.LabelFor(model => model.CrewName):</label>
+                        <label>@Html.LabelFor(model => model.Name):</label>
                         <div class="ui fluid input">
-                            @Html.EditorFor(model => model.CrewName)
-                            @Html.ValidationMessageFor(model => model.CrewName, "")
+                            @Html.EditorFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name, "")
                         </div>
                     </div>
 
                     <div class="field">
-                        <label>@Html.LabelFor(model => model.CrewAvatar):</label>
+                        <label>@Html.LabelFor(model => model.Avatar):</label>
                         <div class="ui fluid input">
-                            @Html.EditorFor(model => model.CrewAvatar)
-                            @Html.ValidationMessageFor(model => model.CrewAvatar, "")
+                            @Html.EditorFor(model => model.Avatar)
+                            @Html.ValidationMessageFor(model => model.Avatar, "")
                         </div>
                     </div>
 

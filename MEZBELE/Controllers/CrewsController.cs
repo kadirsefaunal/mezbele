@@ -58,7 +58,7 @@ namespace MEZBELE.Controllers
         /// <returns>Ekip paneli anasayfasına yönlendirir.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CrewName,CrewAvatar")] Crews crew)
+        public ActionResult Create([Bind(Include = "Id,Name,Avatar")] Crews crew)
         {
             if (ModelState.IsValid)
             {
@@ -67,11 +67,12 @@ namespace MEZBELE.Controllers
                 crew.Users = new List<Users>();
                 crew.Projects = new List<Projects>();
 
-                crew.Owner = user;
+                crew.OwnerId = user.Id;
                 user.Crews.Add(crew);
                 crew.Users.Add(user);
 
                 db.Crews.Add(crew);
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 
                 return RedirectToAction("Index");

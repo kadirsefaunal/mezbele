@@ -24,8 +24,8 @@
                 <table class="ui very basic table" style="padding: 10px;">
                     <thead>
                         <tr>
-                            <th>@Html.DisplayNameFor(model => model.CrewName)</th>
-                            <th>@Html.DisplayNameFor(model => model.CrewAvatar)</th>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.Avatar)</th>
                             <th>Seçenekler</th>
                         </tr>
                     </thead>
@@ -34,10 +34,10 @@
                         {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.CrewName)
+                                @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td style="padding-left:2em;">
-                                @Html.DisplayFor(modelItem => item.CrewAvatar)
+                                @Html.DisplayFor(modelItem => item.Avatar)
                             </td>
                             <td style="padding-left:2em;">
                                 @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "ui primary button" }) 

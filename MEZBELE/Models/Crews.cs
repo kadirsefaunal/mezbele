@@ -17,19 +17,19 @@ namespace MEZBELE.Models
         /// Ekibi oluşturan kişinin kimliği.
         /// </summary>
         [Display(Name = "Kurucu")]
-        public Users Owner { get; set; }
+        public int OwnerId { get; set; }
         /// <summary>
         /// Ekip adı.
         /// </summary>
         [Required(ErrorMessage = "Lütfen ekip adını girin.")]
         [Display(Name = "Ekip Adı")]
         [MaxLength(25)]
-        public string CrewName { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// Ekip resmi.
         /// </summary>
         [Display(Name = "Ekip Resmi")]
-        public string CrewAvatar { get; set; }
+        public string Avatar { get; set; }
         /// <summary>
         /// Ekipte olan üyeler.
         /// </summary>

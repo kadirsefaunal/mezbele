@@ -27,7 +27,7 @@ namespace MEZBELE.Models
         /// Oluşturan kişinin kimliği.
         /// </summary>
         [Display(Name = "Oluşturan")]
-        public Users Creator { get; set; }
+        public int CreatorId { get; set; }
         /// <summary>
         /// İşin adı.
         /// </summary>

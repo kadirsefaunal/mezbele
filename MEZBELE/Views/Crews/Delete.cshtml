@@ -1,7 +1,7 @@
 ﻿@model MEZBELE.Models.Crews
 
 @{
-    ViewBag.Title = Model.CrewName + " - Ekibi Sil";
+    ViewBag.Title = Model.Name + " - Ekibi Sil";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
@@ -17,8 +17,8 @@
                 <br /><br />
 
                 <h2 class="ui header" style="padding: 10px;">
-                    <img src="@Model.CrewAvatar" class="ui circular image">
-                    @Html.DisplayFor(model => model.CrewName)
+                    <img src="@Model.Avatar" class="ui circular image">
+                    @Html.DisplayFor(model => model.Name)
                 </h2>
 
                 @using (Html.BeginForm())
