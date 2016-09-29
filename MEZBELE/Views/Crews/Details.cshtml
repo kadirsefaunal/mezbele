@@ -27,7 +27,10 @@
                     <thead>
                         <tr>
                             <th>Üye</th>
-                            <th>Seçenekler</th>
+                            @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
+                            {
+                                <th>Seçenekler</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
@@ -45,9 +48,12 @@
                                     </div>
                                 </h4>
                             </td>
-                            <td style="padding-left:2em;">
-
-                            </td>
+                            @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
+                            {
+                                <td style="padding-left:2em;">
+                                    <!-- TODO: Üye Ekleme / Çıkarma -->
+                                </td>
+                            }
                         </tr>
                         }
                     </tbody>

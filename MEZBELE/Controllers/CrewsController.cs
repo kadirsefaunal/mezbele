@@ -63,7 +63,7 @@ namespace MEZBELE.Controllers
             if (ModelState.IsValid)
             {
                 Users user = db.Users.Find(Session["UserId"]);
-                
+
                 crew.Users = new List<Users>();
                 crew.Projects = new List<Projects>();
 
@@ -74,7 +74,7 @@ namespace MEZBELE.Controllers
                 db.Crews.Add(crew);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                
+
                 return RedirectToAction("Index");
             }
 
@@ -88,16 +88,30 @@ namespace MEZBELE.Controllers
         /// <returns>Ekip paneli anasayfasına yönlendirir.</returns>
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Crews crew = db.Crews.Find(id);
+
             if (crew == null)
             {
                 return HttpNotFound();
             }
-            return View(crew);
+
+            Users user = db.Users.Find(Session["UserId"]);
+
+            if (user.Id == crew.OwnerId)
+            {
+                return View(crew);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
         }
 
         /// <summary>
@@ -107,10 +121,12 @@ namespace MEZBELE.Controllers
         /// <returns>Ekip paneli anasayfasına yönlendirir.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CrewName,CrewAvatar")] Crews crew)
+        public ActionResult Edit([Bind(Include = "Id,Name,Avatar")] Crews crew)
         {
             if (ModelState.IsValid)
             {
+                Users user = db.Users.Find(Session["UserId"]);
+                crew.OwnerId = user.Id;
                 db.Entry(crew).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,12 +145,24 @@ namespace MEZBELE.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Crews crew = db.Crews.Find(id);
+
             if (crew == null)
             {
                 return HttpNotFound();
             }
-            return View(crew);
+
+            Users user = db.Users.Find(Session["UserId"]);
+
+            if (user.Id == crew.OwnerId)
+            {
+                return View(crew);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         /// <summary>
@@ -149,8 +177,11 @@ namespace MEZBELE.Controllers
             Crews crew = db.Crews.Find(id);
             Users user = db.Users.Find(Session["UserId"]);
 
-            db.Crews.Remove(crew);
-            user.Crews.Remove(crew);
+            if (user.Id == crew.OwnerId)
+            {
+                db.Crews.Remove(crew);
+                user.Crews.Remove(crew);
+            }
 
             db.SaveChanges();
             return RedirectToAction("Index");
