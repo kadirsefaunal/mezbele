@@ -22,6 +22,10 @@
         <div class=" header">Ekipler</div>
         <div class="menu">
             @Html.ActionLink("Ekip Paneli", "Index", "Crews", new { area = "" }, new { @class = "item" })
+            @foreach (var crew in user.Crews)
+            {
+            @Html.ActionLink(crew.Name, "Details", "Crews", new { id = crew.Id }, new { @class = "item" })
+            }
         </div>
     </div>
 
@@ -29,6 +33,10 @@
         <div class=" header">Projeler</div>
         <div class="menu">
             @Html.ActionLink("Proje Paneli", "Index", "Projects", new { area = "" }, new { @class = "item" })
+            @foreach (var project in user.Projects)
+            {
+            @Html.ActionLink(project.Name, "Details", "Projects", new { id = project.Id }, new { @class = "item" })
+            }
         </div>
     </div>
 
