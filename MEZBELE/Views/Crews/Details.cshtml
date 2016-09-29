@@ -16,29 +16,16 @@
 
                 <br /><br />
 
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CrewName)
-                    </dt>
+                <h2 class="ui header" style="padding: 10px;">
+                    <img src="@Model.CrewAvatar" class="ui circular image">
+                    @Html.DisplayFor(model => model.CrewName)
+                </h2>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.CrewName)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CrewAvatar)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CrewAvatar)
-                    </dd>
-
-                </dl>
-                <p>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
-                    @Html.ActionLink("Ekip Listesine Dön", "Index")
-                </p>
-
+                <div class="ui buttons" style="padding: 10px;">
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui large teal submit button" })
+                    <div class="or" data-text=""></div>
+                    @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
+                </div>
             </div>
         </div>
     </div>

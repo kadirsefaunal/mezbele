@@ -38,11 +38,13 @@
                             @Html.ValidationMessageFor(model => model.CrewAvatar, "")
                         </div>
                     </div>
+
                     <div class="ui buttons">
                         <input class="ui large teal submit button" type="submit" value="Kaydet" style="margin-left: 10px;" />
                         <div class="or" data-text=""></div>
-                        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui negative button" })
+                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
                     </div>
+
                 </div>
             </div>
         </div>

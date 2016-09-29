@@ -16,32 +16,18 @@
 
                 <br /><br />
 
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CrewName)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CrewName)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CrewAvatar)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CrewAvatar)
-                    </dd>
-
-                </dl>
+                <h2 class="ui header" style="padding: 10px;">
+                    <img src="@Model.CrewAvatar" class="ui circular image">
+                    @Html.DisplayFor(model => model.CrewName)
+                </h2>
 
                 @using (Html.BeginForm())
                 {
                 @Html.AntiForgeryToken()
-
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Sil" class="ui negative button" /> |
-                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index")
+                    <div class="ui buttons">
+                        <input class="ui large negative submit button" type="submit" value="Sil" style="margin-left: 10px;" />
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui primary button" })
                     </div>
                 }
 
