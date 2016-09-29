@@ -13,7 +13,7 @@
         <div class="ui raised segment">
             <a class="ui red ribbon label">Düzenlenecek Bilgiler</a>
 
-            <br /><br /><br />
+            <br /><br />
 
             @using (Html.BeginForm())
             {
@@ -60,18 +60,18 @@
                         @Html.EditorFor(model => model.LastName)
                     </div>
                 </div>
-                    <div class="field">
-                        <label>Kullanıcı Resmi:</label>
-                        <div class="ui fluid input">
-                            @Html.EditorFor(model => model.UserAvatar)
-                        </div>
+                <div class="field">
+                    <label>Kullanıcı Resmi:</label>
+                    <div class="ui fluid input">
+                        @Html.EditorFor(model => model.UserAvatar)
                     </div>
-                    <br/>
-                    <div class="ui buttons">
-                        <input class="ui large teal submit button" type="submit" value="Kaydet"  style="margin-left: 10px;"/>
-                        <div class="or" data-text=""></div>
-                        @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui negative button" })
-                    </div>
+                </div>
+                <br />
+                <div class="ui buttons">
+                    <input class="ui large teal submit button" type="submit" value="Kaydet" style="margin-left: 10px;" />
+                    <div class="or" data-text=""></div>
+                    @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui negative button" })
+                </div>
             }
 
             @section Scripts {
