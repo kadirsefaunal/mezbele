@@ -9,8 +9,7 @@ namespace MEZBELE.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "MEZBELE.Context.MezbeleContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MEZBELE.Context.MezbeleContext context)

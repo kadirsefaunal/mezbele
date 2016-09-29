@@ -69,5 +69,10 @@ namespace MEZBELE.Models
         /// </summary>
         [Display(Name = "Yorumlar")]
         public virtual List<Comments> Comments { get; set; }
+        /// <summary>
+        /// Kullanıcının işleri.
+        /// </summary>
+        [Display(Name = "İşler")]
+        public virtual List<Issues> Issues { get; set; }
     }
 }

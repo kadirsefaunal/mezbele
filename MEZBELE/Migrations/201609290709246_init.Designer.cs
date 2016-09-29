@@ -7,13 +7,13 @@ namespace MEZBELE.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedUserPassword : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedUserPassword));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609251739342_AddedUserPassword"; }
+            get { return "201609290709246_init"; }
         }
         
         string IMigrationMetadata.Source

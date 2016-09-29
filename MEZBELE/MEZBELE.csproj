@@ -151,21 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609251730530_AddUserPassword.cs" />
-    <Compile Include="Migrations\201609251730530_AddUserPassword.Designer.cs">
-      <DependentUpon>201609251730530_AddUserPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609251738585_RemovedUserPassword.cs" />
-    <Compile Include="Migrations\201609251738585_RemovedUserPassword.Designer.cs">
-      <DependentUpon>201609251738585_RemovedUserPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609251739342_AddedUserPassword.cs" />
-    <Compile Include="Migrations\201609251739342_AddedUserPassword.Designer.cs">
-      <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609271852357_AddedModelAttributes.cs" />
-    <Compile Include="Migrations\201609271852357_AddedModelAttributes.Designer.cs">
-      <DependentUpon>201609271852357_AddedModelAttributes.cs</DependentUpon>
+    <Compile Include="Migrations\201609290709246_init.cs" />
+    <Compile Include="Migrations\201609290709246_init.Designer.cs">
+      <DependentUpon>201609290709246_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -246,17 +234,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609251730530_AddUserPassword.resx">
-      <DependentUpon>201609251730530_AddUserPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609251738585_RemovedUserPassword.resx">
-      <DependentUpon>201609251738585_RemovedUserPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609251739342_AddedUserPassword.resx">
-      <DependentUpon>201609251739342_AddedUserPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609271852357_AddedModelAttributes.resx">
-      <DependentUpon>201609271852357_AddedModelAttributes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609290709246_init.resx">
+      <DependentUpon>201609290709246_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

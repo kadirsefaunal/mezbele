@@ -15,6 +15,10 @@ namespace MEZBELE.Models
         [Key]
         public int Id { get; set; }
         /// <summary>
+        /// İşin aktif olma durumu.
+        /// </summary>
+        public bool IsActive { get; set; }
+        /// <summary>
         /// İşin ait olduğu projenin kimliği.
         /// </summary>
         [Display(Name = "Proje")]
@@ -49,5 +53,11 @@ namespace MEZBELE.Models
         /// </summary>
         [Display(Name = "Yorumlar")]
         public virtual List<Comments> Comments { get; set; }
+        /// <summary>
+        /// Görevliler.
+        /// </summary>
+        [Display(Name = "Görevliler")]
+        public virtual List<Users> Attendants { get; set; }
+
     }
 }
