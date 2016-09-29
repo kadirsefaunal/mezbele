@@ -17,36 +17,36 @@
 
                 <br /><br /><br />
 
-                <p>
-                    @Html.ActionLink("Ekip Oluştur", "Create")
+                <p class="ui right aligned header">
+                    @Html.ActionLink("Ekip Oluştur", "Create", "", new { @class = "ui positive button" })
                 </p>
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CrewName)
-                        </th>
-                        <th style="padding-left:2em;">
-                            @Html.DisplayNameFor(model => model.CrewAvatar)
-                        </th>
-                        <th></th>
-                    </tr>
 
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CrewName)
-                        </td>
-                        <td style="padding-left:2em;">
-                            @Html.DisplayFor(modelItem => item.CrewAvatar)
-                        </td>
-                        <td style="padding-left:2em;">
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
-                    }
+                <table class="ui very basic table">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.CrewName)</th>
+                            <th>@Html.DisplayNameFor(model => model.CrewAvatar)</th>
+                            <th>Seçenekler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CrewName)
+                            </td>
+                            <td style="padding-left:2em;">
+                                @Html.DisplayFor(modelItem => item.CrewAvatar)
+                            </td>
+                            <td style="padding-left:2em;">
+                                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "ui primary button" }) 
+                                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "ui positive button" }) 
+                                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "ui negative button" })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
 
                 </table>
 
