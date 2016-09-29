@@ -15,12 +15,30 @@ namespace MEZBELE.Controllers
         /// </summary>
         private MezbeleContext db = new MezbeleContext();
 
-        #region Giriş Sistemi çalışması
+        /// <summary>
+        /// Uygulama anasayfası
+        /// </summary>
+        /// <returns>Index isimli görününmü gösterir.</returns>
+        [HttpGet]
+        [_SessionControl]
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Landing");
+            if (Session["UserId"] != null)
+            {
+                Users user = db.Users.Find(Session["UserId"]);
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Landing");
+            }
         }
 
+        /// <summary>
+        /// Kullanıcı girişiyle ilgilenir.
+        /// </summary>
+        /// <param name="user">Giriş yapan kullanıcı.</param>
+        /// <returns>Index isimli görünümü gösterir.</returns>
         [HttpPost]
         public ActionResult Index([Bind(Include = "UserName,Password")] Users user)
         {
@@ -50,14 +68,18 @@ namespace MEZBELE.Controllers
             return View(u);
         }
 
+        /// <summary>
+        /// Kullanıcı çıkışıyla ilgilenir.
+        /// </summary>
+        /// <returns>Landing/Index isimli görünüme yönlendirir.</returns>
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session["UserId"] = null;
+            Session["User"] = null;
             return RedirectToAction("Index", "Landing");
         }
 
-        #endregion
 
         protected override void Dispose(bool disposing)
         {

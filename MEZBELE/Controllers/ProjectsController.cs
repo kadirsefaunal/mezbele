@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using MEZBELE.Context;
@@ -16,9 +14,15 @@ namespace MEZBELE.Controllers
     [_SessionControl]
     public class ProjectsController : Controller
     {
+        /// <summary>
+        /// Veritabanı.
+        /// </summary>
         private MezbeleContext db = new MezbeleContext();
 
-        // GET: Projects
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             Users user = db.Users.Find(Session["UserId"]);
@@ -31,7 +35,11 @@ namespace MEZBELE.Controllers
             return View(user.Projects.ToList());
         }
 
-        // GET: Projects/Details/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,13 +54,20 @@ namespace MEZBELE.Controllers
             return View(projects);
         }
 
-        // GET: Projects/Create
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Projects/Create
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,IsPrivate,Name,Description")] Projects project)
@@ -78,7 +93,11 @@ namespace MEZBELE.Controllers
             return View(project);
         }
 
-        // GET: Projects/Edit/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +112,11 @@ namespace MEZBELE.Controllers
             return View(projects);
         }
 
-        // POST: Projects/Edit/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Description")] Projects project)
@@ -111,7 +134,11 @@ namespace MEZBELE.Controllers
             return View(project);
         }
 
-        // GET: Projects/Delete/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,7 +153,11 @@ namespace MEZBELE.Controllers
             return View(projects);
         }
 
-        // POST: Projects/Delete/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
