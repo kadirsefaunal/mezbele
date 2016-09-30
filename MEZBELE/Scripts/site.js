@@ -12,6 +12,7 @@
 
     // sidebar
     $('.ui.sidebar').sidebar('attach events', '.toc.item');
+
 });
 
 function showSignUpModal() {
