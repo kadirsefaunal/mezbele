@@ -21,57 +21,34 @@
                 </p>
 
                 <div class="ui grid">
-                    @foreach (var item in Model)
-                    {
-                        <div class="five wide column">
-                            <div class="ui raised card">
-                                <div class="content">
-                                    <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
-                                    <div class="meta">
-                                        <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
+                    <div class="three column row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="column">
+                                <div class="ui raised card" style="margin-bottom: 20px;">
+                                    <div class="content">
+                                        <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
+                                        <div class="meta">
+                                            <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
+                                        </div>
+                                        <div class="description">
+                                            <p>@Html.DisplayFor(model => item.Description)</p>
+                                        </div>
                                     </div>
-                                    <div class="description">
-                                        <p>@Html.DisplayFor(model => item.Description)</p>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
-                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                                    <div class="right floated author">
-                                        <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> @Html.DisplayFor(modelItem => item.OwnerID)
+                                    <div class="extra content">
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Sil", "Delete", new { id = item.Id })
+                                        <div class="right floated author">
+                                            <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> @Html.DisplayFor(modelItem => item.OwnerID)
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-
-                        
+                        }
+                    </div>
                 </div>
 
-
-                @*@foreach (var item in Model)
-                {
-                    <div class="ui raised card">
-                        <div class="content">
-                            <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
-                            <div class="meta">
-                                <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
-                            </div>
-                            <div class="description">
-                                <p>@Html.DisplayFor(model => item.Description)</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Sil", "Delete", new { id = item.Id })
-                            <div class="right floated author">
-                                <img class="ui avatar image" src="/images/avatar/small/matt.jpg"> @Html.DisplayFor(modelItem => item.OwnerID)
-                            </div>
-                        </div>
-                    </div>
-                }*@
             </div>
         </div>
     </div>
