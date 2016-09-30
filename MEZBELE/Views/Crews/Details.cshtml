@@ -20,6 +20,9 @@
                     <img src="@Model.Avatar" class="ui circular image">
                     @Html.DisplayFor(model => model.Name)
                 </h2>
+                <p class="ui right aligned header">
+                    @Html.ActionLink("Üye Ekle", "AddMember", new { id = Model.Id }, new { @class = "ui positive button" })
+                </p>
 
                 <a class="ui teal ribbon label">Ekip Üyeleri</a>
 

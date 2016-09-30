@@ -187,6 +187,32 @@ namespace MEZBELE.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Ekibe kullanıcı eklemek için kullanılır
+        /// </summary>
+        /// <returns>AddMember isimli görünümü gösterir.</returns>
+        [Route("Crews/{id?}/AddMember")]
+        public ActionResult AddMember(int? id)
+        {
+            Crews crew = db.Crews.Find(id);
+            ViewData["AllUsers"] = db.Users.ToList();
+            return View(crew);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Crews/{id?}/AddMember")]
+        public ActionResult AddMember(int id)
+        {
+            Crews crew = db.Crews.Find(id);
+            return RedirectToAction("Index", "Crews");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

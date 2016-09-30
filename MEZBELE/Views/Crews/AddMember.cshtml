@@ -1,0 +1,66 @@
+﻿@model MEZBELE.Models.Crews
+
+@{
+    ViewBag.Title = Model.Name + " - Ekibe Üye Ekle";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+@using (Html.BeginForm("AddMember", "Crews", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Ekibe Üye Ekle</h4>
+        <hr />
+
+        <div class="ui one column grid">
+            <div class="column">
+                <div class="ui raised segment">
+                    <a class="ui red ribbon label">Sistemdeki Kullanıcılar</a>
+
+                    <br /><br />
+
+                    @Html.ValidationSummary(true, "")
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="field">
+                        <div class="ui sub header">KULLANICI SEÇİMİ</div>
+                        <div class="ui fluid multiple search normal selection dropdown">
+                            <input name="country" type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Kullanıcı Seçin</div>
+                            <div class="menu">
+
+                                @foreach (var user in (List<MEZBELE.Models.Users>)ViewData["AllUsers"])
+                                {
+                                    if (!Model.Users.Contains(user))
+                                    {
+                                    <div class="item" data-value="@user.Id" id="userId" name="userId">
+                                        <img class="ui mini avatar image" src="@user.UserAvatar">
+                                        @user.FirstName @user.LastName
+                                    </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui buttons">
+                        <input class="ui large teal submit button" type="submit" value="Ekle" style="margin-left: 10px;" />
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        // dropdown
+        $('.ui.dropdown').dropdown();
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
