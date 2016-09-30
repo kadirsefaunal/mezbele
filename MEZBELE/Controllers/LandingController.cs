@@ -24,7 +24,7 @@ namespace MEZBELE.Controllers
             // KULLANICI giriş kontrolü.
             if (Session["UserId"] != null)
             {
-                return RedirectToAction("Index", "Profile", new { id = Session["UserId"] });
+                return RedirectToAction("Index", "App");
             }
 
             return View();
