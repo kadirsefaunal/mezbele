@@ -16,69 +16,43 @@
 
                 <br /><br /><br />
 
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.OwnerID)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.OwnerID)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IsIndividual)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.IsIndividual)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IsPrivate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.IsPrivate)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreationDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CreationDate)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ChangeDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.ChangeDate)
-                    </dd>
-
-                </dl>
-                <p>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
-                    @Html.ActionLink("Proje listesine dön", "Index")
-                </p>
-
+                <table class="ui definition table">
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.OwnerID)</td>
+                            <td>@Html.DisplayFor(model => model.OwnerID)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.IsIndividual)</td>
+                            <td>@Html.DisplayFor(model => model.IsIndividual)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.IsPrivate)</td>
+                            <td>@Html.DisplayFor(model => model.IsPrivate)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Name)</td>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Description)</td>
+                            <td>@Html.DisplayFor(model => model.Description)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.CreationDate)</td>
+                            <td>@Html.DisplayFor(model => model.CreationDate)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.ChangeDate)</td>
+                            <td>@Html.DisplayFor(model => model.ChangeDate)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="ui buttons" style="padding: 10px;">
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui large teal submit button" })
+                    <div class="or" data-text=""></div>
+                    @Html.ActionLink("Proje listesine dön", "Index", null, new { @class = "ui negative button" })
+                </div>
             </div>
         </div>
     </div>
