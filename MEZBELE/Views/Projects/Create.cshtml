@@ -24,20 +24,28 @@
 
                     @Html.ValidationSummary(true, "")
 
-                    <div class="field">
-                        <label>@Html.LabelFor(model => model.Name):</label>
-                        <div class="ui fluid input">
-                            @Html.EditorFor(model => model.Name)
-                            @Html.ValidationMessageFor(model => model.Name, "")
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>@Html.LabelFor(model => model.Description):</label>
-                        <textarea rows="2">
-                            @Html.EditorFor(model => model.Description,new { htmlAttributes: new { @class = "" } })
-                            @Html.ValidationMessageFor(model => model.Description, "")
-                        </textarea>
-                    </div>
+                    <table class="ui definition table">
+                        <tbody>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Name)</td>
+                                <td>
+                                    <div class="ui fluid input">
+                                        @Html.EditorFor(model => model.Name)
+                                        @Html.ValidationMessageFor(model => model.Name, "")
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayNameFor(model => model.Description)</td>
+                                <td>
+                                    <div class="ui form">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @rows = "2" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "")
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                     <div class="ui buttons">
                         <input class="ui large teal submit button" type="submit" value="Oluştur" style="margin-left: 10px;" />
