@@ -52,8 +52,11 @@ namespace MEZBELE.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                if (Session["UserId"].ToString() == user.Id.ToString())
+                {
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             return View(user);
