@@ -13,51 +13,33 @@
             <div class="ui raised segment">
                 <a class="ui red ribbon label">Silinecek Proje</a>
                 <span>Aşağıdaki bilgilere sahip projeyi silmek istediğinize emin misiniz?</span>
-                <br /><br /><br />
 
-                <dl class="dl-horizontal">
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CreationDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CreationDate)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ChangeDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.ChangeDate)
-                    </dd>
-
-                </dl>
+                <br /><br />
+                <table class="ui definition table">
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Name)</td>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.Description)</td>
+                            <td>@Html.DisplayFor(model => model.Description)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.CreationDate)</td>
+                            <td>@Html.DisplayFor(model => model.CreationDate)</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
 
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Sil" class="ui negative button" /> |
-                        @Html.ActionLink("Proje listesine dön", "Index")
+                    <div class="ui buttons">
+                        <input class="ui large negative submit button" type="submit" value="Sil" style="margin-left: 10px;" />
+                        <div class="or" data-text=""></div>
+                        @Html.ActionLink("Proje listesine dön", "Index", null, new { @class = "ui primary button" })
                     </div>
                 }
 
