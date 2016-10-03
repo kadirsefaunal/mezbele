@@ -41,6 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach (var item in Model.Users)
                         {
                         <tr>
@@ -55,16 +56,23 @@
                                     </div>
                                 </h4>
                             </td>
+
                             @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
                             {
                             <td style="padding-left:2em;">
-                                <!-- TODO: Üye Ekleme / Çıkarma -->
+
+                                @if (Session["UserId"].ToString() != item.Id.ToString())
+                                {
+                                @Html.ActionLink("Üyeyi Çıkar", "DeleteMember", new { id = Model.Id, userId = item.Id }, new { @class = "ui negative button" })
+                                }
+
                             </td>
                             }
+
                         </tr>
                         }
-                    </tbody>
 
+                    </tbody>
                 </table>
 
                 <div class="ui buttons" style="padding: 10px;">

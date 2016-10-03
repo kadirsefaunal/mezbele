@@ -188,7 +188,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// Ekibe kullanıcı eklemek için kullanılır
+        /// Ekibe kullanıcı eklemek için kullanılır.
         /// </summary>
         /// <returns>AddMember isimli görünümü gösterir.</returns>
         [Route("Crews/{id?}/AddMember")]
@@ -221,17 +221,18 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Ekibe kullanıcıyı ekler.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="userId">Eklenecek kullanıcı kimliği.</param>
+        /// <returns>Crews/Index isimli görünüme yönlendirir.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Crews/{id?}/AddMember")]
-        public ActionResult AddMember(int id, string AllUsers)
+        public ActionResult AddMember(int id, string userId)
         {
             Crews crew = db.Crews.Find(id);
-            Users user = db.Users.Find(int.Parse(AllUsers));
+            Users user = db.Users.Find(int.Parse(userId));
 
             crew.Users.Add(user);
             user.Crews.Add(crew);
@@ -241,7 +242,33 @@ namespace MEZBELE.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Crews");
+            return RedirectToAction("Details", new { id = crew.Id });
+        }
+
+        /// <summary>
+        /// Ekipten kullanıcıyı çıkartır.
+        /// </summary>
+        /// <param name="id">Crew kimliği.</param>
+        /// <param name="userId">Çıkartılacak kullanıcının kimliği.</param>
+        /// <returns>Crews/Index isimli görünüme yönlendirir.</returns>
+        [Route("Crews/{id?}/DeleteMember/{userId?}")]
+        public ActionResult DeleteMember(int id, int userId)
+        {
+            Crews crew = db.Crews.Find(id);
+            Users user = db.Users.Find(userId);
+
+            if (Session["UserId"].ToString() != userId.ToString())
+            {
+                crew.Users.Remove(user);
+                user.Crews.Remove(crew);
+
+                db.Entry(crew).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Details", new { id = crew.Id });
         }
 
         protected override void Dispose(bool disposing)
