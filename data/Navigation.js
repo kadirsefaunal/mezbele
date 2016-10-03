@@ -132,34 +132,28 @@ sharpDox.navigationData = [
  
 
 		{
-			id: 'MEZBELE.Migrations.AddedModelAttributes',
-			text: 'AddedModelAttributes',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.AddedModelAttributes/index' }
-        },	
-		{
-			id: 'MEZBELE.Migrations.AddedUserPassword',
-			text: 'AddedUserPassword',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.AddedUserPassword/index' }
-        },	
-		{
-			id: 'MEZBELE.Migrations.AddUserPassword',
-			text: 'AddUserPassword',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.AddUserPassword/index' }
-        },	
-		{
 			id: 'MEZBELE.Migrations.Configuration',
 			text: 'Configuration',
 			icon: './assets/icons/class_ınternal.png',
 			a_attr: { href : '#/type/MEZBELE.Migrations.Configuration/index' }
         },	
 		{
-			id: 'MEZBELE.Migrations.RemovedUserPassword',
-			text: 'RemovedUserPassword',
+			id: 'MEZBELE.Migrations.EditedCrews',
+			text: 'EditedCrews',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.RemovedUserPassword/index' }
+			a_attr: { href : '#/type/MEZBELE.Migrations.EditedCrews/index' }
+        },	
+		{
+			id: 'MEZBELE.Migrations.EditedIssues',
+			text: 'EditedIssues',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Migrations.EditedIssues/index' }
+        },	
+		{
+			id: 'MEZBELE.Migrations.init',
+			text: 'init',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Migrations.init/index' }
         },	
 
 
