@@ -20,9 +20,13 @@
                     <img src="@Model.Avatar" class="ui circular image">
                     @Html.DisplayFor(model => model.Name)
                 </h2>
+
+                @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
+                {
                 <p class="ui right aligned header">
                     @Html.ActionLink("Üye Ekle", "AddMember", new { id = Model.Id }, new { @class = "ui positive button" })
                 </p>
+                }
 
                 <a class="ui teal ribbon label">Ekip Üyeleri</a>
 
@@ -32,7 +36,7 @@
                             <th>Üye</th>
                             @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
                             {
-                                <th>Seçenekler</th>
+                            <th>Seçenekler</th>
                             }
                         </tr>
                     </thead>
@@ -53,9 +57,9 @@
                             </td>
                             @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
                             {
-                                <td style="padding-left:2em;">
-                                    <!-- TODO: Üye Ekleme / Çıkarma -->
-                                </td>
+                            <td style="padding-left:2em;">
+                                <!-- TODO: Üye Ekleme / Çıkarma -->
+                            </td>
                             }
                         </tr>
                         }

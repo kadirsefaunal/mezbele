@@ -197,11 +197,25 @@ namespace MEZBELE.Controllers
             Crews crew = db.Crews.Find(id);
             var AllUsers = db.Users.ToList();
 
+            foreach (var user in db.Users.ToList())
+            {
+                if (crew.Users.Contains(user))
+                {
+                    AllUsers.Remove(user);
+                }
+            }
+
+            var UserList = AllUsers.Where(u => u.Id != 0).ToList().Select(u => new
+            {
+                Id = u.Id,
+                Ad = string.Format("#{0}: {1} {2}", u.Id, u.FirstName, u.LastName)
+            });
+
             ViewData["AllUsers"] = new SelectList(
-                AllUsers,
+                UserList,
                 "Id",
-                "UserName",
-                AllUsers.First()
+                "Ad",
+                UserList.First()
             );
             return View(crew);
         }

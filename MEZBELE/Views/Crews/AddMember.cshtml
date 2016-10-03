@@ -15,32 +15,15 @@
         <div class="ui one column grid">
             <div class="column">
                 <div class="ui raised segment">
-                    <a class="ui red ribbon label">Sistemdeki Kullanıcılar</a>
+                    <a class="ui red ribbon label">Kullanıcı Seçimi</a>
 
                     <br /><br />
 
                     @Html.ValidationSummary(true, "")
                     @Html.HiddenFor(model => model.Id)
 
-
                     <div class="field">
-                        <label>KULLANICI SEÇİMİ</label>
-                        @Html.DropDownList("AllUsers", (SelectList)ViewData["AllUsers"])
-
-                        @*<select class="ui fluid dropdown">
-                            <option value="">Kullanıcılar</option>
-                            @foreach (var user in (List<MEZBELE.Models.Users>)ViewData["AllUsers"])
-                            {
-                                if (!Model.Users.Contains(user))
-                                {
-                                    <option value="@user.Id" id="userId" name="userId">
-                                        @user.FirstName @user.LastName
-                                    </option>
-                                }
-                            }
-
-                        </select>*@
-
+                        @Html.DropDownList("AllUsers", (SelectList)ViewData["AllUsers"], new { @class = "ui fluid dropdown" })
                     </div>
 
                     <div class="ui buttons">
