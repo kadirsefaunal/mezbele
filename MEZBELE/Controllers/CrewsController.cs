@@ -180,7 +180,7 @@ namespace MEZBELE.Controllers
             if (user.Id == crew.OwnerId)
             {
                 db.Crews.Remove(crew);
-                user.Crews.Remove(crew);
+                user.Crews.Remove(crew); // Silinebilir.
             }
 
             db.SaveChanges();
@@ -195,7 +195,14 @@ namespace MEZBELE.Controllers
         public ActionResult AddMember(int? id)
         {
             Crews crew = db.Crews.Find(id);
-            ViewData["AllUsers"] = db.Users.ToList();
+            var AllUsers = db.Users.ToList();
+
+            ViewData["AllUsers"] = new SelectList(
+                AllUsers,
+                "Id",
+                "UserName",
+                AllUsers.First()
+            );
             return View(crew);
         }
 
@@ -207,9 +214,19 @@ namespace MEZBELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Crews/{id?}/AddMember")]
-        public ActionResult AddMember(int id)
+        public ActionResult AddMember(int id, string AllUsers)
         {
             Crews crew = db.Crews.Find(id);
+            Users user = db.Users.Find(int.Parse(AllUsers));
+
+            crew.Users.Add(user);
+            user.Crews.Add(crew);
+
+            db.Entry(crew).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
+
+            db.SaveChanges();
+
             return RedirectToAction("Index", "Crews");
         }
 
