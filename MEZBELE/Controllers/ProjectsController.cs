@@ -5,6 +5,7 @@ using MEZBELE.Context;
 using MEZBELE.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace MEZBELE.Controllers
 {
@@ -166,6 +167,90 @@ namespace MEZBELE.Controllers
             db.Projects.Remove(projects);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+
+        /// <summary>
+        /// Projeye ekip atamak için kullanılır.
+        /// </summary>
+        /// <returns>AddCrew isimli görünümü gösterir.</returns>
+        [Route("Projects/{id?}/AddCrew")]
+        public ActionResult AddCrew(int? id)
+        {
+            Projects project = db.Projects.Find(id);
+            var AllCrews = db.Crews.ToList();
+
+            foreach (var crew in db.Crews.ToList())
+            {
+                if (project.Crews.Contains(crew))
+                {
+                    AllCrews.Remove(crew);
+                }
+            }
+
+            var CrewList = AllCrews.Where(u => u.Id != 0).ToList().Select(u => new
+            {
+                Id = u.Id,
+                Ad = string.Format("#{0}: {1}", u.Id, u.Name)
+            });
+            
+            ViewData["AllCrews"] = new SelectList(
+                CrewList,
+                "Id",
+                "Ad",
+                CrewList.First()
+            );
+            return View(project);
+        }
+
+        /// <summary>
+        /// Projeye ekibi ekler
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="crewId">Eklenecek ekip kimliği.</param>
+        /// <returns>Projects/Index isimli görünüme yönlendirir.</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Projects/{id?}/AddCrew")]
+        public ActionResult AddCrew(int id, string crewId)
+        {
+            Projects project = db.Projects.Find(id);
+            Crews crew = db.Crews.Find(int.Parse(crewId));
+
+            project.Crews.Add(crew);
+            crew.Projects.Add(project);
+
+            db.Entry(crew).State = EntityState.Modified;
+            db.Entry(project).State = EntityState.Modified;
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = project.Id });
+        }
+
+        /// <summary>
+        /// Projeden ekibi çıkartır.
+        /// </summary>
+        /// <param name="id">Proje kimliği.</param>
+        /// <param name="crewId">Çıkartılacak ekibin kimliği.</param>
+        /// <returns>Projects/Index isimli görünüme yönlendirir.</returns>
+        [Route("Projects/{id?}/DeleteCrew/{crewId?}")]
+        public ActionResult DeleteCrew(int id, int crewId)
+        {
+            Projects project = db.Projects.Find(id);
+            Crews crew = db.Crews.Find(crewId);
+            
+                project.Crews.Remove(crew);
+                crew.Projects.Remove(project);
+
+                db.Entry(crew).State = EntityState.Modified;
+                db.Entry(project).State = EntityState.Modified;
+
+                db.SaveChanges();
+            
+
+            return RedirectToAction("Details", new { id = project.Id });
         }
 
         protected override void Dispose(bool disposing)

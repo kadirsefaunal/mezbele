@@ -231,6 +231,7 @@
     <Content Include="Views\Crews\Edit.cshtml" />
     <Content Include="Views\Crews\Index.cshtml" />
     <Content Include="Views\Crews\AddMember.cshtml" />
+    <Content Include="Views\Projects\AddCrew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
