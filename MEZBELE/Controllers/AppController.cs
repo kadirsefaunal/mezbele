@@ -20,7 +20,7 @@ namespace MEZBELE.Controllers
         /// </summary>
         /// <returns>Index isimli görününmü gösterir.</returns>
         [HttpGet]
-        [_SessionControl]
+        [LoginControl]
         public ActionResult Index()
         {
             if (Session["UserId"] != null)
@@ -72,6 +72,7 @@ namespace MEZBELE.Controllers
         /// Kullanıcı çıkışıyla ilgilenir.
         /// </summary>
         /// <returns>Landing/Index isimli görünüme yönlendirir.</returns>
+        [LoginControl]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

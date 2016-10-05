@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace MEZBELE.Controllers
 {
-    [_SessionControl]
+    [LoginControl]
     public class CrewsController : Controller
     {
         private MezbeleContext db = new MezbeleContext();

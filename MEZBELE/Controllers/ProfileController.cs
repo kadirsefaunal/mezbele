@@ -5,7 +5,7 @@ using MEZBELE.Models;
 
 namespace MEZBELE.Controllers
 {
-    [_SessionControl]
+    [LoginControl]
     public class ProfileController : Controller
     {
         /// <summary>

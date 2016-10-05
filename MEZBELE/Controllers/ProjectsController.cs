@@ -12,7 +12,7 @@ namespace MEZBELE.Controllers
     /// <summary>
     /// Projeler ile ilgilenen kontrolcü.
     /// </summary>
-    [_SessionControl]
+    [LoginControl]
     public class ProjectsController : Controller
     {
         /// <summary>
@@ -205,7 +205,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// Projeye ekibi ekler
+        /// Projeye ekibi ekler.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="crewId">Eklenecek ekip kimliği.</param>
