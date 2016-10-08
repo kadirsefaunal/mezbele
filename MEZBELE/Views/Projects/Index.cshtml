@@ -20,10 +20,9 @@
                     @Html.ActionLink("Proje Oluştur", "Create", "", new { @class = "ui positive button" })
                 </p>
 
-                <div class="ui grid">
-                    <div class="three column row">
-                        @foreach (var item in Model)
-                        {
+                <div class="ui stackable three column grid">
+                    @foreach (var item in Model)
+                    {
                         <div class="column">
                             <div class="ui raised card" style="margin-bottom: 20px;">
                                 <div class="content">
@@ -49,16 +48,15 @@
                                     {
                                         if (user.Id == item.OwnerID)
                                         {
-                                        <div class="right floated author">
-                                            <img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName
-                                        </div>
+                                            <div class="right floated author">
+                                                <img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName
+                                            </div>
                                         }
                                     }
                                 </div>
                             </div>
                         </div>
-                        }
-                    </div>
+                    }
                 </div>
 
             </div>

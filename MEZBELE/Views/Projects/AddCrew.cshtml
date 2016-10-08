@@ -27,9 +27,8 @@
                         @Html.DropDownList("crewId", (SelectList)ViewData["AllCrews"], new { @class = "ui fluid dropdown" })
                     </div>
 
-                    <div class="ui buttons">
-                        <input class="ui large teal submit button" type="submit" value="Ekle" style="margin-left: 10px;" />
-                        <div class="or" data-text=""></div>
+                    <div class="field">
+                        <input class="ui teal submit button" type="submit" value="Ekle" style="margin-bottom: 5px;" />
                         @Html.ActionLink("Proje Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
                     </div>
                 </div>

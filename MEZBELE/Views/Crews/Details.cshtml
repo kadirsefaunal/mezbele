@@ -75,11 +75,12 @@
                     </tbody>
                 </table>
 
-                <div class="ui buttons" style="padding: 10px;">
-                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui large teal submit button" })
-                    <div class="or" data-text=""></div>
-                    @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
-                </div>
+                @if (Session["UserId"].ToString() == Model.OwnerId.ToString())
+                {
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui teal submit button", @style = "margin-bottom: 5px;" })
+                }
+                @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui negative button" })
+
             </div>
         </div>
     </div>

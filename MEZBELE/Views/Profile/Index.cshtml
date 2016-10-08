@@ -75,11 +75,9 @@
                             @Html.DisplayFor(model => model.LastName)
                         </div>
                     </div>
-                    <div class="ui buttons">
-                        @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui positive button" })
-                        <div class="or" data-text=""></div>
-                        @Html.ActionLink("Sil", "Delete", new { id = Model.Id }, new { @class = "ui negative button" })
-                    </div>
+
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui positive button" })
+                    @Html.ActionLink("Sil", "Delete", new { id = Model.Id }, new { @class = "ui negative button" })
                 </div>
             </div>
         </div>
