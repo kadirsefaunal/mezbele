@@ -27,13 +27,23 @@ namespace MEZBELE.Controllers
         public ActionResult Index()
         {
             Users user = db.Users.Find(Session["UserId"]);
-
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            return View(user.Projects.ToList());
+            List<Projects> projects = user.Projects;
+            foreach (var crew in user.Crews)
+            {
+                foreach (var project in crew.Projects)
+                {
+                    if (!projects.Contains(project))
+                    {
+                        projects.Add(project);
+                    }
+                }
+            }
+            return View(projects);
         }
 
         /// <summary>

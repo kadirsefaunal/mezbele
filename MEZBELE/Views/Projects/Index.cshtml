@@ -35,10 +35,11 @@
                                     </div>
                                 </div>
                                 <div class="extra content">
-                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) 
 
                                     @if (Session["UserId"].ToString() == item.OwnerID.ToString())
                                     {
+                                        <span> | </span>
                                         @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, null)
                                         <span> | </span>
                                         @Html.ActionLink("Sil", "Delete", new { id = item.Id }, null)
