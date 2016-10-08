@@ -19,8 +19,8 @@
                 @if (Session["UserId"].ToString() == Model.OwnerID.ToString())
                 {
                     <p class="ui right aligned header">
-                        @Html.ActionLink("Ekip Oluştur", "Create", "Crews", new { id = Model.Id }, new { @class = "ui positive button" })
-                        @Html.ActionLink("Ekibe Ata", "AddCrew", new { id = Model.Id }, new { @class = "ui positive button" })
+                        @Html.ActionLink("Ekip Oluştur", "Create", "Crews", new { id = Model.Id }, new { @class = "ui positive button", @style = "margin-bottom: 5px;" })
+                        @Html.ActionLink("Ekip Ata", "AddCrew", new { id = Model.Id }, new { @class = "ui positive button" })
                     </p>
                 }
 
@@ -102,9 +102,8 @@
                     </tbody>
                 </table>
                 @* Ekip listesi sonu *@
-                <div class="ui buttons" style="padding: 10px;">
-                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui large teal submit button" })
-                    <div class="or" data-text=""></div>
+                <div class="field" style="padding: 10px;">
+                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui teal submit button", @style = "margin-bottom: 5px;" })
                     @Html.ActionLink("Proje listesine dön", "Index", null, new { @class = "ui negative button" })
                 </div>
             </div>

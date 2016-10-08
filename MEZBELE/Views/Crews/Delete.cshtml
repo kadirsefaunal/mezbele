@@ -24,11 +24,8 @@
                 @using (Html.BeginForm())
                 {
                 @Html.AntiForgeryToken()
-                    <div class="ui buttons">
-                        <input class="ui large negative submit button" type="submit" value="Sil" style="margin-left: 10px;" />
-                        <div class="or" data-text=""></div>
-                        @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui primary button" })
-                    </div>
+                    <input class="ui negative submit button" type="submit" value="Sil" style="margin-bottom: 5px;" />
+                    @Html.ActionLink("Ekip Listesine Geri Dön", "Index", null, new { @class = "ui primary button" })
                 }
 
             </div>

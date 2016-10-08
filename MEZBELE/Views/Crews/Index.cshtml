@@ -43,14 +43,14 @@
 
                                 @if (Session["UserId"].ToString() == item.OwnerId.ToString())
                                 {
-                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "ui primary button" })
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "ui primary button", @style = "margin-bottom: 5px;" })
                                 }
 
-                                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "ui positive button" })
+                                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "ui positive button", @style = "margin-bottom: 5px;" })
 
                                 @if (Session["UserId"].ToString() == item.OwnerId.ToString())
                                 {
-                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "ui negative button" })
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "ui negative button", @style = "margin-bottom: 5px;" })
                                 }
 
                             </td>
