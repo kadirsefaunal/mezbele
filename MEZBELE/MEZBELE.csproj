@@ -173,6 +173,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\creative.min.css" />
+    <Content Include="Content\img\header.jpg" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\semantic.min.css" />
     <Content Include="favicon.ico" />
@@ -180,6 +182,7 @@
     <Content Include="Content\site.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\creative.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -207,15 +210,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Landing\Index.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Shared\_FollowingMenu.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_SignUp.cshtml" />
-    <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -240,6 +234,11 @@
     <Content Include="Views\Crews\Index.cshtml" />
     <Content Include="Views\Crews\AddMember.cshtml" />
     <Content Include="Views\Projects\AddCrew.cshtml" />
+    <Content Include="Views\Shared\Landing\_LandingLayout.cshtml" />
+    <Content Include="Views\Landing\Index.cshtml" />
+    <Content Include="Views\Shared\Landing\_FormLayout.cshtml" />
+    <Content Include="Views\Landing\Login.cshtml" />
+    <Content Include="Views\Landing\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

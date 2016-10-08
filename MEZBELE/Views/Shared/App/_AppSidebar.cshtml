@@ -1,6 +1,6 @@
 ﻿@using MEZBELE.Models
 
-@{ var user = Session["User"] as Users; }
+@{var user = Session["User"] as Users; }
 
 <div class="ui visible inverted left vertical sidebar menu">
     <div class="item">
@@ -14,7 +14,7 @@
         <div class=" header">Kullanıcı</div>
         <div class="menu">
             @Html.ActionLink("Kullanıcı Paneli", "Index", "Profile", new { area = "" }, new { @class = "item" })
-            @Html.ActionLink("Çıkış", "LogOut", "App", new { area = "" }, new { @class = "item" })
+            @Html.ActionLink("Çıkış", "LogOut", "Landing", new { area = "" }, new { @class = "item" })
         </div>
     </div>
 
@@ -41,7 +41,7 @@
     </div>
 
     <div class="item">
-        <div class=" header">Sistem</div>
+        <div class="header">Sistem</div>
         <div class="menu">
             @Html.ActionLink("Anasayfa", "Index", "App", new { area = "" }, new { @class = "item" })
         </div>

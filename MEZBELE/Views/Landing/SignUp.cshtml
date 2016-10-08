@@ -1,9 +1,12 @@
-﻿@model MEZBELE.Models.Users
+﻿
+@{
+    ViewBag.Title = "Kayıt";
+    Layout = "~/Views/Shared/Landing/_FormLayout.cshtml";
+}
 
-<div class="ui basic modal" id="signUpModal">
-    <i class="close icon"></i>
-    <div class="header">
-    </div>
+@model MEZBELE.Models.Users
+
+<div class="ui text container" style="padding-top: 15em;">
     <div class="ui middle aligned center aligned grid">
         <div class="column">
             <h2 class="ui green header">
@@ -11,7 +14,7 @@
                     Kayıt Ol
                 </span>
             </h2>
-            @using (Html.BeginForm("Index", "Landing", null, FormMethod.Post, htmlAttributes: new { @class = "ui large form" }))
+            @using (Html.BeginForm("SignUp", "Landing", null, FormMethod.Post, htmlAttributes: new { @class = "ui large form" }))
             {
             @Html.AntiForgeryToken()
 

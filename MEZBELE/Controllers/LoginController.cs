@@ -9,7 +9,7 @@ namespace MEZBELE.Controllers
         {
             if (HttpContext.Current.Session["User"] == null || HttpContext.Current.Session["UserId"] == null)
             {
-                filterContext.HttpContext.Response.Redirect("/Landing/Index");
+                filterContext.HttpContext.Response.Redirect("/Login");
             }
 
             base.OnActionExecuting(filterContext);

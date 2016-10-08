@@ -1,43 +1,237 @@
-﻿@{
-    ViewBag.Title = "Anasayfa";
+﻿
+@{
+    ViewBag.Title = "Hoşgeldiniz!";
+    Layout = "~/Views/Shared/Landing/_LandingLayout.cshtml";
 }
 
-
-@Html.Partial("~/Views/Shared/_FollowingMenu.cshtml")
-
-@Html.Partial("~/Views/Shared/_Sidebar.cshtml")
-
-@Html.Partial("~/Views/Shared/_SignUp.cshtml")
-
-@Html.Partial("~/Views/Shared/_Login.cshtml")
-
-<div class="pusher">
-    <div class="ui inverted vertical masthead center aligned segment">
-
-        <div class="ui container">
-            <div class="ui large secondary inverted pointing menu">
-                <a class="toc item">
-                    <i class="sidebar icon"></i>
-                </a>
-                @Html.ActionLink("Anasayfa", "Index", "Landing", new { area = "" }, new { @class = "active item" })
-                <a class="item" href="#">Hakkımızda</a>
-                <a class="item" href="#">İletişim</a>
-                <div class="right item">
-                    <a class="ui inverted teal button" onclick="showLoginModal()">Giriş Yap</a>
-                    <a class="ui inverted green button" onclick="showSignUpModal()">Kayıt Ol</a>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only"></span> Menü <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top"><img src="~/Content/logo.png" alt="Mezbele" width="20" /></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#about">Hakkında</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services">Servisler</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#portfolio">Özellikler</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">İletişim</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/Login">Giriş Yap</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Mezbele</h1>
+            <hr>
+            <p>Çaylaklar gibi proje yönetin.</p>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">Daha fazlasını öğren</a>
+        </div>
+    </div>
+</header>
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">İhtiyacınız olan şeye sahibiz!</h2>
+                <hr class="light">
+                <p class="text-faded">Ekipler, süreçlere bölünmüş işlere sahip projeler ve daha fazlası!</p>
+                <br /><br />
+                <a href="/SignUp" class="page-scroll btn btn-default btn-xl sr-button">Hemen Başlayın!</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Servisinizde!</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-users text-primary sr-icons"></i>
+                    <h3>Ekipler</h3>
+                    <p class="text-muted">Tek başına çalışmayanlar için; Projelere veya süreçlere özel ekipler oluşturun.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-tasks text-primary sr-icons"></i>
+                    <h3>İşler</h3>
+                    <p class="text-muted">Ekibe veya tekil şahıs(lar)a atanabilir, süreçlerce kategorileştirilebilir işler.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                    <h3>Süreçler</h3>
+                    <p class="text-muted">
+                        Projenin konumunu daha iyi belirleyebilmek ve takip edebilmek için; Kendine ait iş gruplarından oluşan
+                        süreçler.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-suitcase text-primary sr-icons"></i>
+                    <h3>Projeler</h3>
+                    <p class="text-muted">Ekipler, süreçler ve süreçlerinin altındaki işlerden oluşan projeler.</p>
                 </div>
             </div>
         </div>
-
-        <div class="ui text container">
-            <h1 class="ui inverted header">
-                Mezbele
-            </h1>
-            <h2>Çaylaklar gibi proje yönetin.</h2>
-            <div class="ui huge teal button">Başlayın <i class="right arrow icon"></i></div>
-        </div>
-
     </div>
-</div>
-
-@Scripts.Render("~/Content/js")
+</section>
+<section class="no-padding" id="portfolio">
+    <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="portfolio-box">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=650%C3%97350&w=650&h=350" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Başlık
+                            </div>
+                            <div class="project-name">
+                                Açıklama
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <br>
+            <h2>Başlamak Ücretsiz!</h2>
+            <br /><br />
+            <a href="/SignUp" class="btn btn-default btn-xl sr-button">Şimdi Başlayın!</a>
+        </div>
+    </div>
+</aside>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">İletişime Geçin!</h2>
+                <hr class="primary">
+                <p>
+                    Büyük girişimlere yönelik daha özel çözümlere mi ihtiyaç duyuyorsunuz? Bizimle iletişime geçin, en kısa
+                    sürede çözümlerimizde dönelim!
+                </p>
+            </div>
+            <div class="col-lg-4 col-lg-offset-2 text-center">
+                <br /><br /><br />
+                <i class="fa fa-phone fa-3x sr-contact"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <br /><br /><br />
+                <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                <p><a href="mailto:dev@nuriuzunoglu.com">dev@nuriuzunoglu.com</a></p>
+            </div>
+        </div>
+    </div>
+</section>
