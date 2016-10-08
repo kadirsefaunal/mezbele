@@ -183,7 +183,7 @@ namespace MEZBELE.Controllers
 
             foreach (var crew in db.Crews.ToList())
             {
-                if (project.Crews.Contains(crew))
+                if (project.Crews.Contains(crew) || Session["UserId"].ToString() != crew.OwnerId.ToString())
                 {
                     AllCrews.Remove(crew);
                 }
