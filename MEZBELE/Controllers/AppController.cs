@@ -22,6 +22,7 @@ namespace MEZBELE.Controllers
         public ActionResult Index()
         {
             Users user = db.Users.Find(Session["UserId"]);
+
             return View(user);
         }
 

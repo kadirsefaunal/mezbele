@@ -1,21 +1,156 @@
-﻿@{
+﻿@model MEZBELE.Models.Users
+
+@{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<div class="ui basic segment">
-    <h3 class="ui header">Application Content</h3>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur tempore corporis nihil obcaecati corrupti
-        impedit debitis quia ullam veniam culpa magnam itaque odit, aperiam voluptatibus ex cum at saepe, omnis!
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, libero nostrum error eius saepe at accusantium
-        natus perspiciatis quisquam quo modi quam, facere, nemo neque magni eaque earum, possimus molestiae!
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores modi, voluptates dolore enim, officia, natus
-        consequatur necessitatibus unde pariatur aliquid blanditiis amet? Soluta ad facere optio provident alias,
-        porro debitis.
-    </p>
+<div class="ui segment">
+    <a class="ui red ribbon label" style="margin-bottom: 2em;">Genel Bakış</a>
+    <div class="ui stackable three column grid">
+
+        <div class="five wide column">
+            <h4 class="ui center aligned icon header" style="padding: 0em 5em; 0em 5em;">
+                <i class="inverted circular user icon"></i> Üye Bilgileri
+            </h4>
+            <div class="ui two column grid" style="padding: 2em 0em;">
+                <div class="seven wide grid">
+                    <img class="ui small spaced circular image" src="@Model.UserAvatar" alt="@Model.UserName">
+                </div>
+                <div class="nine wide grid">
+                    <h4 class="ui header" style="padding-top: 2.5em; padding-left: 1em;">
+                        <div class="ui list">
+                            <div class="item">
+                                <i class="user icon"></i>
+                                <div class="content">
+                                    @Model.FirstName @Model.LastName
+                                </div>
+                            </div>
+                            <div class="item">
+                                <i class="marker icon"></i>
+                                <div class="content">
+                                    Bursa, TR <i class="tr flag" style="padding-left: 0.5em;"></i>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <i class="mail icon"></i>
+                                <div class="content">
+                                    <a href="mailto:@Model.EMail">@Model.EMail</a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <i class="linkify icon"></i>
+                                <div class="content">
+                                    <a href="http://www.nuriuzunoglu.com">nuriuzunoglu.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui vertical divider">
+            Proje
+        </div>
+
+        <div class="six wide column">
+            <h4 class="ui center aligned icon header" style="padding: 0em 5em;">
+                <i class="inverted circular suitcase icon"></i> Güncellenen Son 3 Proje
+            </h4>
+            <div class="ui relaxed divided list" style="padding:2em 5em;">
+                <div class="item" style="padding-bottom: 0.5em;">
+                    <i class="large github middle aligned icon"></i>
+                    <div class="content">
+                        <a class="header">nuriu/ajanda</a>
+                        <div class="description">10 dakika önce güncellendi.</div>
+                    </div>
+                </div>
+                <div class="item" style="padding: 0.5em 0em;">
+                    <i class="large gitlab middle aligned icon"></i>
+                    <div class="content">
+                        <a class="header">Işık Sistem/Mezbele</a>
+                        <div class="description">22 dakika önce güncellendi.</div>
+                    </div>
+                </div>
+                <div class="item" style="padding: 0.5em 0em;">
+                    <i class="large bitbucket middle aligned icon"></i>
+                    <div class="content">
+                        <a class="header">Işık Oyun/Freelancer</a>
+                        <div class="description">34 dakika önce güncellendi.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui vertical divider">
+            İstatistik
+        </div>
+
+        <div class="five wide column">
+            <div class="ui four statistics" style="padding: 0em 2em;">
+                <div class="blue statistic">
+                    <div class="value">
+                        @Model.Crews.Count
+                    </div>
+                    <div class="label">
+                        Ekip
+                    </div>
+                </div>
+                <div class="purple statistic">
+                    <div class="value">
+                        @Model.Projects.Count
+                    </div>
+                    <div class="label">
+                        Proje
+                    </div>
+                </div>
+                <div class="orange statistic">
+                    <div class="value">
+                        @Model.Issues.Count
+                    </div>
+                    <div class="label">
+                        Aktif İş
+                    </div>
+                </div>
+                <div class="olive statistic">
+                    <div class="value">
+                        @{ int cf = 0; }
+                        @foreach (var c in Model.Crews)
+                        {
+                            foreach (var u in c.Users)
+                            {
+                                if (u.Id != Model.Id)
+                                {
+                                    cf++;
+                                }
+                            }
+                        }
+                        @cf
+                    </div>
+                    <div class="label">
+                        Ekipdaş
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="ui small feed" style="padding: 0em 4em;">
+                <h4 class="ui header">Ekipler</h4>
+
+                @foreach (var c in Model.Crews)
+                {
+
+                <span data-tooltip="@c.Name: @c.Users.Count üye ve @c.Projects.Count projeye sahip." data-inverted="" data-position="bottom center">
+                    <img class="ui mini avatar image" src="@c.Avatar">
+                </span>
+                }
+            </div>
+        </div>
+
+    </div>
 </div>
+
+<script type="text/javascript">
+    $('ui.mini.avatar.image').popup();
+</script>
