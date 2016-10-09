@@ -5,44 +5,40 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<div>
-    <h4>Projeyi Sil</h4>
-    <hr />
-    <div class="ui one column grid">
-        <div class="column">
-            <div class="ui raised segment">
-                <a class="ui red ribbon label">Silinecek Proje</a>
-                <span>Aşağıdaki bilgilere sahip projeyi silmek istediğinize emin misiniz?</span>
+<div class="ui one column grid">
+    <div class="column">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">Silinecek Proje</a>
+            <span>Aşağıdaki bilgilere sahip projeyi silmek istediğinize emin misiniz?</span>
 
-                <br /><br />
-                <table class="ui definition table">
-                    <tbody>
-                        <tr>
-                            <td>@Html.DisplayNameFor(model => model.Name)</td>
-                            <td>@Html.DisplayFor(model => model.Name)</td>
-                        </tr>
-                        <tr>
-                            <td>@Html.DisplayNameFor(model => model.Description)</td>
-                            <td>@Html.DisplayFor(model => model.Description)</td>
-                        </tr>
-                        <tr>
-                            <td>@Html.DisplayNameFor(model => model.CreationDate)</td>
-                            <td>@Html.DisplayFor(model => model.CreationDate)</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <br /><br />
+            <table class="ui definition table">
+                <tbody>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Name)</td>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Description)</td>
+                        <td>@Html.DisplayFor(model => model.Description)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.CreationDate)</td>
+                        <td>@Html.DisplayFor(model => model.CreationDate)</td>
+                    </tr>
+                </tbody>
+            </table>
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
 
-                    <div class="field">
-                        <input class="ui negative submit button" type="submit" value="Sil" style="margin-bottom: 5px;" />
-                        @Html.ActionLink("Proje listesine dön", "Index", null, new { @class = "ui primary button" })
-                    </div>
-                }
+                <div class="field">
+                    <input class="ui negative submit button" type="submit" value="Sil" style="margin-bottom: 5px;" />
+                    @Html.ActionLink("Proje listesine dön", "Index", null, new { @class = "ui primary button" })
+                </div>
+            }
 
-            </div>
         </div>
     </div>
 </div>

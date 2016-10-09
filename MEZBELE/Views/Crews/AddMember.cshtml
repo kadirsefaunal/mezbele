@@ -4,14 +4,12 @@
     ViewBag.Title = Model.Name + " - Ekibe Üye Ekle";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
+
 @using (Html.BeginForm("AddMember", "Crews", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Ekibe Üye Ekle</h4>
-        <hr />
-
         <div class="ui one column grid">
             <div class="column">
                 <div class="ui raised segment">

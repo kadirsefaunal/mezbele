@@ -71,8 +71,7 @@ namespace MEZBELE.Controllers
                     Session["User"] = u;
                     FormsAuthentication.SetAuthCookie(u.Id.ToString(), true);
 
-                    TempData["u"] = u;
-                    return RedirectToAction("Index", "App", u);
+                    return RedirectToAction("Index", "App");
                 }
                 else
                 {

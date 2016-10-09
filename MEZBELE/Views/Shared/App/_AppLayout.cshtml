@@ -9,55 +9,18 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/semantic")
-    <style>
-        .toc.item {
-            display: none;
-        }
 
-        @@media only screen and (max-width: 700px) {
-            .toc.item {
-                display: block;
-            }
-        }
-
-        @@media only screen and (min-width: 701px) {
-            .ui.article {
-                margin-right: 20em;
-            }
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            $('.ui.sidebar').sidebar('attach events', '.toc.item');
-
-            if ($(window).width() < 700)
-                $('.ui.sidebar').removeClass('visible');
-
-            if ($(window).width() > 700)
-                $('.ui.sidebar').addClass('visible');
-        });
-
-        $(window).on('resize', function (event) {
-            if ($(window).width() < 700)
-                $('.ui.sidebar').removeClass('visible');
-
-            if ($(window).width() > 700)
-                $('.ui.sidebar').addClass('visible');
-        });
-    </script>
 </head>
-<body>
-   @Html.Partial("~/Views/Shared/App/_AppSidebar.cshtml")
+<body id="AppBody">
+    <div class="ui fluid container" id="AppContainer">
 
-    <div class="pusher">
-        <a class="toc item" style="padding: 2em;">
-            <i class="big sidebar icon"></i>
-        </a>
-        <div class="ui article" style="padding: 4em;">
-            @RenderBody()
-        </div>
+        @Html.Partial("~/Views/Shared/App/_AppMenu.cshtml")
+
+        @RenderBody()
     </div>
+
     @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
+
 
     @RenderSection("scripts", required: false)
 </body>

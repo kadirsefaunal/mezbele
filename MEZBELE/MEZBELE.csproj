@@ -218,7 +218,6 @@
     <Content Include="Views\Shared\App\_AppLayout.cshtml" />
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\Shared\App\_AppFooter.cshtml" />
-    <Content Include="Views\Shared\App\_AppSidebar.cshtml" />
     <Content Include="Views\Profile\Delete.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
@@ -239,6 +238,7 @@
     <Content Include="Views\Shared\Landing\_FormLayout.cshtml" />
     <Content Include="Views\Landing\Login.cshtml" />
     <Content Include="Views\Landing\SignUp.cshtml" />
+    <Content Include="Views\Shared\App\_AppMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

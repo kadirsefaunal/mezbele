@@ -5,27 +5,21 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<div>
-    <h4>Üyeliği Sil</h4>
-    <hr />
-    
-    <div class="ui one column grid">
-        <div class="column">
-            <div class="ui raised segment">
-                <a class="ui red ribbon label">Üyeliğiniz Silinmek Üzere</a>
+<div class="ui one column grid">
+    <div class="column">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">Üyeliğiniz Silinmek Üzere</a>
 
-                <br />
+            <br />
 
-                <h3>Üyeliğinizi silmek istediğinizden emin misiniz?</h3>
-                <br />
-                @using (Html.BeginForm())
-                {
-                @Html.AntiForgeryToken()
-                    <input class="ui orange submit button" type="submit" value="Sil" /> 
+            <h3>Üyeliğinizi silmek istediğinizden emin misiniz?</h3>
+            <br />
+            @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+                <input class="ui orange submit button" type="submit" value="Sil" />
                     @Html.ActionLink("Geri Dön", "Index", null, new { @class = "ui positive button" })
-                }
-            </div>
+            }
         </div>
     </div>
-
 </div>

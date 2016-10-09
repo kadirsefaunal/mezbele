@@ -5,62 +5,57 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<div>
-    <h4>Proje Paneli</h4>
-    <hr />
+<div class="ui one column grid">
+    <div class="column">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">Projeler</a>
 
-    <div class="ui one column grid">
-        <div class="column">
-            <div class="ui raised segment">
-                <a class="ui red ribbon label">Projeler</a>
+            <br /><br />
 
-                <br /><br />
+            <p class="ui right aligned header">
+                @Html.ActionLink("Proje Oluştur", "Create", "", new { @class = "ui positive button" })
+            </p>
 
-                <p class="ui right aligned header">
-                    @Html.ActionLink("Proje Oluştur", "Create", "", new { @class = "ui positive button" })
-                </p>
+            <div class="ui stackable three column grid">
+                @foreach (var item in Model)
+                {
+                <div class="column">
+                    <div class="ui raised card" style="margin-bottom: 20px;">
+                        <div class="content">
+                            <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
+                            <div class="meta">
+                                <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
+                            </div>
+                            <div class="description">
+                                <p>@Html.DisplayFor(model => item.Description)</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id })
 
-                <div class="ui stackable three column grid">
-                    @foreach (var item in Model)
-                    {
-                        <div class="column">
-                            <div class="ui raised card" style="margin-bottom: 20px;">
-                                <div class="content">
-                                    <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
-                                    <div class="meta">
-                                        <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
-                                    </div>
-                                    <div class="description">
-                                        <p>@Html.DisplayFor(model => item.Description)</p>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }) 
-
-                                    @if (Session["UserId"].ToString() == item.OwnerID.ToString())
-                                    {
-                                        <span> | </span>
+                            @if (Session["UserId"].ToString() == item.OwnerID.ToString())
+                            {
+                            <span> | </span>
                                         @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, null)
                                         <span> | </span>
                                         @Html.ActionLink("Sil", "Delete", new { id = item.Id }, null)
-                                    }
+                            }
 
-                                    @foreach (var user in item.Users)
-                                    {
-                                        if (user.Id == item.OwnerID)
-                                        {
-                                            <div class="right floated author">
-                                                <img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName
-                                            </div>
-                                        }
-                                    }
+                            @foreach (var user in item.Users)
+                            {
+                                if (user.Id == item.OwnerID)
+                                {
+                                <div class="right floated author">
+                                    <img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName
                                 </div>
-                            </div>
+                                }
+                            }
                         </div>
-                    }
+                    </div>
                 </div>
-
+                }
             </div>
+
         </div>
     </div>
 </div>

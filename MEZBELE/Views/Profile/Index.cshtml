@@ -5,80 +5,75 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<div>
-    <h4>Kullanıcı Paneli</h4>
-    <hr />
+<div class="ui one column grid">
+    <div class="column">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">İstatistikler</a>
 
-    <div class="ui one column grid">
-        <div class="column">
-            <div class="ui raised segment">
-                <a class="ui red ribbon label">İstatistikler</a>
+            <br /><br />
 
-                <br /><br />
-
-                <div class="ui four statistics">
-                    <div class="statistic">
-                        <div class="value">
-                            @Model.Crews.Count
-                        </div>
-                        <div class="label">
-                            EKİP
-                        </div>
+            <div class="ui four statistics">
+                <div class="statistic">
+                    <div class="value">
+                        @Model.Crews.Count
                     </div>
-                    <div class="statistic">
-                        <div class="value">
-                            @Model.Projects.Count
-                        </div>
-                        <div class="label">
-                            PROJE
-                        </div>
-                    </div>
-                    <div class="statistic">
-                        <div class="value">
-                            @Model.Issues.Count
-                        </div>
-                        <div class="label">
-                            İŞ
-                        </div>
-                    </div>
-                    <div class="statistic">
-                        <div class="value">
-                            42
-                        </div>
-                        <div class="label">
-                            EKİP ARKADAŞI
-                        </div>
+                    <div class="label">
+                        EKİP
                     </div>
                 </div>
-                <br /><br /><br />
-
-                <a class="ui blue ribbon label">Bilgiler</a>
-                <h2 class="ui center aligned icon header">
-                    <img class="ui tiny circular image" src="@Model.UserAvatar">
-                </h2>
-                <div class="ui center aligned header">
-                    <div class="ui list">
-                        <div class="item">
-                            Kullanıcı Adı:
-                            @Html.DisplayFor(model => model.UserName)
-                        </div>
-                        <div class="item">
-                            E-posta Adresi:
-                            @Html.DisplayFor(model => model.EMail)
-                        </div>
-                        <div class="item">
-                            İsim:
-                            @Html.DisplayFor(model => model.FirstName)
-                        </div>
-                        <div class="item">
-                            Soyisim:
-                            @Html.DisplayFor(model => model.LastName)
-                        </div>
+                <div class="statistic">
+                    <div class="value">
+                        @Model.Projects.Count
                     </div>
-
-                    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui positive button" })
-                    @Html.ActionLink("Sil", "Delete", new { id = Model.Id }, new { @class = "ui negative button" })
+                    <div class="label">
+                        PROJE
+                    </div>
                 </div>
+                <div class="statistic">
+                    <div class="value">
+                        @Model.Issues.Count
+                    </div>
+                    <div class="label">
+                        İŞ
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        42
+                    </div>
+                    <div class="label">
+                        EKİP ARKADAŞI
+                    </div>
+                </div>
+            </div>
+            <br /><br /><br />
+
+            <a class="ui blue ribbon label">Bilgiler</a>
+            <h2 class="ui center aligned icon header">
+                <img class="ui tiny circular image" src="@Model.UserAvatar">
+            </h2>
+            <div class="ui center aligned header">
+                <div class="ui list">
+                    <div class="item">
+                        Kullanıcı Adı:
+                        @Html.DisplayFor(model => model.UserName)
+                    </div>
+                    <div class="item">
+                        E-posta Adresi:
+                        @Html.DisplayFor(model => model.EMail)
+                    </div>
+                    <div class="item">
+                        İsim:
+                        @Html.DisplayFor(model => model.FirstName)
+                    </div>
+                    <div class="item">
+                        Soyisim:
+                        @Html.DisplayFor(model => model.LastName)
+                    </div>
+                </div>
+
+                @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "ui positive button" })
+                @Html.ActionLink("Sil", "Delete", new { id = Model.Id }, new { @class = "ui negative button" })
             </div>
         </div>
     </div>

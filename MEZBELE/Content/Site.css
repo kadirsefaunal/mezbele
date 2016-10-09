@@ -4,67 +4,6 @@ textarea {
     max-width: 280px;
 }
 
-
-/* Index.cshtml */
-
-.hidden.menu {
-    display: none;
-}
-
-.masthead.segment {
-    min-height: 1000px;
-    padding: 1em 0em;
-}
-
-.masthead .logo.item img {
-    margin-right: 1em;
-}
-
-.masthead .ui.menu .ui.button {
-    margin-left: 0.5em;
-}
-
-.masthead h1.ui.header {
-    margin-top: 5em;
-    margin-bottom: 0em;
-    font-size: 4em;
-    font-weight: normal;
-}
-
-.masthead h2 {
-    font-size: 1.7em;
-    font-weight: normal;
-}
-
-.secondary.pointing.menu .toc.item {
-    display: none;
-}
-
-@media only screen and (max-width: 700px) {
-    .ui.fixed.menu {
-        display: none !important;
-    }
-
-    .secondary.pointing.menu .item,
-    .secondary.pointing.menu .menu {
-        display: none;
-    }
-
-    .secondary.pointing.menu .toc.item {
-        display: block;
-    }
-
-    .masthead h1.ui.header {
-        font-size: 2em;
-        margin-top: 8em;
-    }
-
-    .masthead h2 {
-        margin-top: 0.5em;
-        font-size: 1.5em;
-    }
-}
-
 /* App Footer */
 
 .ui.footer.segment {
@@ -76,4 +15,28 @@ textarea {
 
 .field {
     padding: 10px;
+}
+
+
+/* App */
+@media only screen and (max-width: 765px) {
+    #userNameInfo, #menuName {
+        display: none;
+    }
+}
+
+#AppBody {
+    background-color: #566270;
+}
+
+#AppContainer {
+    padding: 1em 4em;
+}
+
+#AppMenu {
+    border: none;
+}
+
+.ui.segment {
+    padding-bottom: 3em;
 }
