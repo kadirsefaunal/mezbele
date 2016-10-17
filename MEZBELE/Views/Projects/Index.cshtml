@@ -10,52 +10,46 @@
         <div class="ui raised segment">
             <a class="ui red ribbon label">Projeler</a>
 
-            <br /><br />
+            <br />
 
             <p class="ui right aligned header">
                 @Html.ActionLink("Proje Oluştur", "Create", "", new { @class = "ui positive button" })
             </p>
 
-            <div class="ui stackable three column grid">
+            <div class="ui stackable two column grid">
+
                 @foreach (var item in Model)
                 {
-                <div class="column">
-                    <div class="ui raised card" style="margin-bottom: 20px;">
-                        <div class="content">
-                            <div class="header">@Html.DisplayFor(modelItem => item.Name)</div>
-                            <div class="meta">
-                                <span class="category">@Html.DisplayFor(model => item.CreationDate)</span>
+                    <div class="column">
+                        <div class="ui orange segment">
+                            @Html.ActionLink(item.Name, "Details", new { id = item.Id }, new { @class = "ui orange header" })
+                            <div class="meta" style="margin-bottom: 5px; color: gray; font-size: 10px;">
+                                <span class="details">@Html.DisplayFor(model => item.CreationDate)</span>
                             </div>
-                            <div class="description">
+                            <div class="description" style="margin-bottom: 10px;">
                                 <p>@Html.DisplayFor(model => item.Description)</p>
                             </div>
-                        </div>
-                        <div class="extra content">
-                            @Html.ActionLink("Detaylar", "Details", new { id = item.Id })
-
-                            @if (Session["UserId"].ToString() == item.OwnerID.ToString())
-                            {
-                            <span> | </span>
-                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, null)
-                                        <span> | </span>
-                                        @Html.ActionLink("Sil", "Delete", new { id = item.Id }, null)
-                            }
-
-                            @foreach (var user in item.Users)
-                            {
-                                if (user.Id == item.OwnerID)
+                            <hr />
+                            <div style="margin-top: 10px; margin-bottom: 15px;">
+                                @if (Session["UserId"].ToString() == item.OwnerID.ToString())
                                 {
-                                <div class="right floated author">
-                                    <img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName
-                                </div>
+                                    <div style="float: left;">
+                                        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "ui primary basic button" })
+                                        @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "ui negative basic button" })
+                                    </div>
                                 }
-                            }
+                                @foreach (var user in item.Users)
+                                {
+                                    if (user.Id == item.OwnerID)
+                                    {
+                                        <span style="float: right;"><img class="ui avatar image" src="@user.UserAvatar"> @user.FirstName</span>
+                                    }
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
             </div>
-
         </div>
     </div>
 </div>
