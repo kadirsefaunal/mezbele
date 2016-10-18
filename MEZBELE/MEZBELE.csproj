@@ -164,6 +164,10 @@
     <Compile Include="Migrations\201609291009521_EditedIssues.Designer.cs">
       <DependentUpon>201609291009521_EditedIssues.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610181138103_EditedUsers.cs" />
+    <Compile Include="Migrations\201610181138103_EditedUsers.Designer.cs">
+      <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Crews.cs" />
@@ -258,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609291009521_EditedIssues.resx">
       <DependentUpon>201609291009521_EditedIssues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610181138103_EditedUsers.resx">
+      <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

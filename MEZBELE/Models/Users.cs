@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MEZBELE.Models
@@ -50,10 +51,34 @@ namespace MEZBELE.Models
         [MaxLength(250)]
         public string EMail { get; set; }
         /// <summary>
+        /// Kullanıcı web adresi.
+        /// </summary>
+        [Display(Name = "Web Adresi")]
+        [MaxLength(100)]
+        public string WebAdresi { get; set; }
+        /// <summary>
+        /// Kullanıcı konumu.
+        /// </summary>
+        [Display(Name = "Konum")]
+        [MaxLength(50)]
+        public string Konum { get; set; }
+        /// <summary>
+        /// Kullanıcı bölgesi.
+        /// </summary>
+        [Display(Name = "Bölge")]
+        [MaxLength(50)]
+        public string Bolge { get; set; }
+        /// <summary>
         /// Kullanıcı resmi.
         /// </summary>
         [Display(Name = "Kullanıcı Resmi")]
         public string UserAvatar { get; set; }
+        /// <summary>
+        /// Kullanıcı son giriş tarihi.
+        /// </summary>
+        [Display(Name = "Son Giriş Tarihi")]
+        [DataType(DataType.DateTime)]
+        public DateTime SonGiris { get; set; }
         /// <summary>
         /// Kullanıcının dahil olduğu ekipler.
         /// </summary>
