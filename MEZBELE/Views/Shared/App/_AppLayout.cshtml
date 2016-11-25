@@ -13,14 +13,11 @@
 </head>
 <body id="AppBody">
     <div class="ui fluid container" id="AppContainer">
-
         @Html.Partial("~/Views/Shared/App/_AppMenu.cshtml")
-
         @RenderBody()
     </div>
 
     @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
-
     @RenderSection("scripts", required: false)
 </body>
 </html>

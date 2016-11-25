@@ -26,15 +26,11 @@ textarea {
 }
 
 #AppBody {
-    background-color: #566270;
+    background-color: #e3dede;
 }
 
 #AppContainer {
     padding: 1em 4em;
-}
-
-#AppMenu {
-    border: none;
 }
 
 .ui.segment {
