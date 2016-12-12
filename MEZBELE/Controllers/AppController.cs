@@ -1,5 +1,7 @@
 ﻿using MEZBELE.Models;
 using System.Web.Mvc;
+using System.Linq;
+using System;
 
 namespace MEZBELE.Controllers
 {
@@ -12,7 +14,7 @@ namespace MEZBELE.Controllers
         /// Veritabanı.
         /// </summary>
         private readonly MezbeleEntities db = new MezbeleEntities();
-
+        
         /// <summary>
         /// Uygulama anasayfası
         /// </summary>
@@ -21,6 +23,10 @@ namespace MEZBELE.Controllers
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
+                int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                ViewBag.Kullanici = (from k in db.Users
+                                     where k.ID == kullaniciID
+                                     select k).SingleOrDefault();
                 return View();
             }
             return RedirectToAction("Index", "Landing");
@@ -34,6 +40,10 @@ namespace MEZBELE.Controllers
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
+                int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                ViewBag.K = (from k in db.Users
+                                     where k.ID == kullaniciID
+                                     select k).SingleOrDefault();
                 return View();
             }
             return RedirectToAction("Index", "Landing");
