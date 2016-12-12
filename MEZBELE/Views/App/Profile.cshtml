@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+
+
+<div class="col s12 m12 l12">
+    <div id="profil" class="section scrollspy">
+
+        <h3 class="header deep-purple-text text-darken-1">Merhaba!</h3>
+        <p class="caption">Aşağıdaki alanda sistemde kayıtlı olan bilgilerinizi güncelleyebilirsiniz.</p>
+        <br />
+        <div class="card deep-purple darken-1">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1429051781835-9f2c0a9df6e4?dpr=1&auto=format&fit=crop&w=800&h=200&q=80&cs=tinysrgb&crop=">
+                <span class="card-title">İsim Soyisim</span>
+            </div>
+            <div class="card-content white-text">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input @*placeholder="@ViewBag.Kullanici.Isim" value="@ViewBag.Kullanici.Isim"*@ id="isim" type="text" class="validate">
+                                <label for="isim">İsim</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input @*placeholder="@ViewBag.Kullanici.Soyisim" value="@ViewBag.Kullanici.Soyisim"*@ id="soyisim" type="text" class="validate">
+                                <label for="soyisim">Soyisim</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input @*placeholder="@ViewBag.Kullanici.Eposta" value="@ViewBag.Kullanici.Eposta"*@ id="eposta" type="email" class="validate">
+                                <label for="eposta">Eposta</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="Yeni Parolanız" id="parola" type="password" class="validate">
+                                <label for="parola">Parola</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input @*placeholder="@ViewBag.Kullanici.AvatarLink" value="@ViewBag.Kullanici.AvatarLink"*@ id="avatarLink" type="text" class="validate">
+                                <label for="avatarLink">Avatar Bağlantısı</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-action">
+                <a href="#" onclick="temizle()">Temizle</a>
+                <a href="#" onclick="kaydet()">Kaydet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function temizle() {
+        $(':input').removeAttr('checked').removeAttr('selected').not(':button, :submit, :reset, :hidden, :radio, :checkbox').val('').blur();
+    }
+
+    function kaydet() {
+        var veri = {
+            isim: $("#isim").val(),
+            soyisim: $("#soyisim").val(),
+            eposta: $("#eposta").val(),
+            parola: $("#parola").val(),
+            avatarLink: $('#avatarLink').val()
+        };
+
+        $.post("/App/UpdateUserInfo", veri, function (cevap) {
+            if (cevap == 'Güncelleme başarılı.') {
+                Materialize.toast('Bilgiler başarıyla güncellendi!', 3000, 'rounded');
+                window.location = "/App/Profile";
+            }
+            else
+                Materialize.toast('Güncelleme başarısız! Boş alan bırakmadan tekrar deneyiniz!', 3000, 'rounded');
+        });
+    }
+</script>

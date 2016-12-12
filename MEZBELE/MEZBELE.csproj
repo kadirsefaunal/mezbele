@@ -147,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Migrations\201609290709246_init.cs" />
     <Compile Include="Migrations\201609290709246_init.Designer.cs">
       <DependentUpon>201609290709246_init.cs</DependentUpon>
@@ -216,6 +217,7 @@
     <Content Include="Views\Landing\Login.cshtml" />
     <Content Include="Views\Landing\Register.cshtml" />
     <Content Include="Views\Shared\App\_AppMenu.cshtml" />
+    <Content Include="Views\App\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

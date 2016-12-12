@@ -1,1 +1,7 @@
-﻿
+﻿#form {
+    height: 100vh;
+    background: linear-gradient( rgba(20,20,20, .5), rgba(20,20,20, .75)), url(../../Content/g7axsvst6y-stefan-stefancik.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

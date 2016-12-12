@@ -1,5 +1,8 @@
 ﻿using MEZBELE.Context;
 using System.Web.Mvc;
+using System.Linq;
+using System;
+using System.Web;
 
 namespace MEZBELE.Controllers
 {
@@ -12,7 +15,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MezbeleContext db = new MezbeleContext();
+        private MezbeleContext db = new MezbeleContext();
 
         /// <summary>
         /// Kullanıcıyı, giriş yaptıysa uygulamaya, yapmadıysa karşılama sayfasına yönlendirir.
@@ -31,6 +34,33 @@ namespace MEZBELE.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="kullaniciAdi"></param>
+        /// <param name="parola"></param>
+        /// <returns></returns>
+        public JsonResult LoginControl(string kullaniciAdi, string parola)
+        {
+            int kullaniciKimligi = (from k in db.Users where k.UserName == kullaniciAdi && k.Password == parola select k.Id).SingleOrDefault();
+
+            if (kullaniciKimligi != 0)
+            {
+                Response.Cookies["KullaniciKimligi"].Value = kullaniciKimligi.ToString();
+                Response.Cookies["KullaniciKimligi"].Expires = DateTime.Now.AddDays(1);
+
+                HttpCookie sonZiyaret = new HttpCookie("SonZiyaret", DateTime.Now.ToString());
+                sonZiyaret.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(sonZiyaret);
+
+                return Json("Giriş başarılı.");
+            }
+            else
+            {
+                return Json("Giriş başarısız.");
+            }
         }
 
         /// <summary>

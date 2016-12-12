@@ -7,13 +7,28 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     @Styles.Render("~/Content/css")
+    <style>
+        header, main, footer {
+            padding-left: 100px;
+        }
 
+        @@media only screen and (max-width : 992px) {
+            header, main, footer {
+                padding-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    @Html.Partial("~/Views/Shared/App/_AppMenu.cshtml")
-    @RenderBody()
-
-    @Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")
+    <header>@Html.Partial("~/Views/Shared/App/_AppMenu.cshtml")</header>
+    <main>
+        <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer blue-grey darken-3">@Html.Partial("~/Views/Shared/App/_AppFooter.cshtml")</footer>
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")

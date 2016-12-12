@@ -3,3 +3,55 @@
     ViewBag.Title = "Kayıt";
     Layout = "~/Views/Shared/Landing/_FormLayout.cshtml";
 }
+
+<div class="row">
+    <div class="col s12 m12 l4 offset-l4">
+        <div class="card blue-grey darken-1" style="margin-top:15em;">
+            <div class="card-content white-text">
+                <span class="card-title">Giriş Yap</span>
+                <hr />
+                <div class="row" style="padding-top:3em;">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Kullanıcı Adınız" id="kullaniciAdi" type="text" class="validate" length="50">
+                                <label for="kullaniciAdi">Kullanıcı Adı</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Parolanız" id="parola" type="password" class="validate" length="64">
+                                <label for="parola">Parola</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="card-action right-align">
+                <a href="#" onclick="temizle()">TEMİZLE</a>
+                <a href="#" onclick="giris()">GİRİŞ YAP</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function temizle() {
+        $(':input').removeAttr('checked').removeAttr('selected').not(':button, :submit, :reset, :hidden, :radio, :checkbox').val('').blur();
+    }
+
+    function kayit() {
+        var veri = {
+            kullaniciAdi: $("#kullaniciAdi").val(),
+            parola: $("#parola").val()
+        };
+
+        $.post("/Landing/RegisterControl", veri, function (cevap) {
+            if (cevap == 'Kayıt başarılı.')
+                window.location = "/Login";
+            else
+                Materialize.toast('Kayıt başarısız!', 3000, 'rounded');
+        });
+    }
+</script>

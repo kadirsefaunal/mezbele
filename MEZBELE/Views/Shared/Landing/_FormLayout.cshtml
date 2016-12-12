@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     @Styles.Render("~/Content/css")
 </head>
-<body>
-    @RenderBody()
-
+<body id="form">
+    <div id="container">
+        <div class="formCard">
+            @RenderBody()
+        </div>
+    </div>
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

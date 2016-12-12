@@ -20,9 +20,24 @@ namespace MEZBELE.Controllers
         /// <returns>Index isimli görününmü gösterir.</returns>
         public ActionResult Index()
         {
-            Users user = db.Users.Find(Session["UserId"]);
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Landing");
+        }
 
-            return View(user);
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public new ActionResult Profile()
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Landing");
         }
 
         protected override void Dispose(bool disposing)
