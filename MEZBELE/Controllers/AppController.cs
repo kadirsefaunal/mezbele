@@ -7,13 +7,12 @@ namespace MEZBELE.Controllers
     /// <summary>
     /// Ana uygulama kontrolcüsü.
     /// </summary>
-    [LoginControl]
     public class AppController : Controller
     {
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private MezbeleContext db = new MezbeleContext();
+        private readonly MezbeleContext db = new MezbeleContext();
 
         /// <summary>
         /// Uygulama anasayfası

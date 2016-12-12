@@ -18,15 +18,10 @@ namespace MEZBELE
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/semantic").Include(
-                      "~/Scripts/semantic.min.js",
-                      "~/Scripts/respond.min.js"));
-
             bundles.Add(new ScriptBundle("~/Content/js").Include(
                       "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/semantic.min.css",
                       "~/Content/site.css"));
         }
     }

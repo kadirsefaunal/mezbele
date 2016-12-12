@@ -143,12 +143,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\MezbeleContext.cs" />
     <Compile Include="Controllers\AppController.cs" />
-    <Compile Include="Controllers\CrewsController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,7 +175,6 @@
     <Content Include="Content\creative.min.css" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\logo.png" />
-    <Content Include="Content\semantic.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
@@ -203,7 +197,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -214,29 +207,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\App\_AppLayout.cshtml" />
     <Content Include="Views\App\Index.cshtml" />
     <Content Include="Views\Shared\App\_AppFooter.cshtml" />
-    <Content Include="Views\Profile\Delete.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
-    <Content Include="Views\Projects\Delete.cshtml" />
-    <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Edit.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\Crews\Create.cshtml" />
-    <Content Include="Views\Crews\Delete.cshtml" />
-    <Content Include="Views\Crews\Details.cshtml" />
-    <Content Include="Views\Crews\Edit.cshtml" />
-    <Content Include="Views\Crews\Index.cshtml" />
-    <Content Include="Views\Crews\AddMember.cshtml" />
-    <Content Include="Views\Projects\AddCrew.cshtml" />
     <Content Include="Views\Shared\Landing\_LandingLayout.cshtml" />
     <Content Include="Views\Landing\Index.cshtml" />
     <Content Include="Views\Shared\Landing\_FormLayout.cshtml" />
