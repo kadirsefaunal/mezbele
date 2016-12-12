@@ -73,6 +73,54 @@ namespace MEZBELE.Controllers
             return View();
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="kullaniciAdi"></param>
+        /// <param name="parola"></param>
+        /// <returns></returns>
+        public JsonResult RegisterControl(string kullaniciAdi, string parola, string isim, string soyisim, string eposta)
+        {
+            var kontrol = (from k in db.Users where k.UserName == kullaniciAdi select k).SingleOrDefault();
+
+            if (kontrol == null)
+            {
+                User kayitEdilecekKullanici = new User
+                {
+                    UserName = kullaniciAdi,
+                    Password = parola,
+                    FirstName = isim,
+                    LastName = soyisim,
+                    EMail = eposta,
+                    RoleID = 2
+                };
+
+                db.Users.Add(kayitEdilecekKullanici);
+                db.SaveChanges();
+                return Json("Kayıt başarılı.");
+            }
+            else
+            {
+                return Json("Kayıt başarısız.");
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult Logout()
+        {
+            Response.Cookies["KullaniciKimligi"].Value = null;
+            Response.Cookies["KullaniciKimligi"].Expires = DateTime.Now.AddDays(-1);
+
+            HttpCookie sonZiyaret = new HttpCookie("SonZiyaret", DateTime.Now.ToString());
+            sonZiyaret.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(sonZiyaret);
+
+            return Json("Çıkış yapıldı.");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
