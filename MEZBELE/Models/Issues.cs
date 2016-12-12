@@ -29,6 +29,12 @@ namespace MEZBELE.Models
         [Display(Name = "Oluşturan")]
         public int CreatorId { get; set; }
         /// <summary>
+        /// 
+        /// </summary>
+        [Required]
+        [Display(Name = "İlgili Süreç")]
+        public Processes RelatedProcess { get; set; }
+        /// <summary>
         /// İşin adı.
         /// </summary>
         [Required(ErrorMessage = "Lütfen iş adını girin.")]
@@ -48,6 +54,11 @@ namespace MEZBELE.Models
         [Display(Name = "Oluşturma Tarihi")]
         [DataType(DataType.DateTime)]
         public DateTime CreationDate { get; set; }
+
+        [Display(Name = "Bitiş Tarihi")]
+        [DataType(DataType.DateTime)]
+        public DateTime DeadLine { get; set; }
+
         /// <summary>
         /// İşe ait yorumlar.
         /// </summary>
