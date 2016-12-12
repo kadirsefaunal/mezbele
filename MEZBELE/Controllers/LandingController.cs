@@ -1,4 +1,5 @@
 ﻿using MEZBELE.Context;
+using MEZBELE.Models;
 using System.Web.Mvc;
 
 namespace MEZBELE.Controllers

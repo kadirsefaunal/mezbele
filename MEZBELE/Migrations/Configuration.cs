@@ -9,7 +9,8 @@ namespace MEZBELE.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(MEZBELE.Context.MezbeleContext context)

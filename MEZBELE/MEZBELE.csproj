@@ -163,11 +163,17 @@
     <Compile Include="Migrations\201610181138103_EditedUsers.Designer.cs">
       <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121041470_EditedModels.cs" />
+    <Compile Include="Migrations\201612121041470_EditedModels.Designer.cs">
+      <DependentUpon>201612121041470_EditedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Crews.cs" />
     <Compile Include="Models\Issues.cs" />
+    <Compile Include="Models\Processes.cs" />
     <Compile Include="Models\Projects.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610181138103_EditedUsers.resx">
       <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121041470_EditedModels.resx">
+      <DependentUpon>201612121041470_EditedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
