@@ -23,6 +23,26 @@ namespace MEZBELE.Controllers
             return View();
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        [Route("Login")]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        [Route("Register")]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

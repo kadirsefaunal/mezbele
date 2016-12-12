@@ -214,7 +214,7 @@
     <Content Include="Views\Landing\Index.cshtml" />
     <Content Include="Views\Shared\Landing\_FormLayout.cshtml" />
     <Content Include="Views\Landing\Login.cshtml" />
-    <Content Include="Views\Landing\SignUp.cshtml" />
+    <Content Include="Views\Landing\Register.cshtml" />
     <Content Include="Views\Shared\App\_AppMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>

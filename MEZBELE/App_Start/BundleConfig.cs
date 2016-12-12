@@ -19,10 +19,10 @@ namespace MEZBELE
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/Content/js").Include(
-                      "~/Scripts/site.js"));
+                        "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                        "~/Content/site.css"));
         }
     }
 }
