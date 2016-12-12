@@ -40,4 +40,10 @@
     $(document).ready(function () {
         $(".button-collapse").sideNav();
     });
+    function cikis() {
+        $.post("/Landing/Logout", "", function (sonuc) {
+            if (sonuc == 'Çıkış yapıldı.')
+                window.location = "/";
+        });
+    }
 </script>
