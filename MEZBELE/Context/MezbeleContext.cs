@@ -28,5 +28,14 @@ namespace MEZBELE.Context
         /// Ekipler.
         /// </summary>
         public DbSet<Crews> Crews { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Processes> Processes { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Roles> Roles { get; set; }
+
     }
 }

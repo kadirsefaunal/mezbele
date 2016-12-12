@@ -56,10 +56,10 @@ namespace MEZBELE.Models
         [DataType(DataType.DateTime)]
         public DateTime ChangeDate { get; set; }
         /// <summary>
-        /// Projenin işleri.
+        /// 
         /// </summary>
-        [Display(Name = "İşler")]
-        public virtual List<Issues> Issues { get; set; }
+        [Display(Name = "Süreçler")]
+        public List<Processes> Processes { get; set; }
         /// <summary>
         /// Projeye dahil olan kullanıcılar.
         /// </summary>

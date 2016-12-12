@@ -57,6 +57,10 @@ namespace MEZBELE.Models
         [MaxLength(100)]
         public string WebAdresi { get; set; }
         /// <summary>
+        /// 
+        /// </summary>
+        public Roles Role { get; set; }
+        /// <summary>
         /// Kullanıcı konumu.
         /// </summary>
         [Display(Name = "Konum")]
@@ -66,7 +70,7 @@ namespace MEZBELE.Models
         /// Kullanıcı bölgesi.
         /// </summary>
         [Display(Name = "Bölge")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Bolge { get; set; }
         /// <summary>
         /// Kullanıcı resmi.
