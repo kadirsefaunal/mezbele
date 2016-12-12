@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da4e16050ef6415fa68a133f2f2ae663" Name="Diagram1">
+        <EntityTypeShape EntityType="MezbeleModel.Comment" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.Crew" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.CrewProject" Width="1.5" PointX="7.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.CrewUser" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.Issue" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.IssueUser" Width="1.5" PointX="12" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.Process" Width="1.5" PointX="7.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.Project" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.ProjectUser" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.Role" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MezbeleModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="MezbeleModel.FK_Comment_Issue" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_CrewProject_Crew" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_CrewUser_Crew" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_CrewProject_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_CrewUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Issue_Process" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Issue_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Issue_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_IssueUser_Issue" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_IssueUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Process_Process" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Process_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_Project_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_ProjectUser_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_ProjectUser_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MezbeleModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

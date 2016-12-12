@@ -70,6 +70,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -141,41 +143,60 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Context\MezbeleContext.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
-    <Compile Include="Migrations\201609290709246_init.cs" />
-    <Compile Include="Migrations\201609290709246_init.Designer.cs">
-      <DependentUpon>201609290709246_init.cs</DependentUpon>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609291007141_EditedCrews.cs" />
-    <Compile Include="Migrations\201609291007141_EditedCrews.Designer.cs">
-      <DependentUpon>201609291007141_EditedCrews.cs</DependentUpon>
+    <Compile Include="Models\Crew.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609291009521_EditedIssues.cs" />
-    <Compile Include="Migrations\201609291009521_EditedIssues.Designer.cs">
-      <DependentUpon>201609291009521_EditedIssues.cs</DependentUpon>
+    <Compile Include="Models\CrewProject.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610181138103_EditedUsers.cs" />
-    <Compile Include="Migrations\201610181138103_EditedUsers.Designer.cs">
-      <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
+    <Compile Include="Models\CrewUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121041470_EditedModels.cs" />
-    <Compile Include="Migrations\201612121041470_EditedModels.Designer.cs">
-      <DependentUpon>201612121041470_EditedModels.cs</DependentUpon>
+    <Compile Include="Models\Issue.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Comments.cs" />
-    <Compile Include="Models\Crews.cs" />
-    <Compile Include="Models\Issues.cs" />
-    <Compile Include="Models\Processes.cs" />
-    <Compile Include="Models\Projects.cs" />
-    <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\IssueUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Process.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,8 +206,25 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\creative.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -233,23 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609290709246_init.resx">
-      <DependentUpon>201609290709246_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609291007141_EditedCrews.resx">
-      <DependentUpon>201609291007141_EditedCrews.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609291009521_EditedIssues.resx">
-      <DependentUpon>201609291009521_EditedIssues.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610181138103_EditedUsers.resx">
-      <DependentUpon>201610181138103_EditedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121041470_EditedModels.resx">
-      <DependentUpon>201612121041470_EditedModels.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

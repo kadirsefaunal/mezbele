@@ -17,8 +17,8 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Crew()
         {
-            this.CrewProjects = new HashSet<CrewProject>();
-            this.CrewUsers = new HashSet<CrewUser>();
+            this.CrewProject = new HashSet<CrewProject>();
+            this.CrewUser = new HashSet<CrewUser>();
         }
     
         public int ID { get; set; }
@@ -27,8 +27,8 @@ namespace MEZBELE.Models
         public string Avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewProject> CrewProjects { get; set; }
+        public virtual ICollection<CrewProject> CrewProject { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewUser> CrewUsers { get; set; }
+        public virtual ICollection<CrewUser> CrewUser { get; set; }
     }
 }

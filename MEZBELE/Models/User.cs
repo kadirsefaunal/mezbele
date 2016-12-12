@@ -17,12 +17,12 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Comments = new HashSet<Comment>();
-            this.CrewUsers = new HashSet<CrewUser>();
-            this.Issues = new HashSet<Issue>();
-            this.IssueUsers = new HashSet<IssueUser>();
-            this.Projects = new HashSet<Project>();
-            this.ProjectUsers = new HashSet<ProjectUser>();
+            this.Comment = new HashSet<Comment>();
+            this.CrewUser = new HashSet<CrewUser>();
+            this.Issue = new HashSet<Issue>();
+            this.IssueUser = new HashSet<IssueUser>();
+            this.Project = new HashSet<Project>();
+            this.ProjectUser = new HashSet<ProjectUser>();
         }
     
         public int ID { get; set; }
@@ -39,17 +39,17 @@ namespace MEZBELE.Models
         public Nullable<System.DateTime> SonGiris { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewUser> CrewUsers { get; set; }
+        public virtual ICollection<CrewUser> CrewUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<Issue> Issue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IssueUser> IssueUsers { get; set; }
+        public virtual ICollection<IssueUser> IssueUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
+        public virtual ICollection<ProjectUser> ProjectUser { get; set; }
         public virtual Role Role { get; set; }
     }
 }

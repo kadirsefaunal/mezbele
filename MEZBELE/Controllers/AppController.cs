@@ -1,5 +1,4 @@
-﻿using MEZBELE.Context;
-using MEZBELE.Models;
+﻿using MEZBELE.Models;
 using System.Web.Mvc;
 
 namespace MEZBELE.Controllers
@@ -12,7 +11,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MezbeleContext db = new MezbeleContext();
+        private readonly MezbeleEntities db = new MezbeleEntities();
 
         /// <summary>
         /// Uygulama anasayfası

@@ -13,10 +13,10 @@ namespace MEZBELE.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MEZBELEEntities : DbContext
+    public partial class MezbeleEntities : DbContext
     {
-        public MEZBELEEntities()
-            : base("name=MEZBELEEntities")
+        public MezbeleEntities()
+            : base("name=MezbeleEntities")
         {
         }
     

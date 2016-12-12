@@ -17,10 +17,10 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Project()
         {
-            this.CrewProjects = new HashSet<CrewProject>();
-            this.Issues = new HashSet<Issue>();
-            this.Processes = new HashSet<Process>();
-            this.ProjectUsers = new HashSet<ProjectUser>();
+            this.CrewProject = new HashSet<CrewProject>();
+            this.Issue = new HashSet<Issue>();
+            this.Process = new HashSet<Process>();
+            this.ProjectUser = new HashSet<ProjectUser>();
         }
     
         public int ID { get; set; }
@@ -33,13 +33,13 @@ namespace MEZBELE.Models
         public Nullable<System.DateTime> ChangeDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewProject> CrewProjects { get; set; }
+        public virtual ICollection<CrewProject> CrewProject { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<Issue> Issue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Process> Processes { get; set; }
+        public virtual ICollection<Process> Process { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectUser> ProjectUsers { get; set; }
+        public virtual ICollection<ProjectUser> ProjectUser { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Process()
         {
-            this.Issues = new HashSet<Issue>();
+            this.Issue = new HashSet<Issue>();
             this.Process1 = new HashSet<Process>();
         }
     
@@ -29,7 +29,7 @@ namespace MEZBELE.Models
         public Nullable<System.DateTime> DeadLine { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issues { get; set; }
+        public virtual ICollection<Issue> Issue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Process> Process1 { get; set; }
         public virtual Process Process2 { get; set; }

@@ -1,4 +1,4 @@
-﻿using MEZBELE.Context;
+﻿using MEZBELE.Models;
 using System.Data.Entity;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -17,7 +17,7 @@ namespace MEZBELE
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new CreateDatabaseIfNotExists<MezbeleContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<MezbeleEntities>());
         }
     }
 }

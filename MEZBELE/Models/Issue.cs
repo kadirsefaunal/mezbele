@@ -17,8 +17,8 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Issue()
         {
-            this.Comments = new HashSet<Comment>();
-            this.IssueUsers = new HashSet<IssueUser>();
+            this.Comment = new HashSet<Comment>();
+            this.IssueUser = new HashSet<IssueUser>();
         }
     
         public int ID { get; set; }
@@ -32,11 +32,11 @@ namespace MEZBELE.Models
         public Nullable<System.DateTime> DeadLine { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
         public virtual Process Process { get; set; }
         public virtual Project Project { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IssueUser> IssueUsers { get; set; }
+        public virtual ICollection<IssueUser> IssueUser { get; set; }
     }
 }
