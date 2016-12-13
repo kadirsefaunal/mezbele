@@ -14,27 +14,27 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
-                                <input id="isim" type="text" class="validate" length="50">
+                                <input id="isim" name="İsim" type="text" class="validate" length="50">
                                 <label for="isim">İsim</label>
                             </div>
                             <div class="input-field col s12 m6 l6">
-                                <input id="soyisim" type="text" class="validate" length="50">
+                                <input id="soyisim" name="Soyisim" type="text" class="validate" length="50">
                                 <label for="soyisim">Soyisim</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m6 l6">
-                                <input id="kullaniciAdi" type="text" class="validate" length="50">
+                                <input id="kullaniciAdi" name="Kullanıcı Adı" type="text" class="validate" length="50">
                                 <label for="kullaniciAdi">Kullanıcı Adı</label>
                             </div>
                             <div class="input-field col s12 m6 l6">
-                                <input id="parola" type="password" class="validate" length="64">
+                                <input id="parola" name="Parola" type="password" class="validate" length="64">
                                 <label for="parola">Parola</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="eposta" type="email" class="validate" length="250">
+                                <input id="eposta" name="Eposta" type="email" class="validate" length="250">
                                 <label for="eposta">Eposta Adresi</label>
                             </div>
                         </div>
@@ -56,19 +56,32 @@
     }
 
     function kayit() {
-        var veri = {
-            kullaniciAdi: $("#kullaniciAdi").val(),
-            parola: $("#parola").val(),
-            isim: $("#isim").val(),
-            soyisim: $("#soyisim").val(),
-            eposta: $("#eposta").val(),
-        };
-
-        $.post("/Landing/RegisterControl", veri, function (cevap) {
-            if (cevap == 'Kayıt başarılı.')
-                window.location = "/Login";
-            else
-                Materialize.toast('Kayıt başarısız!', 3000, 'rounded');
+        var kontrol = true;
+        $('input').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
         });
+
+        if (kontrol == true) {
+            var veri = {
+                kullaniciAdi: $("#kullaniciAdi").val(),
+                parola: $("#parola").val(),
+                isim: $("#isim").val(),
+                soyisim: $("#soyisim").val(),
+                eposta: $("#eposta").val(),
+            };
+
+            $.post("/Landing/RegisterControl", veri, function (cevap) {
+                if (cevap == 'Kayıt başarılı.')
+                    window.location = "/Login";
+                else
+                    Materialize.toast('Kayıt başarısız!', 3000, 'rounded');
+            });
+        }
     }
 </script>

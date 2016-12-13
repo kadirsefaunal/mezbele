@@ -50,6 +50,18 @@ namespace MEZBELE.Controllers
             return RedirectToAction("Index", "Landing");
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="isim"></param>
+        /// <param name="soyisim"></param>
+        /// <param name="eposta"></param>
+        /// <param name="parola"></param>
+        /// <param name="webLink"></param>
+        /// <param name="konum"></param>
+        /// <param name="bolge"></param>
+        /// <param name="avatarLink"></param>
+        /// <returns></returns>
         public JsonResult UpdateUserInfo(string isim, string soyisim, string eposta,
                                          string parola, string webLink, string konum,
                                          string bolge, string avatarLink)

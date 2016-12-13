@@ -14,13 +14,13 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="Kullanıcı Adınız" id="kullaniciAdi" type="text" class="validate" length="50">
+                                <input placeholder="Kullanıcı Adınız" name="Kullanıcı Adı" id="kullaniciAdi" type="text" class="validate" length="50">
                                 <label for="kullaniciAdi">Kullanıcı Adı</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="Parolanız" id="parola" type="password" class="validate" length="64">
+                                <input placeholder="Parolanız" name="Parola" id="parola" type="password" class="validate" length="64">
                                 <label for="parola">Parola</label>
                             </div>
                         </div>
@@ -42,16 +42,29 @@
     }
 
     function giris() {
-        var veri = {
-            kullaniciAdi: $("#kullaniciAdi").val(),
-            parola: $("#parola").val()
-        };
-
-        $.post("/Landing/LoginControl", veri, function (cevap) {
-            if (cevap == 'Giriş başarılı.')
-                window.location = "/App";
-            else
-                Materialize.toast('Giriş başarısız!', 3000, 'rounded');
+        var kontrol = true;
+        $('input').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
         });
+
+        if (kontrol == true) {
+            var veri = {
+                kullaniciAdi: $("#kullaniciAdi").val(),
+                parola: $("#parola").val()
+            };
+
+            $.post("/Landing/LoginControl", veri, function (cevap) {
+                if (cevap == 'Giriş başarılı.')
+                    window.location = "/App";
+                else
+                    Materialize.toast('Giriş başarısız!', 3000, 'rounded');
+            });
+        }
     }
 </script>
