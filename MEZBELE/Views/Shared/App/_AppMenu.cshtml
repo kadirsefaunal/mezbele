@@ -1,4 +1,5 @@
-﻿<nav class="top-nav blue-grey darken-1">
+﻿@model MEZBELE.Models.User
+<nav class="top-nav blue-grey darken-1">
     <div class="container">
         <div class="nav-wrapper">
             <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
@@ -13,8 +14,8 @@
                 <img src="https://images.unsplash.com/photo-1429051781835-9f2c0a9df6e4?dpr=1&auto=format&fit=crop&w=300&h=175&q=80&cs=tinysrgb&crop=">
             </div>
             <a href="#!user"><img class="circle" src="https://a.wattpad.com/useravatar/ezhoikam.128.70523.jpg"></a>
-            <a href="#!name"><span class="white-text name">@ViewBag.Kullanici.FirstName @ViewBag.Kullanici.LastName</span></a>
-            <a href="#!email"><span class="white-text email">@ViewBag.Kullanici.EMail</span></a>
+            <a href="#!name"><span class="white-text name">@Model.FirstName @Model.LastName</span></a>
+            <a href="#!email"><span class="white-text email">@Model.EMail</span></a>
         </div>
     </li>
     <li><a class="subheader">Site</a></li>

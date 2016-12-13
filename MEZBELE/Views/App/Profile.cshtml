@@ -1,4 +1,4 @@
-﻿
+﻿@model MEZBELE.Models.User
 @{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
@@ -21,17 +21,17 @@
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.K.FirstName" value="@ViewBag.K.FirstName" id="isim" type="text" class="validate">
+                                <input placeholder="@Model.FirstName" value="@Model.FirstName" id="isim" type="text" class="validate">
                                 <label for="isim">İsim</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.K.LasName" value="@ViewBag.K.LastName" id="soyisim" type="text" class="validate">
+                                <input placeholder="@Model.LastName" value="@Model.LastName" id="soyisim" type="text" class="validate">
                                 <label for="soyisim">Soyisim</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.K.EMail" value="@ViewBag.K.EMail" id="eposta" type="email" class="validate">
+                                <input placeholder="@Model.EMail" value="@Model.EMail" id="eposta" type="email" class="validate">
                                 <label for="eposta">Eposta</label>
                             </div>
                             <div class="input-field col s6">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="@ViewBag.K.UserAvatar" value="@ViewBag.K.UserAvatar" id="avatarLink" type="text" class="validate">
+                                <input placeholder="@Model.UserAvatar" value="@Model.UserAvatar" id="avatarLink" type="text" class="validate">
                                 <label for="avatarLink">Avatar Bağlantısı</label>
                             </div>
                         </div>

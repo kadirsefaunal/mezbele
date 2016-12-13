@@ -24,10 +24,10 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-                ViewBag.Kullanici = (from k in db.Users
-                                     where k.ID == kullaniciID
-                                     select k).SingleOrDefault();
-                return View();
+                var kullanici = (from k in db.Users
+                                 where k.ID == kullaniciID
+                                 select k).SingleOrDefault();
+                return View(kullanici);
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -41,10 +41,10 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-                ViewBag.K = (from k in db.Users
-                                     where k.ID == kullaniciID
-                                     select k).SingleOrDefault();
-                return View();
+                var kullanici = (from k in db.Users
+                                 where k.ID == kullaniciID
+                                 select k).SingleOrDefault();
+                return View(kullanici);
             }
             return RedirectToAction("Index", "Landing");
         }
