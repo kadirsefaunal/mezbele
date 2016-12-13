@@ -40,6 +40,22 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
+                                <input placeholder="@ViewBag.Kullanici.WebAdresi" value="@ViewBag.Kullanici.WebAdresi" id="webLink" type="text" class="validate">
+                                <label for="webLink">Web Site Bağlantısı</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="@ViewBag.Kullanici.Konum" value="@ViewBag.Kullanici.Konum" id="konum" type="text" class="validate">
+                                <label for="konum">Konum</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input placeholder="@ViewBag.Kullanici.Bolge" value="@ViewBag.Kullanici.Bolge" id="bolge" type="text" class="validate">
+                                <label for="bolge">Bölge</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
                                 <input placeholder="@ViewBag.Kullanici.UserAvatar" value="@ViewBag.Kullanici.UserAvatar" id="avatarLink" type="text" class="validate">
                                 <label for="avatarLink">Avatar Bağlantısı</label>
                             </div>
@@ -66,6 +82,9 @@
             soyisim: $("#soyisim").val(),
             eposta: $("#eposta").val(),
             parola: $("#parola").val(),
+            webLink: $("#webLink").val(),
+            konum: $("#konum").val(),
+            bolge: $("#bolge").val(),
             avatarLink: $('#avatarLink').val()
         };
 
