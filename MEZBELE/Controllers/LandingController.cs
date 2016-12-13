@@ -15,7 +15,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private MezbeleEntities db = new MezbeleEntities();
+        private readonly MezbeleEntities db = new MezbeleEntities();
 
         /// <summary>
         /// Kullanıcıyı, giriş yaptıysa uygulamaya, yapmadıysa karşılama sayfasına yönlendirir.
@@ -33,6 +33,10 @@ namespace MEZBELE.Controllers
         [Route("Login")]
         public ActionResult Login()
         {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return RedirectToAction("Index", "App");
+            }
             return View();
         }
 
@@ -70,6 +74,10 @@ namespace MEZBELE.Controllers
         [Route("Register")]
         public ActionResult Register()
         {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return RedirectToAction("Index", "App");
+            }
             return View();
         }
 

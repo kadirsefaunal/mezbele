@@ -1,5 +1,4 @@
-﻿@model MEZBELE.Models.User
-@{
+﻿@{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
@@ -11,27 +10,27 @@
         <h3 class="header deep-purple-text text-darken-1">Merhaba!</h3>
         <p class="caption">Aşağıdaki alanda sistemde kayıtlı olan bilgilerinizi güncelleyebilirsiniz.</p>
         <br />
-        <div class="card deep-purple darken-1">
+        <div class="card blue-grey darken-3">
             <div class="card-image">
                 <img src="https://images.unsplash.com/photo-1429051781835-9f2c0a9df6e4?dpr=1&auto=format&fit=crop&w=800&h=200&q=80&cs=tinysrgb&crop=">
-                <span class="card-title">İsim Soyisim</span>
+                <span class="card-title">@ViewBag.Kullanici.FirstName @ViewBag.Kullanici.LastName</span>
             </div>
             <div class="card-content white-text">
                 <div class="row">
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@Model.FirstName" value="@Model.FirstName" id="isim" type="text" class="validate">
+                                <input placeholder="@ViewBag.Kullanici.FirstName" value="@ViewBag.Kullanici.FirstName" id="isim" type="text" class="validate">
                                 <label for="isim">İsim</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="@Model.LastName" value="@Model.LastName" id="soyisim" type="text" class="validate">
+                                <input placeholder="@ViewBag.Kullanici.LastName" value="@ViewBag.Kullanici.LastName" id="soyisim" type="text" class="validate">
                                 <label for="soyisim">Soyisim</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@Model.EMail" value="@Model.EMail" id="eposta" type="email" class="validate">
+                                <input placeholder="@ViewBag.Kullanici.EMail" value="@ViewBag.Kullanici.EMail" id="eposta" type="email" class="validate">
                                 <label for="eposta">Eposta</label>
                             </div>
                             <div class="input-field col s6">
@@ -41,7 +40,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="@Model.UserAvatar" value="@Model.UserAvatar" id="avatarLink" type="text" class="validate">
+                                <input placeholder="@ViewBag.Kullanici.UserAvatar" value="@ViewBag.Kullanici.UserAvatar" id="avatarLink" type="text" class="validate">
                                 <label for="avatarLink">Avatar Bağlantısı</label>
                             </div>
                         </div>

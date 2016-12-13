@@ -14,20 +14,20 @@ namespace MEZBELE.Controllers
         /// Veritabanı.
         /// </summary>
         private readonly MezbeleEntities db = new MezbeleEntities();
-        
+
         /// <summary>
-        /// Uygulama anasayfası
+        /// Uygulama anasayfası.
         /// </summary>
         /// <returns>Index isimli görününmü gösterir.</returns>
         public ActionResult Index()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
-                int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-                var kullanici = (from k in db.Users
+                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                ViewBag.Kullanici = (from k in db.Users
                                  where k.ID == kullaniciID
                                  select k).SingleOrDefault();
-                return View(kullanici);
+                return View();
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -40,11 +40,11 @@ namespace MEZBELE.Controllers
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
-                int kullaniciID = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-                var kullanici = (from k in db.Users
+                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                ViewBag.Kullanici = (from k in db.Users
                                  where k.ID == kullaniciID
                                  select k).SingleOrDefault();
-                return View(kullanici);
+                return View();
             }
             return RedirectToAction("Index", "Landing");
         }

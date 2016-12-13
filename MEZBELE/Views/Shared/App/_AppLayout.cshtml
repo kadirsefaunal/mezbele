@@ -20,7 +20,46 @@
     </style>
 </head>
 <body>
-    <header>@Html.Partial("~/Views/Shared/App/_AppMenu.cshtml")</header>
+    <header>
+        <nav class="top-nav blue-grey darken-1">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+                    <a class="page-title">@ViewBag.Title</a>
+                </div>
+            </div>
+        </nav>
+        <ul id="nav-mobile" class="side-nav fixed">
+            <li>
+                <div class="userView">
+                    <div class="background">
+                        <img src="https://images.unsplash.com/photo-1429051781835-9f2c0a9df6e4?dpr=1&auto=format&fit=crop&w=300&h=175&q=80&cs=tinysrgb&crop=">
+                    </div>
+                    <a href="#!user"><img class="circle" src="@ViewBag.Kullanici.UserAvatar"></a>
+                    <a href="#!name"><span class="white-text name">@ViewBag.Kullanici.FirstName @ViewBag.Kullanici.LastName</span></a>
+                    <a href="#!email"><span class="white-text email">@ViewBag.Kullanici.EMail</span></a>
+                </div>
+            </li>
+            <li><a class="subheader">Site</a></li>
+            <li class="@Html.ActivePage("Index", "App")">
+                <a class="waves-effect" href="/App">
+                    <i class="material-icons">home</i>Anasayfa
+                </a>
+            </li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Kullanıcı</a></li>
+            <li class="@Html.ActivePage("Profile", "App")">
+                <a class="waves-effect" href="/App/Profile">
+                    <i class="material-icons">account_box</i>Profil
+                </a>
+            </li>
+            <li>
+                <a class="waves-effect" href="#!" onclick="cikis()">
+                    <i class="material-icons">exit_to_app</i>Çıkış
+                </a>
+            </li>
+        </ul>
+    </header>
     <main>
         <div class="container">
             <div class="row">
@@ -33,6 +72,17 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".button-collapse").sideNav();
+        });
+        function cikis() {
+            $.post("/Landing/Logout", "", function (sonuc) {
+                if (sonuc == 'Çıkış yapıldı.')
+                    window.location = "/";
+            });
+        }
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
