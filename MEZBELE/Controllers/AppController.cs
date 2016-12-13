@@ -53,6 +53,23 @@ namespace MEZBELE.Controllers
         /// <summary>
         ///
         /// </summary>
+        /// <returns></returns>
+        public ActionResult Projects()
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                ViewBag.Kullanici = (from k in db.Users
+                                     where k.ID == kullaniciID
+                                     select k).SingleOrDefault();
+                return View();
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="isim"></param>
         /// <param name="soyisim"></param>
         /// <param name="eposta"></param>

@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     @Styles.Render("~/Content/css")
     <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
         header, main, footer {
             padding-left: 200px;
         }
@@ -44,6 +53,11 @@
             <li class="@Html.ActivePage("Index", "App")">
                 <a class="waves-effect" href="/App">
                     <i class="material-icons">home</i>Anasayfa
+                </a>
+            </li>
+            <li class="@Html.ActivePage("Projects", "App")">
+                <a class="waves-effect" href="/App/Projects">
+                    <i class="material-icons">work</i>Projeler
                 </a>
             </li>
             <li><div class="divider"></div></li>
