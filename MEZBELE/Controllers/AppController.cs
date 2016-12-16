@@ -63,9 +63,12 @@ namespace MEZBELE.Controllers
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
+                vm.Kullanici = (from k in db.Users
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
                 vm.Projeler = (from p in db.Projects
-                                where p.OwnerID == kullaniciID
-                                select p).ToList();
+                               where p.OwnerID == kullaniciID
+                               select p).ToList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
