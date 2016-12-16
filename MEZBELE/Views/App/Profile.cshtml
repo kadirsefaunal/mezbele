@@ -13,24 +13,24 @@
         <div class="card blue-grey darken-3">
             <div class="card-image">
                 <img src="https://images.unsplash.com/photo-1429051781835-9f2c0a9df6e4?dpr=1&auto=format&fit=crop&w=800&h=200&q=80&cs=tinysrgb&crop=">
-                <span class="card-title">@ViewBag.Kullanici.UserName</span>
+                <span class="card-title">@Model.Kullanici.UserName</span>
             </div>
             <div class="card-content white-text">
                 <div class="row">
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.Kullanici.FirstName" value="@ViewBag.Kullanici.FirstName" id="isim" name="İsim" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.FirstName" value="@Model.Kullanici.FirstName" id="isim" name="İsim" type="text" class="validate">
                                 <label for="isim">İsim</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.Kullanici.LastName" value="@ViewBag.Kullanici.LastName" id="soyisim" name="Soyisim" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.LastName" value="@Model.Kullanici.LastName" id="soyisim" name="Soyisim" type="text" class="validate">
                                 <label for="soyisim">Soyisim</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.Kullanici.EMail" value="@ViewBag.Kullanici.EMail" id="eposta" name="Eposta" type="email" class="validate">
+                                <input placeholder="@Model.Kullanici.EMail" value="@Model.Kullanici.EMail" id="eposta" name="Eposta" type="email" class="validate">
                                 <label for="eposta">Eposta</label>
                             </div>
                             <div class="input-field col s6">
@@ -40,23 +40,23 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="@ViewBag.Kullanici.WebAdresi" value="@ViewBag.Kullanici.WebAdresi" id="webLink" name="Web Site Bağlantısı" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.WebAdresi" value="@Model.Kullanici.WebAdresi" id="webLink" name="Web Site Bağlantısı" type="text" class="validate">
                                 <label for="webLink">Web Site Bağlantısı</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.Kullanici.Konum" value="@ViewBag.Kullanici.Konum" id="konum" name="Konum" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.Konum" value="@Model.Kullanici.Konum" id="konum" name="Konum" type="text" class="validate">
                                 <label for="konum">Konum</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="@ViewBag.Kullanici.Bolge" value="@ViewBag.Kullanici.Bolge" id="bolge" name="Bölge" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.Bolge" value="@Model.Kullanici.Bolge" id="bolge" name="Bölge" type="text" class="validate">
                                 <label for="bolge">Bölge</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input placeholder="@ViewBag.Kullanici.UserAvatar" value="@ViewBag.Kullanici.UserAvatar" id="avatarLink" name="Avatar Bağlantısı" type="text" class="validate">
+                                <input placeholder="@Model.Kullanici.UserAvatar" value="@Model.Kullanici.UserAvatar" id="avatarLink" name="Avatar Bağlantısı" type="text" class="validate">
                                 <label for="avatarLink">Avatar Bağlantısı</label>
                             </div>
                         </div>

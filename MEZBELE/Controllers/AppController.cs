@@ -1,8 +1,8 @@
 ﻿using MEZBELE.Models;
 using System.Web.Mvc;
 using System.Linq;
-using System;
 using System.Data.Entity;
+using MEZBELE.ViewModels;
 
 namespace MEZBELE.Controllers
 {
@@ -15,6 +15,7 @@ namespace MEZBELE.Controllers
         /// Veritabanı.
         /// </summary>
         private readonly MezbeleEntities db = new MezbeleEntities();
+        private VM vm;
 
         /// <summary>
         /// Uygulama anasayfası.
@@ -25,10 +26,11 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                ViewBag.Kullanici = (from k in db.Users
-                                     where k.ID == kullaniciID
-                                     select k).SingleOrDefault();
-                return View();
+                vm = new VM();
+                vm.Kullanici = (from k in db.Users
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
+                return View(vm);
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -42,10 +44,11 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                ViewBag.Kullanici = (from k in db.Users
-                                     where k.ID == kullaniciID
-                                     select k).SingleOrDefault();
-                return View();
+                vm = new VM();
+                vm.Kullanici = (from k in db.Users
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
+                return View(vm);
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -59,10 +62,11 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                ViewBag.Kullanici = (from k in db.Users
-                                     where k.ID == kullaniciID
-                                     select k).SingleOrDefault();
-                return View();
+                vm = new VM();
+                vm.Kullanici = (from k in db.Users
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
+                return View(vm);
             }
             return RedirectToAction("Index", "Landing");
         }

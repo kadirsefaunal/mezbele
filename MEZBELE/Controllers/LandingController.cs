@@ -23,6 +23,10 @@ namespace MEZBELE.Controllers
         /// <returns>Index isimli görünümü döndürür.</returns>
         public ActionResult Index()
         {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return RedirectToAction("Index", "App");
+            }
             return View();
         }
 
