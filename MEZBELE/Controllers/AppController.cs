@@ -77,6 +77,24 @@ namespace MEZBELE.Controllers
         /// <summary>
         ///
         /// </summary>
+        /// <returns></returns>
+        public ActionResult Crews()
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                vm = new VM();
+                vm.Kullanici = (from k in db.Users
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="isim"></param>
         /// <param name="soyisim"></param>
         /// <param name="eposta"></param>

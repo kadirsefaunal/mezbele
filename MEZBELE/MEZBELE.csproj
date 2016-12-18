@@ -263,6 +263,7 @@
     <Content Include="Views\Landing\Register.cshtml" />
     <Content Include="Views\App\Profile.cshtml" />
     <Content Include="Views\App\Projects.cshtml" />
+    <Content Include="Views\App\Crews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
