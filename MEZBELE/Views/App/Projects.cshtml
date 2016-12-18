@@ -2,15 +2,29 @@
     ViewBag.Title = "Projeler";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
-
-<h2 class="header teal-text">Proje Listesi</h2>
-<div class="collection">
-    @foreach (var item in Model.Projeler)
-    {
-        <a href="#!" class="collection-item">@item.ID</a>
-    }
-
-    <a href="#!" class="collection-item active">Alvin</a>
-    <a href="#!" class="collection-item">Alvin</a>
-    <a href="#!" class="collection-item">Alvin</a>
+<br />
+<div class="row">
+    <ul class="collection with-header">
+        <li class="collection-header avatar teal-text">
+            <div class="valign-wrapper" style="margin:-0.5rem;">
+                <i class="large material-icons circle" style="padding-right:1rem;">folder</i>
+                <h5 class="title valign" style="padding-top:1rem;">
+                    Projeler <br />
+                    <small style="font-size:1rem;">Sistemde açık olan tüm projeleri bu listede görebilirsiniz.</small>
+                </h5>
+            </div>
+        </li>
+        @foreach (var proje in Model.Projeler)
+        {
+        <li class="collection-item">@proje.ID</li>
+        }
+        <li class="collection-item">
+            <p class="flow-text">
+                Proje Adı
+            </p>
+            <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                Proje kurucusu
+            </p>
+        </li>
+    </ul>
 </div>
