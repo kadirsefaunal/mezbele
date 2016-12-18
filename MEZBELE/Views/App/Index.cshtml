@@ -3,4 +3,64 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 
-<h2>Hoşgeldiniz!</h2>
+<br />
+
+<!-- İşler -->
+<div class="row">
+    <ul class="collection with-header">
+        <li class="collection-header avatar deep-orange-text text-darken-3">
+            <div class="valign-wrapper" style="margin:-0.5rem;">
+                <i class="large material-icons circle" style="padding-right:1rem;">bug_report</i>
+                <h5 class="title valign" style="padding-top:1rem;">
+                    İşler <br />
+                    <small style="font-size:1rem;">Size atanmış tüm işleri bu listede görebilirsiniz.</small>
+                </h5>
+            </div>
+        </li>
+        <li class="collection-item">
+            <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                <div class="col s5">
+                    <p class="flow-text">
+                        <b>#ID</b> >
+                        İş Adı
+                    </p>
+                    <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                        Proje Adı
+                    </p>
+                </div>
+                <div class="col s3 pull-s1">
+                    <span class="badge red white-text">Süreç Adı</span>
+                </div>
+                <div class="col s4">
+                    <div class="progress valign pink lighten-3">
+                        <div class="determinate pink darken-1" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- Projeler -->
+<div class="row">
+    <ul class="collection with-header">
+        <li class="collection-header avatar teal-text">
+            <div class="valign-wrapper" style="margin:-0.5rem;">
+                <i class="large material-icons circle" style="padding-right:1rem;">folder</i>
+                <h5 class="title valign" style="padding-top:1rem;">
+                    Projeler <br />
+                    <small style="font-size:1rem;">Dahil olduğunuz tüm projeleri bu listede görebilirsiniz.</small>
+                </h5>
+            </div>
+        </li>
+        <li class="collection-item">
+            <p class="flow-text">
+                Proje Adı
+            </p>
+            <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                Proje kurucusu
+            </p>
+        </li>
+    </ul>
+</div>
+
