@@ -12,34 +12,33 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class Proje
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
+        public Proje()
         {
-            this.CrewProject = new HashSet<CrewProject>();
-            this.Issue = new HashSet<Issue>();
-            this.Process = new HashSet<Process>();
-            this.ProjectUser = new HashSet<ProjectUser>();
+            this.KullaniciRol = new HashSet<KullaniciRol>();
+            this.ProjeKullanici = new HashSet<ProjeKullanici>();
+            this.Surec = new HashSet<Surec>();
         }
     
         public int ID { get; set; }
-        public int OwnerID { get; set; }
-        public Nullable<bool> IsIndividual { get; set; }
-        public Nullable<bool> IsPrivate { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public System.DateTime CreationDate { get; set; }
-        public Nullable<System.DateTime> ChangeDate { get; set; }
+        public int ProjeSahibi { get; set; }
+        public Nullable<bool> BireyselMi { get; set; }
+        public Nullable<bool> GizliMi { get; set; }
+        public Nullable<bool> AktifMi { get; set; }
+        public string ProjeAdi { get; set; }
+        public string Aciklama { get; set; }
+        public System.DateTime OlusturmaTarihi { get; set; }
+        public Nullable<System.DateTime> DegistirmeTarihi { get; set; }
+        public Nullable<decimal> Butce { get; set; }
     
+        public virtual Kullanici Kullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewProject> CrewProject { get; set; }
+        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issue { get; set; }
+        public virtual ICollection<ProjeKullanici> ProjeKullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Process> Process { get; set; }
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectUser> ProjectUser { get; set; }
+        public virtual ICollection<Surec> Surec { get; set; }
     }
 }

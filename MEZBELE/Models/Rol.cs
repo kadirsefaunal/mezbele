@@ -12,13 +12,18 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectUser
+    public partial class Rol
     {
-        public int ID { get; set; }
-        public int ProjectID { get; set; }
-        public int UserID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Rol()
+        {
+            this.KullaniciRol = new HashSet<KullaniciRol>();
+        }
     
-        public virtual Project Project { get; set; }
-        public virtual User User { get; set; }
+        public int ID { get; set; }
+        public string Rol1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
     }
 }

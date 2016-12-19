@@ -5,7 +5,7 @@ namespace MEZBELE.ViewModels
 {
     public class VM
     {
-        public User Kullanici { get; set; }
-        public List<Project> Projeler { get; set; }
+        public Kullanici Kullanici { get; set; }
+        public List<Proje> Projeler { get; set; }
     }
 }

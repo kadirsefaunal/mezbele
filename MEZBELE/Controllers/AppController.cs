@@ -14,7 +14,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MezbeleEntities db = new MezbeleEntities();
+        private readonly MEZBELEEntities db = new MEZBELEEntities();
         private VM vm;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace MEZBELE.Controllers
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
-                vm.Kullanici = (from k in db.Users
+                vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 return View(vm);
@@ -45,7 +45,7 @@ namespace MEZBELE.Controllers
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
-                vm.Kullanici = (from k in db.Users
+                vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 return View(vm);
@@ -63,11 +63,11 @@ namespace MEZBELE.Controllers
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
-                vm.Kullanici = (from k in db.Users
+                vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
-                vm.Projeler = (from p in db.Projects
-                               where p.OwnerID == kullaniciID
+                vm.Projeler = (from p in db.Proje
+                               where p.ProjeSahibi == kullaniciID
                                select p).ToList();
                 return View(vm);
             }
@@ -84,7 +84,7 @@ namespace MEZBELE.Controllers
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
-                vm.Kullanici = (from k in db.Users
+                vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 return View(vm);
@@ -111,24 +111,21 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                var kullanici = (from k in db.Users where k.ID == kullaniciID select k).SingleOrDefault();
+                var kullanici = (from k in db.Kullanici where k.ID == kullaniciID select k).SingleOrDefault();
 
                 if (kullanici != null)
                 {
-                    kullanici.FirstName = isim;
-                    kullanici.LastName = soyisim;
+                    kullanici.Adi = isim;
+                    kullanici.Soyadi= soyisim;
                     kullanici.EMail = eposta;
-                    kullanici.Password = parola;
+                    kullanici.Parola = parola;
                     kullanici.WebAdresi = webLink;
-                    kullanici.Konum = konum;
-                    kullanici.Bolge = bolge;
-                    kullanici.UserAvatar = avatarLink;
+                    kullanici.Avatar = avatarLink;
 
                     var girdi = db.Entry(kullanici);
 
                     girdi.State = EntityState.Modified;
-                    girdi.Property(k => k.UserName).IsModified = false;
-                    girdi.Property(k => k.RoleID).IsModified = false;
+                    girdi.Property(k => k.KullaniciAdi).IsModified = false;
                     girdi.Property(k => k.SonGiris).IsModified = false;
 
                     db.SaveChanges();

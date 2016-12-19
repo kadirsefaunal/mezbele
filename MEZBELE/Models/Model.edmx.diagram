@@ -4,35 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da4e16050ef6415fa68a133f2f2ae663" Name="Diagram1">
-        <EntityTypeShape EntityType="MezbeleModel.Comment" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.Crew" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.CrewProject" Width="1.5" PointX="7.5" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.CrewUser" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.Issue" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.IssueUser" Width="1.5" PointX="12" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.Process" Width="1.5" PointX="7.5" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.Project" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.ProjectUser" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.Role" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MezbeleModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="MezbeleModel.FK_Comment_Issue" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Comment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_CrewProject_Crew" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_CrewUser_Crew" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_CrewProject_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_CrewUser_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Issue_Process" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Issue_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Issue_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_IssueUser_Issue" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_IssueUser_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Process_Process" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Process_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_Project_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_ProjectUser_Project" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_ProjectUser_User" ManuallyRouted="false" />
-        <AssociationConnector Association="MezbeleModel.FK_User_Role" ManuallyRouted="false" />
+      <Diagram DiagramId="c1c1dcaec5464a529ea0154014a077ed" Name="Diagram1">
+        <EntityTypeShape EntityType="MEZBELEModel.Is" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.IsKullanici" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.Kullanici" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.KullaniciRol" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.Log" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.Proje" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.ProjeKullanici" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.Rol" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEZBELEModel.Surec" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="MEZBELEModel.FK_Is_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_Is_Surec" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_IsKullanici_Is" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_IsKullanici_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_KullaniciRol_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_Log_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_Proje_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_ProjeKullanici_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_Surec_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_KullaniciRol_Proje" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_KullaniciRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_ProjeKullanici_Proje" ManuallyRouted="false" />
+        <AssociationConnector Association="MEZBELEModel.FK_Surec_Proje" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

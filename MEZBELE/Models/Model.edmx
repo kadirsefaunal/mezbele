@@ -4,840 +4,674 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MezbeleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Comment">
+      <Schema Namespace="MEZBELEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Is">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IssueID" Type="int" Nullable="false" />
-          <Property Name="CommenterID" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="AktifMi" Type="bit" />
+          <Property Name="OlusturanID" Type="int" Nullable="false" />
+          <Property Name="SurecID" Type="int" Nullable="false" />
+          <Property Name="IsAdi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="2000" />
+          <Property Name="OlusturmaTarihi" Type="datetime" />
+          <Property Name="BitisTarihi" Type="datetime" />
         </EntityType>
-        <EntityType Name="Crew">
+        <EntityType Name="IsKullanici">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OwnerId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
-          <Property Name="Avatar" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsID" Type="int" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="CrewProject">
+        <EntityType Name="Kullanici">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CrewID" Type="int" Nullable="false" />
-          <Property Name="ProjectID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CrewUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CrewID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Issue">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="ProjectID" Type="int" Nullable="false" />
-          <Property Name="CreatorId" Type="int" Nullable="false" />
-          <Property Name="RelatedProcessID" Type="int" Nullable="false" />
-          <Property Name="IssuesName" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
-          <Property Name="CreationDate" Type="datetime" />
-          <Property Name="DeadLine" Type="datetime" />
-        </EntityType>
-        <EntityType Name="IssueUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IssueID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Process">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProcessName" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="PartentProcessID" Type="int" />
-          <Property Name="RelatedProjectID" Type="int" Nullable="false" />
-          <Property Name="StartingDate" Type="datetime" />
-          <Property Name="DeadLine" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OwnerID" Type="int" Nullable="false" />
-          <Property Name="IsIndividual" Type="bit" />
-          <Property Name="IsPrivate" Type="bit" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="CreationDate" Type="datetime" Nullable="false" />
-          <Property Name="ChangeDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="ProjectUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProjectID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Parola" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" />
           <Property Name="EMail" Type="nvarchar" MaxLength="250" />
           <Property Name="WebAdresi" Type="nvarchar" MaxLength="100" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="Konum" Type="nvarchar" MaxLength="100" />
-          <Property Name="Bolge" Type="nvarchar" MaxLength="100" />
-          <Property Name="UserAvatar" Type="nvarchar" MaxLength="250" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="250" />
           <Property Name="SonGiris" Type="datetime" />
         </EntityType>
-        <Association Name="FK_Comment_Issue">
-          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+        <EntityType Name="KullaniciRol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="RolID" Type="int" Nullable="false" />
+          <Property Name="ProjeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeSahibi" Type="int" Nullable="false" />
+          <Property Name="BireyselMi" Type="bit" />
+          <Property Name="GizliMi" Type="bit" />
+          <Property Name="AktifMi" Type="bit" />
+          <Property Name="ProjeAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="OlusturmaTarihi" Type="datetime" Nullable="false" />
+          <Property Name="DegistirmeTarihi" Type="datetime" />
+          <Property Name="Butce" Type="money" />
+        </EntityType>
+        <EntityType Name="ProjeKullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" Nullable="false" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Surec">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurecAdi" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProjeID" Type="int" Nullable="false" />
+          <Property Name="BaslamaTarihi" Type="datetime" />
+          <Property Name="BitisTarihi" Type="datetime" />
+          <Property Name="Sure" Type="int" />
+          <Property Name="TamamlanmaOrani" Type="int" />
+          <Property Name="AnaSurec" Type="int" Nullable="false" />
+          <Property Name="Notlar" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="2000" />
+          <Property Name="OlusturanKullaniciID" Type="int" Nullable="false" />
+          <Property Name="Oncelik" Type="int" />
+        </EntityType>
+        <Association Name="FK_Is_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Is" Type="Self.Is" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Issue">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="IssueID" />
+            <Dependent Role="Is">
+              <PropertyRef Name="OlusturanID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+        <Association Name="FK_Is_Surec">
+          <End Role="Surec" Type="Self.Surec" Multiplicity="1" />
+          <End Role="Is" Type="Self.Is" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Surec">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="CommenterID" />
+            <Dependent Role="Is">
+              <PropertyRef Name="SurecID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewProject_Crew">
-          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
-          <End Role="CrewProject" Type="Self.CrewProject" Multiplicity="*" />
+        <Association Name="FK_IsKullanici_Is">
+          <End Role="Is" Type="Self.Is" Multiplicity="1" />
+          <End Role="IsKullanici" Type="Self.IsKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Crew">
+            <Principal Role="Is">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewProject">
-              <PropertyRef Name="CrewID" />
+            <Dependent Role="IsKullanici">
+              <PropertyRef Name="IsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewProject_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="CrewProject" Type="Self.CrewProject" Multiplicity="*" />
+        <Association Name="FK_IsKullanici_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="IsKullanici" Type="Self.IsKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewProject">
-              <PropertyRef Name="ProjectID" />
+            <Dependent Role="IsKullanici">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewUser_Crew">
-          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
-          <End Role="CrewUser" Type="Self.CrewUser" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Crew">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewUser">
-              <PropertyRef Name="CrewID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="CrewUser" Type="Self.CrewUser" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewUser">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_Process">
-          <End Role="Process" Type="Self.Process" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Process">
+            <Principal Role="Rol">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="RelatedProcessID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="RolID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_Log_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="ProjectID" />
+            <Dependent Role="Log">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_Proje_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="CreatorId" />
+            <Dependent Role="Proje">
+              <PropertyRef Name="ProjeSahibi" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IssueUser_Issue">
-          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
-          <End Role="IssueUser" Type="Self.IssueUser" Multiplicity="*" />
+        <Association Name="FK_ProjeKullanici_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="ProjeKullanici" Type="Self.ProjeKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Issue">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="IssueUser">
-              <PropertyRef Name="IssueID" />
+            <Dependent Role="ProjeKullanici">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IssueUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="IssueUser" Type="Self.IssueUser" Multiplicity="*" />
+        <Association Name="FK_ProjeKullanici_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="ProjeKullanici" Type="Self.ProjeKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="IssueUser">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="ProjeKullanici">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Process_Process">
-          <End Role="Process" Type="Self.Process" Multiplicity="0..1" />
-          <End Role="Process1" Type="Self.Process" Multiplicity="*" />
+        <Association Name="FK_Surec_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Process">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Process1">
-              <PropertyRef Name="PartentProcessID" />
+            <Dependent Role="Surec">
+              <PropertyRef Name="OlusturanKullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Process_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="Process" Type="Self.Process" Multiplicity="*" />
+        <Association Name="FK_Surec_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Process">
-              <PropertyRef Name="RelatedProjectID" />
+            <Dependent Role="Surec">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Project_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="OwnerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectUser_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProjectUser">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProjectUser">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="MezbeleModelStoreContainer">
-          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Crew" EntityType="Self.Crew" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CrewProject" EntityType="Self.CrewProject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CrewUser" EntityType="Self.CrewUser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IssueUser" EntityType="Self.IssueUser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Process" EntityType="Self.Process" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProjectUser" EntityType="Self.ProjectUser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Comment_Issue" Association="Self.FK_Comment_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="Comment" EntitySet="Comment" />
+        <EntityContainer Name="MEZBELEModelStoreContainer">
+          <EntitySet Name="Is" EntityType="Self.Is" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IsKullanici" EntityType="Self.IsKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proje" EntityType="Self.Proje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjeKullanici" EntityType="Self.ProjeKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Surec" EntityType="Self.Surec" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Is_Kullanici" Association="Self.FK_Is_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Is" EntitySet="Is" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Comment" EntitySet="Comment" />
+          <AssociationSet Name="FK_Is_Surec" Association="Self.FK_Is_Surec">
+            <End Role="Surec" EntitySet="Surec" />
+            <End Role="Is" EntitySet="Is" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewProject_Crew" Association="Self.FK_CrewProject_Crew">
-            <End Role="Crew" EntitySet="Crew" />
-            <End Role="CrewProject" EntitySet="CrewProject" />
+          <AssociationSet Name="FK_IsKullanici_Is" Association="Self.FK_IsKullanici_Is">
+            <End Role="Is" EntitySet="Is" />
+            <End Role="IsKullanici" EntitySet="IsKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewProject_Project" Association="Self.FK_CrewProject_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="CrewProject" EntitySet="CrewProject" />
+          <AssociationSet Name="FK_IsKullanici_Kullanici" Association="Self.FK_IsKullanici_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="IsKullanici" EntitySet="IsKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewUser_Crew" Association="Self.FK_CrewUser_Crew">
-            <End Role="Crew" EntitySet="Crew" />
-            <End Role="CrewUser" EntitySet="CrewUser" />
+          <AssociationSet Name="FK_KullaniciRol_Kullanici" Association="Self.FK_KullaniciRol_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewUser_User" Association="Self.FK_CrewUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="CrewUser" EntitySet="CrewUser" />
+          <AssociationSet Name="FK_KullaniciRol_Proje" Association="Self.FK_KullaniciRol_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_Process" Association="Self.FK_Issue_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_KullaniciRol_Rol" Association="Self.FK_KullaniciRol_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_Project" Association="Self.FK_Issue_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_Log_Kullanici" Association="Self.FK_Log_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Log" EntitySet="Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_User" Association="Self.FK_Issue_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_Proje_Kullanici" Association="Self.FK_Proje_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Proje" EntitySet="Proje" />
           </AssociationSet>
-          <AssociationSet Name="FK_IssueUser_Issue" Association="Self.FK_IssueUser_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="IssueUser" EntitySet="IssueUser" />
+          <AssociationSet Name="FK_ProjeKullanici_Kullanici" Association="Self.FK_ProjeKullanici_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="ProjeKullanici" EntitySet="ProjeKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_IssueUser_User" Association="Self.FK_IssueUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="IssueUser" EntitySet="IssueUser" />
+          <AssociationSet Name="FK_ProjeKullanici_Proje" Association="Self.FK_ProjeKullanici_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="ProjeKullanici" EntitySet="ProjeKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_Process_Process" Association="Self.FK_Process_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="Process1" EntitySet="Process" />
+          <AssociationSet Name="FK_Surec_Kullanici" Association="Self.FK_Surec_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Surec" EntitySet="Surec" />
           </AssociationSet>
-          <AssociationSet Name="FK_Process_Project" Association="Self.FK_Process_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Process" EntitySet="Process" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Project" EntitySet="Project" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectUser_Project" Association="Self.FK_ProjectUser_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="ProjectUser" EntitySet="ProjectUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectUser_User" Association="Self.FK_ProjectUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="ProjectUser" EntitySet="ProjectUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Surec_Proje" Association="Self.FK_Surec_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="Surec" EntitySet="Surec" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MezbeleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Comment">
+      <Schema Namespace="MEZBELEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Is">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IssueID" Type="Int32" Nullable="false" />
-          <Property Name="CommenterID" Type="Int32" Nullable="false" />
-          <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Issue" Relationship="Self.FK_Comment_Issue" FromRole="Comment" ToRole="Issue" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <Property Name="AktifMi" Type="Boolean" />
+          <Property Name="OlusturanID" Type="Int32" Nullable="false" />
+          <Property Name="SurecID" Type="Int32" Nullable="false" />
+          <Property Name="IsAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Is_Kullanici" FromRole="Is" ToRole="Kullanici" />
+          <NavigationProperty Name="Surec" Relationship="Self.FK_Is_Surec" FromRole="Is" ToRole="Surec" />
+          <NavigationProperty Name="IsKullanici" Relationship="Self.FK_IsKullanici_Is" FromRole="Is" ToRole="IsKullanici" />
         </EntityType>
-        <EntityType Name="Crew">
+        <EntityType Name="IsKullanici">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OwnerId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CrewProject" Relationship="Self.FK_CrewProject_Crew" FromRole="Crew" ToRole="CrewProject" />
-          <NavigationProperty Name="CrewUser" Relationship="Self.FK_CrewUser_Crew" FromRole="Crew" ToRole="CrewUser" />
+          <Property Name="IsID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Is" Relationship="Self.FK_IsKullanici_Is" FromRole="IsKullanici" ToRole="Is" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_IsKullanici_Kullanici" FromRole="IsKullanici" ToRole="Kullanici" />
         </EntityType>
-        <EntityType Name="CrewProject">
+        <EntityType Name="Kullanici">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CrewID" Type="Int32" Nullable="false" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Crew" Relationship="Self.FK_CrewProject_Crew" FromRole="CrewProject" ToRole="Crew" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_CrewProject_Project" FromRole="CrewProject" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="CrewUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CrewID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Crew" Relationship="Self.FK_CrewUser_Crew" FromRole="CrewUser" ToRole="Crew" />
-          <NavigationProperty Name="User" Relationship="Self.FK_CrewUser_User" FromRole="CrewUser" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Issue">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
-          <Property Name="CreatorId" Type="Int32" Nullable="false" />
-          <Property Name="RelatedProcessID" Type="Int32" Nullable="false" />
-          <Property Name="IssuesName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CreationDate" Type="DateTime" Precision="3" />
-          <Property Name="DeadLine" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_Issue" FromRole="Issue" ToRole="Comment" />
-          <NavigationProperty Name="Process" Relationship="Self.FK_Issue_Process" FromRole="Issue" ToRole="Process" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Issue_Project" FromRole="Issue" ToRole="Project" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Issue_User" FromRole="Issue" ToRole="User" />
-          <NavigationProperty Name="IssueUser" Relationship="Self.FK_IssueUser_Issue" FromRole="Issue" ToRole="IssueUser" />
-        </EntityType>
-        <EntityType Name="IssueUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IssueID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Issue" Relationship="Self.FK_IssueUser_Issue" FromRole="IssueUser" ToRole="Issue" />
-          <NavigationProperty Name="User" Relationship="Self.FK_IssueUser_User" FromRole="IssueUser" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Process">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProcessName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PartentProcessID" Type="Int32" />
-          <Property Name="RelatedProjectID" Type="Int32" Nullable="false" />
-          <Property Name="StartingDate" Type="DateTime" Precision="3" />
-          <Property Name="DeadLine" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Issue" Relationship="Self.FK_Issue_Process" FromRole="Process" ToRole="Issue" />
-          <NavigationProperty Name="Process1" Relationship="Self.FK_Process_Process" FromRole="Process" ToRole="Process1" />
-          <NavigationProperty Name="Process2" Relationship="Self.FK_Process_Process" FromRole="Process1" ToRole="Process" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Process_Project" FromRole="Process" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OwnerID" Type="Int32" Nullable="false" />
-          <Property Name="IsIndividual" Type="Boolean" />
-          <Property Name="IsPrivate" Type="Boolean" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChangeDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CrewProject" Relationship="Self.FK_CrewProject_Project" FromRole="Project" ToRole="CrewProject" />
-          <NavigationProperty Name="Issue" Relationship="Self.FK_Issue_Project" FromRole="Project" ToRole="Issue" />
-          <NavigationProperty Name="Process" Relationship="Self.FK_Process_Project" FromRole="Project" ToRole="Process" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Project_User" FromRole="Project" ToRole="User" />
-          <NavigationProperty Name="ProjectUser" Relationship="Self.FK_ProjectUser_Project" FromRole="Project" ToRole="ProjectUser" />
-        </EntityType>
-        <EntityType Name="ProjectUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectUser_Project" FromRole="ProjectUser" ToRole="Project" />
-          <NavigationProperty Name="User" Relationship="Self.FK_ProjectUser_User" FromRole="ProjectUser" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Parola" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="WebAdresi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="Konum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Bolge" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserAvatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="SonGiris" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
-          <NavigationProperty Name="CrewUser" Relationship="Self.FK_CrewUser_User" FromRole="User" ToRole="CrewUser" />
-          <NavigationProperty Name="Issue" Relationship="Self.FK_Issue_User" FromRole="User" ToRole="Issue" />
-          <NavigationProperty Name="IssueUser" Relationship="Self.FK_IssueUser_User" FromRole="User" ToRole="IssueUser" />
-          <NavigationProperty Name="Project" Relationship="Self.FK_Project_User" FromRole="User" ToRole="Project" />
-          <NavigationProperty Name="ProjectUser" Relationship="Self.FK_ProjectUser_User" FromRole="User" ToRole="ProjectUser" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Is" Relationship="Self.FK_Is_Kullanici" FromRole="Kullanici" ToRole="Is" />
+          <NavigationProperty Name="IsKullanici" Relationship="Self.FK_IsKullanici_Kullanici" FromRole="Kullanici" ToRole="IsKullanici" />
+          <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Kullanici" FromRole="Kullanici" ToRole="KullaniciRol" />
+          <NavigationProperty Name="Log" Relationship="Self.FK_Log_Kullanici" FromRole="Kullanici" ToRole="Log" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK_Proje_Kullanici" FromRole="Kullanici" ToRole="Proje" />
+          <NavigationProperty Name="ProjeKullanici" Relationship="Self.FK_ProjeKullanici_Kullanici" FromRole="Kullanici" ToRole="ProjeKullanici" />
+          <NavigationProperty Name="Surec" Relationship="Self.FK_Surec_Kullanici" FromRole="Kullanici" ToRole="Surec" />
         </EntityType>
-        <Association Name="FK_Comment_Issue">
-          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+        <EntityType Name="KullaniciRol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="RolID" Type="Int32" Nullable="false" />
+          <Property Name="ProjeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_KullaniciRol_Kullanici" FromRole="KullaniciRol" ToRole="Kullanici" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK_KullaniciRol_Proje" FromRole="KullaniciRol" ToRole="Proje" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="KullaniciRol" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Log_Kullanici" FromRole="Log" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeSahibi" Type="Int32" Nullable="false" />
+          <Property Name="BireyselMi" Type="Boolean" />
+          <Property Name="GizliMi" Type="Boolean" />
+          <Property Name="AktifMi" Type="Boolean" />
+          <Property Name="ProjeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OlusturmaTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DegistirmeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Butce" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Proje_Kullanici" FromRole="Proje" ToRole="Kullanici" />
+          <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Proje" FromRole="Proje" ToRole="KullaniciRol" />
+          <NavigationProperty Name="ProjeKullanici" Relationship="Self.FK_ProjeKullanici_Proje" FromRole="Proje" ToRole="ProjeKullanici" />
+          <NavigationProperty Name="Surec" Relationship="Self.FK_Surec_Proje" FromRole="Proje" ToRole="Surec" />
+        </EntityType>
+        <EntityType Name="ProjeKullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_ProjeKullanici_Kullanici" FromRole="ProjeKullanici" ToRole="Kullanici" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK_ProjeKullanici_Proje" FromRole="ProjeKullanici" ToRole="Proje" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="Rol" ToRole="KullaniciRol" />
+        </EntityType>
+        <EntityType Name="Surec">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurecAdi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProjeID" Type="Int32" Nullable="false" />
+          <Property Name="BaslamaTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Sure" Type="Int32" />
+          <Property Name="TamamlanmaOrani" Type="Int32" />
+          <Property Name="AnaSurec" Type="Int32" Nullable="false" />
+          <Property Name="Notlar" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="OlusturanKullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Oncelik" Type="Int32" />
+          <NavigationProperty Name="Is" Relationship="Self.FK_Is_Surec" FromRole="Surec" ToRole="Is" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Surec_Kullanici" FromRole="Surec" ToRole="Kullanici" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK_Surec_Proje" FromRole="Surec" ToRole="Proje" />
+        </EntityType>
+        <Association Name="FK_Is_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Is" Type="Self.Is" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Issue">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="IssueID" />
+            <Dependent Role="Is">
+              <PropertyRef Name="OlusturanID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+        <Association Name="FK_Is_Surec">
+          <End Role="Surec" Type="Self.Surec" Multiplicity="1" />
+          <End Role="Is" Type="Self.Is" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Surec">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="CommenterID" />
+            <Dependent Role="Is">
+              <PropertyRef Name="SurecID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewProject_Crew">
-          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
-          <End Role="CrewProject" Type="Self.CrewProject" Multiplicity="*" />
+        <Association Name="FK_IsKullanici_Is">
+          <End Role="Is" Type="Self.Is" Multiplicity="1" />
+          <End Role="IsKullanici" Type="Self.IsKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Crew">
+            <Principal Role="Is">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewProject">
-              <PropertyRef Name="CrewID" />
+            <Dependent Role="IsKullanici">
+              <PropertyRef Name="IsID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewUser_Crew">
-          <End Role="Crew" Type="Self.Crew" Multiplicity="1" />
-          <End Role="CrewUser" Type="Self.CrewUser" Multiplicity="*" />
+        <Association Name="FK_IsKullanici_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="IsKullanici" Type="Self.IsKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Crew">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewUser">
-              <PropertyRef Name="CrewID" />
+            <Dependent Role="IsKullanici">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewProject_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="CrewProject" Type="Self.CrewProject" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewProject">
-              <PropertyRef Name="ProjectID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CrewUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="CrewUser" Type="Self.CrewUser" Multiplicity="*" />
+        <Association Name="FK_Log_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CrewUser">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="Log">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_Process">
-          <End Role="Process" Type="Self.Process" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_Proje_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Process">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="RelatedProcessID" />
+            <Dependent Role="Proje">
+              <PropertyRef Name="ProjeSahibi" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_ProjeKullanici_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="ProjeKullanici" Type="Self.ProjeKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="ProjectID" />
+            <Dependent Role="ProjeKullanici">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Issue_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+        <Association Name="FK_Surec_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Kullanici">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Issue">
-              <PropertyRef Name="CreatorId" />
+            <Dependent Role="Surec">
+              <PropertyRef Name="OlusturanKullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IssueUser_Issue">
-          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
-          <End Role="IssueUser" Type="Self.IssueUser" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Issue">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="IssueUser">
-              <PropertyRef Name="IssueID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_IssueUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="IssueUser" Type="Self.IssueUser" Multiplicity="*" />
+        <Association Name="FK_KullaniciRol_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Rol">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="IssueUser">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="KullaniciRol">
+              <PropertyRef Name="RolID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Process_Process">
-          <End Role="Process" Type="Self.Process" Multiplicity="0..1" />
-          <End Role="Process1" Type="Self.Process" Multiplicity="*" />
+        <Association Name="FK_ProjeKullanici_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="ProjeKullanici" Type="Self.ProjeKullanici" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Process">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Process1">
-              <PropertyRef Name="PartentProcessID" />
+            <Dependent Role="ProjeKullanici">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Process_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="Process" Type="Self.Process" Multiplicity="*" />
+        <Association Name="FK_Surec_Proje">
+          <End Role="Proje" Type="Self.Proje" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Proje">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Process">
-              <PropertyRef Name="RelatedProjectID" />
+            <Dependent Role="Surec">
+              <PropertyRef Name="ProjeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Project_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Project" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="OwnerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectUser_Project">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProjectUser">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectUser_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="ProjectUser" Type="Self.ProjectUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProjectUser">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="MezbeleEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comment" EntityType="Self.Comment" />
-          <EntitySet Name="Crew" EntityType="Self.Crew" />
-          <EntitySet Name="CrewProject" EntityType="Self.CrewProject" />
-          <EntitySet Name="CrewUser" EntityType="Self.CrewUser" />
-          <EntitySet Name="Issue" EntityType="Self.Issue" />
-          <EntitySet Name="IssueUser" EntityType="Self.IssueUser" />
-          <EntitySet Name="Process" EntityType="Self.Process" />
-          <EntitySet Name="Project" EntityType="Self.Project" />
-          <EntitySet Name="ProjectUser" EntityType="Self.ProjectUser" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Comment_Issue" Association="Self.FK_Comment_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="Comment" EntitySet="Comment" />
+        <EntityContainer Name="MEZBELEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Is" EntityType="Self.Is" />
+          <EntitySet Name="IsKullanici" EntityType="Self.IsKullanici" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" />
+          <EntitySet Name="Log" EntityType="Self.Log" />
+          <EntitySet Name="Proje" EntityType="Self.Proje" />
+          <EntitySet Name="ProjeKullanici" EntityType="Self.ProjeKullanici" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="Surec" EntityType="Self.Surec" />
+          <AssociationSet Name="FK_Is_Kullanici" Association="Self.FK_Is_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Is" EntitySet="Is" />
           </AssociationSet>
-          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Comment" EntitySet="Comment" />
+          <AssociationSet Name="FK_Is_Surec" Association="Self.FK_Is_Surec">
+            <End Role="Surec" EntitySet="Surec" />
+            <End Role="Is" EntitySet="Is" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewProject_Crew" Association="Self.FK_CrewProject_Crew">
-            <End Role="Crew" EntitySet="Crew" />
-            <End Role="CrewProject" EntitySet="CrewProject" />
+          <AssociationSet Name="FK_IsKullanici_Is" Association="Self.FK_IsKullanici_Is">
+            <End Role="Is" EntitySet="Is" />
+            <End Role="IsKullanici" EntitySet="IsKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewUser_Crew" Association="Self.FK_CrewUser_Crew">
-            <End Role="Crew" EntitySet="Crew" />
-            <End Role="CrewUser" EntitySet="CrewUser" />
+          <AssociationSet Name="FK_IsKullanici_Kullanici" Association="Self.FK_IsKullanici_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="IsKullanici" EntitySet="IsKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewProject_Project" Association="Self.FK_CrewProject_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="CrewProject" EntitySet="CrewProject" />
+          <AssociationSet Name="FK_KullaniciRol_Kullanici" Association="Self.FK_KullaniciRol_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_CrewUser_User" Association="Self.FK_CrewUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="CrewUser" EntitySet="CrewUser" />
+          <AssociationSet Name="FK_Log_Kullanici" Association="Self.FK_Log_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Log" EntitySet="Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_Process" Association="Self.FK_Issue_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_Proje_Kullanici" Association="Self.FK_Proje_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Proje" EntitySet="Proje" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_Project" Association="Self.FK_Issue_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_ProjeKullanici_Kullanici" Association="Self.FK_ProjeKullanici_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="ProjeKullanici" EntitySet="ProjeKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_Issue_User" Association="Self.FK_Issue_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Issue" EntitySet="Issue" />
+          <AssociationSet Name="FK_Surec_Kullanici" Association="Self.FK_Surec_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Surec" EntitySet="Surec" />
           </AssociationSet>
-          <AssociationSet Name="FK_IssueUser_Issue" Association="Self.FK_IssueUser_Issue">
-            <End Role="Issue" EntitySet="Issue" />
-            <End Role="IssueUser" EntitySet="IssueUser" />
+          <AssociationSet Name="FK_KullaniciRol_Proje" Association="Self.FK_KullaniciRol_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_IssueUser_User" Association="Self.FK_IssueUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="IssueUser" EntitySet="IssueUser" />
+          <AssociationSet Name="FK_KullaniciRol_Rol" Association="Self.FK_KullaniciRol_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="KullaniciRol" EntitySet="KullaniciRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_Process_Process" Association="Self.FK_Process_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="Process1" EntitySet="Process" />
+          <AssociationSet Name="FK_ProjeKullanici_Proje" Association="Self.FK_ProjeKullanici_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="ProjeKullanici" EntitySet="ProjeKullanici" />
           </AssociationSet>
-          <AssociationSet Name="FK_Process_Project" Association="Self.FK_Process_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Process" EntitySet="Process" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Project_User" Association="Self.FK_Project_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Project" EntitySet="Project" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectUser_Project" Association="Self.FK_ProjectUser_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="ProjectUser" EntitySet="ProjectUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectUser_User" Association="Self.FK_ProjectUser_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="ProjectUser" EntitySet="ProjectUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
+          <AssociationSet Name="FK_Surec_Proje" Association="Self.FK_Surec_Proje">
+            <End Role="Proje" EntitySet="Proje" />
+            <End Role="Surec" EntitySet="Surec" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -845,128 +679,113 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MezbeleModelStoreContainer" CdmEntityContainer="MezbeleEntities">
-          <EntitySetMapping Name="Comment">
-            <EntityTypeMapping TypeName="MezbeleModel.Comment">
-              <MappingFragment StoreEntitySet="Comment">
+        <EntityContainerMapping StorageEntityContainer="MEZBELEModelStoreContainer" CdmEntityContainer="MEZBELEEntities">
+          <EntitySetMapping Name="Is">
+            <EntityTypeMapping TypeName="MEZBELEModel.Is">
+              <MappingFragment StoreEntitySet="Is">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
-                <ScalarProperty Name="CommenterID" ColumnName="CommenterID" />
-                <ScalarProperty Name="Comment1" ColumnName="Comment" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+                <ScalarProperty Name="OlusturanID" ColumnName="OlusturanID" />
+                <ScalarProperty Name="SurecID" ColumnName="SurecID" />
+                <ScalarProperty Name="IsAdi" ColumnName="IsAdi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Crew">
-            <EntityTypeMapping TypeName="MezbeleModel.Crew">
-              <MappingFragment StoreEntitySet="Crew">
+          <EntitySetMapping Name="IsKullanici">
+            <EntityTypeMapping TypeName="MEZBELEModel.IsKullanici">
+              <MappingFragment StoreEntitySet="IsKullanici">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="IsID" ColumnName="IsID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CrewProject">
-            <EntityTypeMapping TypeName="MezbeleModel.CrewProject">
-              <MappingFragment StoreEntitySet="CrewProject">
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="MEZBELEModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CrewID" ColumnName="CrewID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CrewUser">
-            <EntityTypeMapping TypeName="MezbeleModel.CrewUser">
-              <MappingFragment StoreEntitySet="CrewUser">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CrewID" ColumnName="CrewID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Issue">
-            <EntityTypeMapping TypeName="MezbeleModel.Issue">
-              <MappingFragment StoreEntitySet="Issue">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
-                <ScalarProperty Name="RelatedProcessID" ColumnName="RelatedProcessID" />
-                <ScalarProperty Name="IssuesName" ColumnName="IssuesName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IssueUser">
-            <EntityTypeMapping TypeName="MezbeleModel.IssueUser">
-              <MappingFragment StoreEntitySet="IssueUser">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Process">
-            <EntityTypeMapping TypeName="MezbeleModel.Process">
-              <MappingFragment StoreEntitySet="Process">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
-                <ScalarProperty Name="PartentProcessID" ColumnName="PartentProcessID" />
-                <ScalarProperty Name="RelatedProjectID" ColumnName="RelatedProjectID" />
-                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
-                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Project">
-            <EntityTypeMapping TypeName="MezbeleModel.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-                <ScalarProperty Name="IsIndividual" ColumnName="IsIndividual" />
-                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProjectUser">
-            <EntityTypeMapping TypeName="MezbeleModel.ProjectUser">
-              <MappingFragment StoreEntitySet="ProjectUser">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="MezbeleModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Role1" ColumnName="Role" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="MezbeleModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
                 <ScalarProperty Name="EMail" ColumnName="EMail" />
                 <ScalarProperty Name="WebAdresi" ColumnName="WebAdresi" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="Konum" ColumnName="Konum" />
-                <ScalarProperty Name="Bolge" ColumnName="Bolge" />
-                <ScalarProperty Name="UserAvatar" ColumnName="UserAvatar" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="SonGiris" ColumnName="SonGiris" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullaniciRol">
+            <EntityTypeMapping TypeName="MEZBELEModel.KullaniciRol">
+              <MappingFragment StoreEntitySet="KullaniciRol">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="MEZBELEModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proje">
+            <EntityTypeMapping TypeName="MEZBELEModel.Proje">
+              <MappingFragment StoreEntitySet="Proje">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeSahibi" ColumnName="ProjeSahibi" />
+                <ScalarProperty Name="BireyselMi" ColumnName="BireyselMi" />
+                <ScalarProperty Name="GizliMi" ColumnName="GizliMi" />
+                <ScalarProperty Name="AktifMi" ColumnName="AktifMi" />
+                <ScalarProperty Name="ProjeAdi" ColumnName="ProjeAdi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="OlusturmaTarihi" ColumnName="OlusturmaTarihi" />
+                <ScalarProperty Name="DegistirmeTarihi" ColumnName="DegistirmeTarihi" />
+                <ScalarProperty Name="Butce" ColumnName="Butce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjeKullanici">
+            <EntityTypeMapping TypeName="MEZBELEModel.ProjeKullanici">
+              <MappingFragment StoreEntitySet="ProjeKullanici">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="MEZBELEModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Rol1" ColumnName="Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surec">
+            <EntityTypeMapping TypeName="MEZBELEModel.Surec">
+              <MappingFragment StoreEntitySet="Surec">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SurecAdi" ColumnName="SurecAdi" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="BaslamaTarihi" ColumnName="BaslamaTarihi" />
+                <ScalarProperty Name="BitisTarihi" ColumnName="BitisTarihi" />
+                <ScalarProperty Name="Sure" ColumnName="Sure" />
+                <ScalarProperty Name="TamamlanmaOrani" ColumnName="TamamlanmaOrani" />
+                <ScalarProperty Name="AnaSurec" ColumnName="AnaSurec" />
+                <ScalarProperty Name="Notlar" ColumnName="Notlar" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="OlusturanKullaniciID" ColumnName="OlusturanKullaniciID" />
+                <ScalarProperty Name="Oncelik" ColumnName="Oncelik" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

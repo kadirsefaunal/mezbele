@@ -17,7 +17,7 @@ namespace MEZBELE
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new CreateDatabaseIfNotExists<MezbeleEntities>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<MEZBELEEntities>());
         }
     }
 }

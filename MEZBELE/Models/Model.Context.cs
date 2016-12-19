@@ -13,10 +13,10 @@ namespace MEZBELE.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MezbeleEntities : DbContext
+    public partial class MEZBELEEntities : DbContext
     {
-        public MezbeleEntities()
-            : base("name=MezbeleEntities")
+        public MEZBELEEntities()
+            : base("name=MEZBELEEntities")
         {
         }
     
@@ -25,16 +25,14 @@ namespace MEZBELE.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Crew> Crews { get; set; }
-        public virtual DbSet<CrewProject> CrewProjects { get; set; }
-        public virtual DbSet<CrewUser> CrewUsers { get; set; }
-        public virtual DbSet<Issue> Issues { get; set; }
-        public virtual DbSet<IssueUser> IssueUsers { get; set; }
-        public virtual DbSet<Process> Processes { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<ProjectUser> ProjectUsers { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Is> Is { get; set; }
+        public virtual DbSet<IsKullanici> IsKullanici { get; set; }
+        public virtual DbSet<Kullanici> Kullanici { get; set; }
+        public virtual DbSet<KullaniciRol> KullaniciRol { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<Proje> Proje { get; set; }
+        public virtual DbSet<ProjeKullanici> ProjeKullanici { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Surec> Surec { get; set; }
     }
 }

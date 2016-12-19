@@ -12,27 +12,30 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Process
+    public partial class Surec
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Process()
+        public Surec()
         {
-            this.Issue = new HashSet<Issue>();
-            this.Process1 = new HashSet<Process>();
+            this.Is = new HashSet<Is>();
         }
     
         public int ID { get; set; }
-        public string ProcessName { get; set; }
-        public Nullable<int> PartentProcessID { get; set; }
-        public int RelatedProjectID { get; set; }
-        public Nullable<System.DateTime> StartingDate { get; set; }
-        public Nullable<System.DateTime> DeadLine { get; set; }
+        public string SurecAdi { get; set; }
+        public int ProjeID { get; set; }
+        public Nullable<System.DateTime> BaslamaTarihi { get; set; }
+        public Nullable<System.DateTime> BitisTarihi { get; set; }
+        public Nullable<int> Sure { get; set; }
+        public Nullable<int> TamamlanmaOrani { get; set; }
+        public int AnaSurec { get; set; }
+        public string Notlar { get; set; }
+        public string Aciklama { get; set; }
+        public int OlusturanKullaniciID { get; set; }
+        public Nullable<int> Oncelik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issue { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Process> Process1 { get; set; }
-        public virtual Process Process2 { get; set; }
-        public virtual Project Project { get; set; }
+        public virtual ICollection<Is> Is { get; set; }
+        public virtual Kullanici Kullanici { get; set; }
+        public virtual Proje Proje { get; set; }
     }
 }

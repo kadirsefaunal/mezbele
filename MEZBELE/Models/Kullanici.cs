@@ -12,44 +12,43 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Kullanici
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Kullanici()
         {
-            this.Comment = new HashSet<Comment>();
-            this.CrewUser = new HashSet<CrewUser>();
-            this.Issue = new HashSet<Issue>();
-            this.IssueUser = new HashSet<IssueUser>();
-            this.Project = new HashSet<Project>();
-            this.ProjectUser = new HashSet<ProjectUser>();
+            this.Is = new HashSet<Is>();
+            this.IsKullanici = new HashSet<IsKullanici>();
+            this.KullaniciRol = new HashSet<KullaniciRol>();
+            this.Log = new HashSet<Log>();
+            this.Proje = new HashSet<Proje>();
+            this.ProjeKullanici = new HashSet<ProjeKullanici>();
+            this.Surec = new HashSet<Surec>();
         }
     
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string KullaniciAdi { get; set; }
+        public string Parola { get; set; }
+        public string Adi { get; set; }
+        public string Soyadi { get; set; }
         public string EMail { get; set; }
         public string WebAdresi { get; set; }
-        public int RoleID { get; set; }
-        public string Konum { get; set; }
-        public string Bolge { get; set; }
-        public string UserAvatar { get; set; }
+        public string Avatar { get; set; }
         public Nullable<System.DateTime> SonGiris { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<Is> Is { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewUser> CrewUser { get; set; }
+        public virtual ICollection<IsKullanici> IsKullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Issue> Issue { get; set; }
+        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IssueUser> IssueUser { get; set; }
+        public virtual ICollection<Log> Log { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Project { get; set; }
+        public virtual ICollection<Proje> Proje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectUser> ProjectUser { get; set; }
-        public virtual Role Role { get; set; }
+        public virtual ICollection<ProjeKullanici> ProjeKullanici { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Surec> Surec { get; set; }
     }
 }

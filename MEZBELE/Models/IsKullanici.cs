@@ -12,13 +12,13 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CrewUser
+    public partial class IsKullanici
     {
         public int ID { get; set; }
-        public int CrewID { get; set; }
-        public int UserID { get; set; }
+        public int IsID { get; set; }
+        public int KullaniciID { get; set; }
     
-        public virtual Crew Crew { get; set; }
-        public virtual User User { get; set; }
+        public virtual Is Is { get; set; }
+        public virtual Kullanici Kullanici { get; set; }
     }
 }

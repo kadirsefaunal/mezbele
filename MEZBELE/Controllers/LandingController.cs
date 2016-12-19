@@ -15,7 +15,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MezbeleEntities db = new MezbeleEntities();
+        private readonly MEZBELEEntities db = new MEZBELEEntities();
 
         /// <summary>
         /// Kullanıcıyı, giriş yaptıysa uygulamaya, yapmadıysa karşılama sayfasına yönlendirir.
@@ -44,7 +44,7 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public JsonResult LoginControl(string kullaniciAdi, string parola)
         {
-            int kullaniciKimligi = (from k in db.Users where k.UserName == kullaniciAdi && k.Password == parola select k.ID).SingleOrDefault();
+            int kullaniciKimligi = (from k in db.Kullanici where k.KullaniciAdi == kullaniciAdi && k.Parola == parola select k.ID).SingleOrDefault();
 
             if (kullaniciKimligi != 0)
             {
@@ -85,21 +85,20 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public JsonResult RegisterControl(string kullaniciAdi, string parola, string isim, string soyisim, string eposta)
         {
-            var kontrol = (from k in db.Users where k.UserName == kullaniciAdi select k).SingleOrDefault();
+            var kontrol = (from k in db.Kullanici where k.KullaniciAdi == kullaniciAdi select k).SingleOrDefault();
 
             if (kontrol == null)
             {
-                User kayitEdilecekKullanici = new User
+                Kullanici kayitEdilecekKullanici = new Kullanici
                 {
-                    UserName = kullaniciAdi,
-                    Password = parola,
-                    FirstName = isim,
-                    LastName = soyisim,
-                    EMail = eposta,
-                    RoleID = 2
+                    KullaniciAdi = kullaniciAdi,
+                    Parola = parola,
+                    Adi = isim,
+                    Soyadi = soyisim,
+                    EMail = eposta
                 };
 
-                db.Users.Add(kayitEdilecekKullanici);
+                db.Kullanici.Add(kayitEdilecekKullanici);
                 db.SaveChanges();
                 return Json("Kayıt başarılı.");
             }

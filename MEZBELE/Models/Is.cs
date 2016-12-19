@@ -12,23 +12,26 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Crew
+    public partial class Is
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Crew()
+        public Is()
         {
-            this.CrewProject = new HashSet<CrewProject>();
-            this.CrewUser = new HashSet<CrewUser>();
+            this.IsKullanici = new HashSet<IsKullanici>();
         }
     
         public int ID { get; set; }
-        public int OwnerId { get; set; }
-        public string Name { get; set; }
-        public string Avatar { get; set; }
+        public Nullable<bool> AktifMi { get; set; }
+        public int OlusturanID { get; set; }
+        public int SurecID { get; set; }
+        public string IsAdi { get; set; }
+        public string Aciklama { get; set; }
+        public Nullable<System.DateTime> OlusturmaTarihi { get; set; }
+        public Nullable<System.DateTime> BitisTarihi { get; set; }
     
+        public virtual Kullanici Kullanici { get; set; }
+        public virtual Surec Surec { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewProject> CrewProject { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrewUser> CrewUser { get; set; }
+        public virtual ICollection<IsKullanici> IsKullanici { get; set; }
     }
 }
