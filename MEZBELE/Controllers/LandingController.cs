@@ -23,10 +23,6 @@ namespace MEZBELE.Controllers
         /// <returns>Index isimli görünümü döndürür.</returns>
         public ActionResult Index()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
-            {
-                return RedirectToAction("Index", "App");
-            }
             return View();
         }
 
@@ -37,10 +33,6 @@ namespace MEZBELE.Controllers
         [Route("Login")]
         public ActionResult Login()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
-            {
-                return RedirectToAction("Index", "App");
-            }
             return View();
         }
 
@@ -78,7 +70,7 @@ namespace MEZBELE.Controllers
         [Route("Register")]
         public ActionResult Register()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
+            if (Request.Cookies["KullaniciKimligi"].Value != null)
             {
                 return RedirectToAction("Index", "App");
             }

@@ -23,7 +23,7 @@ namespace MEZBELE.Controllers
         /// <returns>Index isimli görününmü gösterir.</returns>
         public ActionResult Index()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
+            if (Request.Cookies["KullaniciKimligi"].Value != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
@@ -41,7 +41,7 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public new ActionResult Profile()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
+            if (Request.Cookies["KullaniciKimligi"].Value != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
@@ -59,7 +59,7 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public ActionResult Projects()
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
+            if (Request.Cookies["KullaniciKimligi"].Value != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
