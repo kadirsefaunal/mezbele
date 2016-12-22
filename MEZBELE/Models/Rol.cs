@@ -17,13 +17,13 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rol()
         {
-            this.KullaniciRol = new HashSet<KullaniciRol>();
+            this.KullaniciProjeRol = new HashSet<KullaniciProjeRol>();
         }
     
         public int ID { get; set; }
-        public string Rol1 { get; set; }
+        public string RolAdi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
+        public virtual ICollection<KullaniciProjeRol> KullaniciProjeRol { get; set; }
     }
 }

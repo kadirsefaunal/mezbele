@@ -150,46 +150,43 @@
     </Compile>
     <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Models\Is.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IsKullanici.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kullanici.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KullaniciRol.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+    <Compile Include="Models\KullaniciProjeRol.cs">
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Log.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.Context.cs">
+    <Compile Include="Models\MezbeleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.cs">
+    <Compile Include="Models\MezbeleModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.Designer.cs">
+    <Compile Include="Models\MezbeleModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>MezbeleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Proje.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjeKullanici.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rol.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Surec.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>MezbeleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\VM.cs" />
@@ -201,24 +198,24 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
-    <EntityDeploy Include="Models\Model.edmx">
+    <EntityDeploy Include="Models\MezbeleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>MezbeleModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="Models\MezbeleModel.edmx.diagram">
+      <DependentUpon>MezbeleModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Models\Model.Context.tt">
+    <Content Include="Models\MezbeleModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>MezbeleModel.edmx</DependentUpon>
+      <LastGenOutput>MezbeleModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.tt">
+    <Content Include="Models\MezbeleModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>MezbeleModel.edmx</DependentUpon>
+      <LastGenOutput>MezbeleModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\creative.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

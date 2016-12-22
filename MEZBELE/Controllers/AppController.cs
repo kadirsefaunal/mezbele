@@ -14,7 +14,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MEZBELEEntities db = new MEZBELEEntities();
+        private readonly MezbeleDBEntities db = new MezbeleDBEntities();
         private VM vm;
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace MEZBELE.Controllers
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 vm.Projeler = (from p in db.Proje
-                               where p.ProjeSahibi == kullaniciID
+                               where p.ProjeSahibiID == kullaniciID
                                select p).ToList();
                 return View(vm);
             }

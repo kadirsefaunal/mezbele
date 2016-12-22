@@ -22,10 +22,10 @@ namespace MEZBELE.Models
     
         public int ID { get; set; }
         public Nullable<bool> AktifMi { get; set; }
-        public int OlusturanID { get; set; }
-        public int SurecID { get; set; }
         public string IsAdi { get; set; }
         public string Aciklama { get; set; }
+        public int SurecID { get; set; }
+        public int OlusturanID { get; set; }
         public Nullable<System.DateTime> OlusturmaTarihi { get; set; }
         public Nullable<System.DateTime> BitisTarihi { get; set; }
     

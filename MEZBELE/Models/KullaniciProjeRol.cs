@@ -12,13 +12,15 @@ namespace MEZBELE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjeKullanici
+    public partial class KullaniciProjeRol
     {
         public int ID { get; set; }
-        public int ProjeID { get; set; }
         public int KullaniciID { get; set; }
+        public int RolID { get; set; }
+        public int ProjeID { get; set; }
     
         public virtual Kullanici Kullanici { get; set; }
         public virtual Proje Proje { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

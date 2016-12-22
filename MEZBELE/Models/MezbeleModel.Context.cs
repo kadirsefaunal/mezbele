@@ -13,10 +13,10 @@ namespace MEZBELE.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MEZBELEEntities : DbContext
+    public partial class MezbeleDBEntities : DbContext
     {
-        public MEZBELEEntities()
-            : base("name=MEZBELEEntities")
+        public MezbeleDBEntities()
+            : base("name=MezbeleDBEntities")
         {
         }
     
@@ -28,10 +28,9 @@ namespace MEZBELE.Models
         public virtual DbSet<Is> Is { get; set; }
         public virtual DbSet<IsKullanici> IsKullanici { get; set; }
         public virtual DbSet<Kullanici> Kullanici { get; set; }
-        public virtual DbSet<KullaniciRol> KullaniciRol { get; set; }
+        public virtual DbSet<KullaniciProjeRol> KullaniciProjeRol { get; set; }
         public virtual DbSet<Log> Log { get; set; }
         public virtual DbSet<Proje> Proje { get; set; }
-        public virtual DbSet<ProjeKullanici> ProjeKullanici { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Surec> Surec { get; set; }
     }

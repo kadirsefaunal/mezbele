@@ -17,27 +17,22 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Proje()
         {
-            this.KullaniciRol = new HashSet<KullaniciRol>();
-            this.ProjeKullanici = new HashSet<ProjeKullanici>();
+            this.KullaniciProjeRol = new HashSet<KullaniciProjeRol>();
             this.Surec = new HashSet<Surec>();
         }
     
         public int ID { get; set; }
-        public int ProjeSahibi { get; set; }
-        public Nullable<bool> BireyselMi { get; set; }
-        public Nullable<bool> GizliMi { get; set; }
-        public Nullable<bool> AktifMi { get; set; }
         public string ProjeAdi { get; set; }
-        public string Aciklama { get; set; }
         public System.DateTime OlusturmaTarihi { get; set; }
         public Nullable<System.DateTime> DegistirmeTarihi { get; set; }
+        public Nullable<bool> AktifMi { get; set; }
         public Nullable<decimal> Butce { get; set; }
+        public int ProjeSahibiID { get; set; }
+        public Nullable<int> YoneticiID { get; set; }
+        public string Aciklama { get; set; }
     
-        public virtual Kullanici Kullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjeKullanici> ProjeKullanici { get; set; }
+        public virtual ICollection<KullaniciProjeRol> KullaniciProjeRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Surec> Surec { get; set; }
     }

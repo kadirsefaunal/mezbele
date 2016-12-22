@@ -19,10 +19,8 @@ namespace MEZBELE.Models
         {
             this.Is = new HashSet<Is>();
             this.IsKullanici = new HashSet<IsKullanici>();
-            this.KullaniciRol = new HashSet<KullaniciRol>();
+            this.KullaniciProjeRol = new HashSet<KullaniciProjeRol>();
             this.Log = new HashSet<Log>();
-            this.Proje = new HashSet<Proje>();
-            this.ProjeKullanici = new HashSet<ProjeKullanici>();
             this.Surec = new HashSet<Surec>();
         }
     
@@ -41,13 +39,9 @@ namespace MEZBELE.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IsKullanici> IsKullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KullaniciRol> KullaniciRol { get; set; }
+        public virtual ICollection<KullaniciProjeRol> KullaniciProjeRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Log> Log { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Proje> Proje { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjeKullanici> ProjeKullanici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Surec> Surec { get; set; }
     }

@@ -18,6 +18,7 @@ namespace MEZBELE.Models
         public Surec()
         {
             this.Is = new HashSet<Is>();
+            this.Surec1 = new HashSet<Surec>();
         }
     
         public int ID { get; set; }
@@ -27,15 +28,18 @@ namespace MEZBELE.Models
         public Nullable<System.DateTime> BitisTarihi { get; set; }
         public Nullable<int> Sure { get; set; }
         public Nullable<int> TamamlanmaOrani { get; set; }
-        public int AnaSurec { get; set; }
+        public Nullable<int> Oncelik { get; set; }
+        public int AnaSurecID { get; set; }
         public string Notlar { get; set; }
         public string Aciklama { get; set; }
         public int OlusturanKullaniciID { get; set; }
-        public Nullable<int> Oncelik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Is> Is { get; set; }
         public virtual Kullanici Kullanici { get; set; }
         public virtual Proje Proje { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Surec> Surec1 { get; set; }
+        public virtual Surec Surec2 { get; set; }
     }
 }

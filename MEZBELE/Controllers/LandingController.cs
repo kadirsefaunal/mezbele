@@ -15,7 +15,7 @@ namespace MEZBELE.Controllers
         /// <summary>
         /// Veritabanı.
         /// </summary>
-        private readonly MEZBELEEntities db = new MEZBELEEntities();
+        private readonly MezbeleDBEntities db = new MezbeleDBEntities();
 
         /// <summary>
         /// Kullanıcıyı, giriş yaptıysa uygulamaya, yapmadıysa karşılama sayfasına yönlendirir.
