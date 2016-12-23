@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 <br />
-<a href="/App/ProjeEkle" class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>Proje Ekle</a>
+<div class="row">
+    <a href="/App/ProjeEkle" class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>Proje Ekle</a>
+</div>
 <div class="row">
     <ul class="collection with-header">
         <li class="collection-header avatar teal-text">
@@ -19,7 +21,7 @@
         {
         <li class="collection-item">
             <p class="flow-text">
-                @proje.ProjeAdi
+                @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
             </p>
             <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
                 @proje.YoneticiID
@@ -28,3 +30,12 @@
         }
     </ul>
 </div>
+<script>
+    function projeyeGit(kimlik) {
+        var veri = {
+            projeKimligi: kimlik
+        }
+
+        $.post("/Proje/Detay", veri);
+    }
+</script>

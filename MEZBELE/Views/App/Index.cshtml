@@ -58,7 +58,7 @@
         {
             <li class="collection-item">
                 <p class="flow-text">
-                    @proje.ProjeAdi
+                    @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
                 </p>
 
                 @foreach (var rol in proje.KullaniciProjeRol)
