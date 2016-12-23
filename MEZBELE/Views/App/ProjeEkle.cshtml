@@ -50,30 +50,29 @@
 </div>
 
 <script>
-    var kullanicilar;
-
-
     function YoneticiSec() {
-
         $(".yoneyiciSec").show();
-        $.post("/App/KullanicilariGetir", "", function (cevap) {
-            kullanicilar = cevap;
-            console.log(kullanicilar);
+
+        $.post("/App/YoneticiAdaylariniGetir", null, function (kullanicilar) {
+            var veri = {};
+
+            kullanicilar.forEach(function (k) {
+                var anahtar = "#" + k.ID + " " + k.Adi + " " + k.Soyadi;
+                var deger = k.Avatar;
+
+                veri[anahtar] = deger;
+            });
+
+            $('input.autocomplete').autocomplete({
+                data : veri
+            });
         });
-        //KONTROL GEREKLİ!!
-        $('input.autocomplete').autocomplete({
-            data: kullanicilar
-            //data: {
-            //    "Apple": null,
-            //    "Microsoft": null,
-            //    "Google": 'http://placehold.it/250x250'
-            //}
-        });
+
     }
+
     function YoneticiGizle() {
         $(".yoneyiciSec").hide();
     }
-
 
     function ProjeEkle(kulID) {
         var kontrol = true;
@@ -110,17 +109,24 @@
                     ProjeSahibiID: parseInt(kulID),
                     YoneticiID: parseInt(kulID)
                 };
-            } //else {
-            //    proje = {
-            //        ProjeAdi: $("#projeAdi").val(),
-            //        Butce: $("#butce").val(),
-            //        Aciklama: $("#projeAciklama").val(),
-            //        ProjeSahibiID: parseInt(kulID)
-            //    };
-            //}
-            console.log(proje);
-            $.post("/App/ProjeKaydet", proje, function () {
-                console.log("kaydedildi");
+            } else {
+                var idMetin = $('input.autocomplete').val();
+                var yID = idMetin.substring(idMetin.indexOf("#") + 1, idMetin.indexOf(" "));
+                proje = {
+                    ProjeAdi: $("#projeAdi").val(),
+                    Butce: $("#butce").val(),
+                    Aciklama: $("#projeAciklama").val(),
+                    ProjeSahibiID: parseInt(kulID),
+                    YoneticiID: parseInt(yID)
+                };
+            }
+            $.post("/App/ProjeKaydet", proje, function (cevap) {
+                if (cevap == 'Ekleme başarılı.') {
+                    Materialize.toast('Proje başarıyla eklendi!', 3000, 'teal rounded');
+                    window.location = "/App/";
+                }
+                else
+                    Materialize.toast('Proje ekleme başarısız! Boş alan bırakmadan tekrar deneyiniz!', 3000, 'orange rounded');
             });
         }
     }
