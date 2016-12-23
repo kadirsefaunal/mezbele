@@ -1,0 +1,127 @@
+﻿@model MEZBELE.ViewModels.VM
+@{
+    ViewBag.Title = "ProjeEkle";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+
+<h2>Proje Ekle</h2>
+
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="projeAdi" type="text" class="validate" name="Proje Adı">
+                <label for="projeAdi">Proje Adı</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="projeAciklama" class="materialize-textarea"></textarea>
+                <label for="projeAciklama">Açıklama</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="butce" type="text" class="validate" name="Bütçe">
+                <label for="butce">Bütçe</label>
+            </div>
+        </div>
+
+        <p>
+            <input name="group1" type="radio" id="yoneticiyim" onclick="YoneticiGizle()" value="yonetici" checked />
+            <label for="yoneticiyim">Yöneticiyim.</label>
+        </p>
+        <p>
+            <input name="group1" type="radio" id="yoneticiSecmek" value="yoneticiDegil" onclick="YoneticiSec()" />
+            <label for="yoneticiSecmek">Müşteriyim ve yönetici seçmek istiyorum.</label>
+        </p>
+        <div class="row yoneyiciSec" style="display: none;">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" name="Yönetici" id="autocomplete-input" class="autocomplete">
+                        <label for="autocomplete-input">Yönetici Bul</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <button onclick="ProjeEkle(@Model.Kullanici.ID)">Kaydet</button>
+</div>
+
+<script>
+    var kullanicilar;
+
+
+    function YoneticiSec() {
+
+        $(".yoneyiciSec").show();
+        $.post("/App/KullanicilariGetir", "", function (cevap) {
+            kullanicilar = cevap;
+            console.log(kullanicilar);
+        });
+        //KONTROL GEREKLİ!!
+        $('input.autocomplete').autocomplete({
+            data: kullanicilar
+            //data: {
+            //    "Apple": null,
+            //    "Microsoft": null,
+            //    "Google": 'http://placehold.it/250x250'
+            //}
+        });
+    }
+    function YoneticiGizle() {
+        $(".yoneyiciSec").hide();
+    }
+
+
+    function ProjeEkle(kulID) {
+        var kontrol = true;
+        $('input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
+        });
+        if ($.trim($('#projeAciklama').val()) == "") {
+            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'rounded');
+            kontrol = false;
+            $('#projeAciklama').addClass("invalid");
+        } else {
+            $('#projeAciklama').removeClass("invalid");
+        }
+
+        if (kontrol) {
+            var durum = true;
+            if ($("input:radio[name=group1]:checked").val() == "yonetici") {
+                durum = true;
+            } else if ($("input:radio[name=group1]:checked").val() == "yoneticiDegil") {
+                durum = false;
+            }
+
+            if (durum) {
+                proje = {
+                    ProjeAdi: $("#projeAdi").val(),
+                    Butce: $("#butce").val(),
+                    Aciklama: $("#projeAciklama").val(),
+                    ProjeSahibiID: parseInt(kulID),
+                    YoneticiID: parseInt(kulID)
+                };
+            } //else {
+            //    proje = {
+            //        ProjeAdi: $("#projeAdi").val(),
+            //        Butce: $("#butce").val(),
+            //        Aciklama: $("#projeAciklama").val(),
+            //        ProjeSahibiID: parseInt(kulID)
+            //    };
+            //}
+            console.log(proje);
+            $.post("/App/ProjeKaydet", proje, function () {
+                console.log("kaydedildi");
+            });
+        }
+    }
+</script>

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MEZBELE.ViewModels.VM
+@{
     ViewBag.Title = "Anasayfa";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
@@ -53,14 +54,24 @@
                 </h5>
             </div>
         </li>
-        <li class="collection-item">
-            <p class="flow-text">
-                Proje Adı
-            </p>
-            <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
-                Proje kurucusu
-            </p>
-        </li>
+        @foreach (var proje in Model.Projeler)
+        {
+            <li class="collection-item">
+                <p class="flow-text">
+                    @proje.ProjeAdi
+                </p>
+
+                @foreach (var rol in proje.KullaniciProjeRol)
+                {
+                    if (rol.KullaniciID == proje.YoneticiID)
+                    {
+                        <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                            @rol.Kullanici.Adi @rol.Kullanici.Soyadi
+                        </p>
+                    }
+                }
+            </li>
+        }
     </ul>
 </div>
 

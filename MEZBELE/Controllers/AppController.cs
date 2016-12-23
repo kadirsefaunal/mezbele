@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Data.Entity;
 using MEZBELE.ViewModels;
+using System;
 
 namespace MEZBELE.Controllers
 {
@@ -23,13 +24,16 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            if (Request.Cookies["KullaniciKimligi"].Value != null)
+            if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
                 vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
+                vm.Projeler = (from p in db.KullaniciProjeRol
+                               where p.KullaniciID == kullaniciID
+                               select p.Proje).ToList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
@@ -41,7 +45,7 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public new ActionResult Profile()
         {
-            if (Request.Cookies["KullaniciKimligi"].Value != null)
+            if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
@@ -59,7 +63,7 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public ActionResult Projects()
         {
-            if (Request.Cookies["KullaniciKimligi"].Value != null)
+            if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
                 vm = new VM();
@@ -72,6 +76,83 @@ namespace MEZBELE.Controllers
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ProjeEkle()
+        {
+            if(Request.Cookies["KullaniciKimligi"] != null)
+            {
+                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                vm = new VM();
+                vm.Kullanici = (from k in db.Kullanici
+                                where k.ID == kullaniciID
+                                select k).SingleOrDefault();
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="proje"></param>
+        /// <param name="yonetici"></param>
+        /// <returns></returns>
+        public JsonResult ProjeKaydet(Proje proje)
+        {
+            proje.OlusturmaTarihi = DateTime.Now;
+            proje.AktifMi = true;
+            db.Proje.Add(proje);
+
+            var sahip = (from s in db.Kullanici
+                         where s.ID == proje.ProjeSahibiID
+                         select s).SingleOrDefault();
+            var yonetici = (from y in db.Kullanici
+                            where y.ID == proje.YoneticiID
+                            select y).SingleOrDefault();
+            var yoneticiRol = (from r in db.Rol
+                               where r.RolAdi == "Yönetici"
+                               select r).SingleOrDefault();
+
+            KullaniciProjeRol kpr = new KullaniciProjeRol()
+            {
+                Kullanici = yonetici,
+                Proje = proje,
+                Rol = yoneticiRol
+            };
+            db.KullaniciProjeRol.Add(kpr);
+
+            if (proje.ProjeSahibiID != proje.YoneticiID)
+            {
+                var musteriRol = (from r in db.Rol
+                                  where r.RolAdi == "Müşteri"
+                                  select r).SingleOrDefault();
+                KullaniciProjeRol kpr2 = new KullaniciProjeRol()
+                {
+                    Kullanici = sahip,
+                    Proje = proje,
+                    Rol = musteriRol
+                };
+                db.KullaniciProjeRol.Add(kpr2);
+            }
+            
+            db.SaveChanges();
+            return Json("");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult KullanicilariGetir(string a)
+        {
+            var kullanicilar = (from k in db.Kullanici
+                                select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID }).ToList();
+            return Json(kullanicilar);
         }
 
         /// <summary>

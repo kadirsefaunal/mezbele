@@ -70,7 +70,7 @@ namespace MEZBELE.Controllers
         [Route("Register")]
         public ActionResult Register()
         {
-            if (Request.Cookies["KullaniciKimligi"].Value != null)
+            if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 return RedirectToAction("Index", "App");
             }
