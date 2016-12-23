@@ -18,9 +18,9 @@ namespace MEZBELE.Controllers
         private VM vm;
 
         /// <summary>
-        /// Uygulama anasayfası.
+        ///
         /// </summary>
-        /// <returns>Index isimli görününmü gösterir.</returns>
+        /// <returns></returns>
         public ActionResult Index()
         {
             if (Request.Cookies["KullaniciKimligi"].Value != null)
@@ -69,24 +69,6 @@ namespace MEZBELE.Controllers
                 vm.Projeler = (from p in db.Proje
                                where p.ProjeSahibiID == kullaniciID
                                select p).ToList();
-                return View(vm);
-            }
-            return RedirectToAction("Index", "Landing");
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Crews()
-        {
-            if (Request.Cookies["KullaniciKimligi"] != null)
-            {
-                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                vm = new VM();
-                vm.Kullanici = (from k in db.Kullanici
-                                where k.ID == kullaniciID
-                                select k).SingleOrDefault();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");

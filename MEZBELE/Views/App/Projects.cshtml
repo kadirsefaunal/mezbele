@@ -16,15 +16,14 @@
         </li>
         @foreach (var proje in Model.Projeler)
         {
-        <li class="collection-item">@proje.ID</li>
-        }
         <li class="collection-item">
             <p class="flow-text">
-                Proje Adı
+                @proje.ProjeAdi
             </p>
             <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
-                Proje kurucusu
+                @proje.YoneticiID
             </p>
         </li>
+        }
     </ul>
 </div>
