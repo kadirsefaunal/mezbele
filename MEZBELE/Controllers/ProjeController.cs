@@ -44,6 +44,15 @@ namespace MEZBELE.Controllers
                 vm.AktifProje = (from p in db.Proje
                                  where p.ID == projeKimligi
                                  select p).SingleOrDefault();
+
+                vm.Yonetici = (from y in db.Kullanici
+                               where y.ID == vm.AktifProje.YoneticiID
+                               select y).SingleOrDefault();
+
+                vm.Calisanlar = (from c in db.Kullanici
+                                 join k in db.KullaniciProjeRol on c.ID equals k.KullaniciID
+                                 where k.ProjeID == vm.AktifProje.ID
+                                 select c).Distinct().ToList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");

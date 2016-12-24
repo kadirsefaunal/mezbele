@@ -51,6 +51,16 @@ namespace MEZBELE.Controllers
                 Response.Cookies["KullaniciKimligi"].Value = kullaniciKimligi.ToString();
                 Response.Cookies["KullaniciKimligi"].Expires = DateTime.Now.AddDays(1);
 
+                var kullanici = (from k in db.Kullanici where k.ID == kullaniciKimligi select k).SingleOrDefault();
+                Log log = new Log()
+                {
+                    Kullanici = kullanici,
+                    Tarih = DateTime.Now,
+                    Aciklama = "Sisteme giriş yaptı."
+                };
+                db.Log.Add(log);
+                db.SaveChanges();
+
                 HttpCookie sonZiyaret = new HttpCookie("SonZiyaret", DateTime.Now.ToString());
                 sonZiyaret.Expires = DateTime.Now.AddDays(1);
                 Response.Cookies.Add(sonZiyaret);
@@ -114,6 +124,17 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public JsonResult Logout()
         {
+            int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+            var kullanici = (from k in db.Kullanici where k.ID == kullaniciID select k).SingleOrDefault();
+            Log log = new Log()
+            {
+                Kullanici = kullanici,
+                Tarih = DateTime.Now,
+                Aciklama = "Sistemden çıkış yaptı."
+            };
+            db.Log.Add(log);
+            db.SaveChanges();
+
             Response.Cookies["KullaniciKimligi"].Value = null;
             Response.Cookies["KullaniciKimligi"].Expires = DateTime.Now.AddDays(-1);
 

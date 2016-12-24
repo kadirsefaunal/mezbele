@@ -32,8 +32,9 @@ namespace MEZBELE.Controllers
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 vm.Projeler = (from p in db.KullaniciProjeRol
-                               where p.KullaniciID == kullaniciID
-                               select p.Proje).ToList();
+                               where p.KullaniciID == kullaniciID 
+                               orderby p.Proje.OlusturmaTarihi descending
+                               select p.Proje).Distinct().ToList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
@@ -72,6 +73,7 @@ namespace MEZBELE.Controllers
                                 select k).SingleOrDefault();
                 vm.Projeler = (from p in db.Proje
                                where p.ProjeSahibiID == kullaniciID
+                               orderby p.OlusturmaTarihi descending
                                select p).ToList();
                 return View(vm);
             }
