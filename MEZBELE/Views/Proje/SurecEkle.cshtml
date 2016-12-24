@@ -1,0 +1,53 @@
+﻿@model MEZBELE.ViewModels.VM
+@{
+    ViewBag.Title = "SurecEkle";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+
+<h2>SurecEkle</h2>
+
+<div class="row">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="SurecAdi" type="text">
+                <label for="SurecAdi">Süreç Adı</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="SurecAciklama" class="materialize-textarea"></textarea>
+                <label for="SurecAciklama">Açıklama</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="BaslangicTarihi" type="date" name="BaslangicTarihi" class="col s6">
+                <input id="BitisTarihi" type="date" name="BitisTarihi" class="col s6">
+            </div>
+            <div class="input-field col s12">
+                <input id="Oncelik" type="text" list="oncelik">
+                <datalist id="oncelik">
+                    <option value="1">Düşük</option>
+                    <option value="2">Orta</option>
+                    <option value="3">Yüksek</option>
+                </datalist>
+            </div>
+            <a class="waves-effect waves-light btn" onclick="SureciKaydet(@Model.AktifProje.ID)">Kaydet</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function SureciKaydet(projeID) {
+        var surec = {
+            SurecAdi: $("#SurecAdi").val(),
+            Aciklama: $("#SurecAciklama").val(),
+            BaslamaTarihi: $("#BaslangicTarihi").val(),
+            BitisTarihi: $("#BitisTarihi").val(),
+            Oncelik: $("#Oncelik").val(),
+            ProjeID: projeID
+        };
+        console.log(surec);
+
+        $.post("../Proje/SurecKaydet", surec, function (sonuc) {
+            console.log(sonuc);
+        });
+    }
+</script>

@@ -18,6 +18,11 @@
                         <p>
                             @Model.AktifProje.Aciklama
                         </p>
+                        @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                        {
+                            @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeID = Model.AktifProje.ID }, new { @class = "waves-effect waves-light btn right" })
+                            <a class="waves-effect waves-light btn right">Süreç Ekle</a>
+                        }
                     </div>
                     <div class="col s2">
                         @foreach (var item in Model.Calisanlar)

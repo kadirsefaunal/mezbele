@@ -57,5 +57,46 @@ namespace MEZBELE.Controllers
             }
             return RedirectToAction("Index", "Landing");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projeID"></param>
+        /// <returns></returns>
+        public ActionResult SurecEkle(int projeID)
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                vm = new VM();
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                vm.Kullanici = (from k in db.Kullanici
+                                where k.ID == kullaniciKimligi
+                                select k).SingleOrDefault();
+                vm.AktifProje = (from p in db.Proje
+                                 where p.ID == projeID
+                                 select p).SingleOrDefault();
+
+                if (vm.Kullanici.ID == vm.AktifProje.YoneticiID)
+                    return View(vm);
+                else
+                    return RedirectToAction("Index", "App");
+                
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        public JsonResult SurecKaydet(Surec surec)
+        {
+            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+            TimeSpan Sure = Convert.ToDateTime(surec.BitisTarihi) - Convert.ToDateTime(surec.BaslamaTarihi);
+            surec.OlusturanKullaniciID = kullaniciKimligi;
+            surec.Sure = Convert.ToInt32(Sure.TotalDays);
+            surec.TamamlanmaOrani = 0;
+
+            db.Surec.Add(surec);
+            db.SaveChanges();
+
+            return Json("başarılı");
+        }
     }
 }

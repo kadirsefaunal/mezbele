@@ -29,7 +29,7 @@ namespace MEZBELE.Models
         public Nullable<int> Sure { get; set; }
         public Nullable<int> TamamlanmaOrani { get; set; }
         public Nullable<int> Oncelik { get; set; }
-        public int AnaSurecID { get; set; }
+        public Nullable<int> AnaSurecID { get; set; }
         public string Notlar { get; set; }
         public string Aciklama { get; set; }
         public int OlusturanKullaniciID { get; set; }

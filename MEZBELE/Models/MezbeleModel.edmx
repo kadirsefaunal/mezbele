@@ -91,7 +91,7 @@
           <Property Name="Sure" Type="int" />
           <Property Name="TamamlanmaOrani" Type="int" />
           <Property Name="Oncelik" Type="int" />
-          <Property Name="AnaSurecID" Type="int" Nullable="false" />
+          <Property Name="AnaSurecID" Type="int" />
           <Property Name="Notlar" Type="nvarchar" MaxLength="2000" />
           <Property Name="Aciklama" Type="nvarchar" MaxLength="2000" />
           <Property Name="OlusturanKullaniciID" Type="int" Nullable="false" />
@@ -217,7 +217,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Surec_Surec">
-          <End Role="Surec" Type="Self.Surec" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="0..1" />
           <End Role="Surec1" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Surec">
@@ -390,7 +390,7 @@
           <Property Name="Sure" Type="Int32" />
           <Property Name="TamamlanmaOrani" Type="Int32" />
           <Property Name="Oncelik" Type="Int32" />
-          <Property Name="AnaSurecID" Type="Int32" Nullable="false" />
+          <Property Name="AnaSurecID" Type="Int32" />
           <Property Name="Notlar" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="Aciklama" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="OlusturanKullaniciID" Type="Int32" Nullable="false" />
@@ -521,7 +521,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Surec_Surec">
-          <End Role="Surec" Type="Self.Surec" Multiplicity="1" />
+          <End Role="Surec" Type="Self.Surec" Multiplicity="0..1" />
           <End Role="Surec1" Type="Self.Surec" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Surec">
