@@ -10,19 +10,17 @@
     <form class="col s12">
         <div class="row">
             <div class="input-field col s6">
-                <input id="SurecAdi" type="text">
+                <input id="SurecAdi" type="text" name="Süreç Adı">
                 <label for="SurecAdi">Süreç Adı</label>
             </div>
             <div class="input-field col s12">
                 <textarea id="SurecAciklama" class="materialize-textarea"></textarea>
                 <label for="SurecAciklama">Açıklama</label>
             </div>
+            <input id="BaslangicTarihi" type="date" name="Başlangiç Tarihi" class="col s6">
+            <input id="BitisTarihi" type="date" name="Bitiş Tarihi" class="col s6">
             <div class="input-field col s12">
-                <input id="BaslangicTarihi" type="date" name="BaslangicTarihi" class="col s6">
-                <input id="BitisTarihi" type="date" name="BitisTarihi" class="col s6">
-            </div>
-            <div class="input-field col s12">
-                <input id="Oncelik" type="text" list="oncelik">
+                <input id="Oncelik" type="text" list="oncelik" name="Öncelik">
                 <datalist id="oncelik">
                     <option value="1">Düşük</option>
                     <option value="2">Orta</option>
@@ -36,18 +34,39 @@
 
 <script>
     function SureciKaydet(projeID) {
-        var surec = {
-            SurecAdi: $("#SurecAdi").val(),
-            Aciklama: $("#SurecAciklama").val(),
-            BaslamaTarihi: $("#BaslangicTarihi").val(),
-            BitisTarihi: $("#BitisTarihi").val(),
-            Oncelik: $("#Oncelik").val(),
-            ProjeID: projeID
-        };
-        console.log(surec);
-
-        $.post("../Proje/SurecKaydet", surec, function (sonuc) {
-            console.log(sonuc);
+        var kontrol = true;
+        $('input').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
         });
+        if ($.trim($('#SurecAciklama').val()) == "") {
+            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'rounded');
+            kontrol = false;
+            $('#SurecAciklama').addClass("invalid");
+        } else {
+            $('#SurecAciklama').removeClass("invalid");
+        }
+
+        if (kontrol) {
+            var surec = {
+                SurecAdi: $("#SurecAdi").val(),
+                Aciklama: $("#SurecAciklama").val(),
+                BaslamaTarihi: $("#BaslangicTarihi").val(),
+                BitisTarihi: $("#BitisTarihi").val(),
+                Oncelik: $("#Oncelik").val(),
+                ProjeID: projeID
+            };
+            console.log(surec);
+
+            $.post("../Proje/SurecKaydet", surec, function (sonuc) {
+                console.log(sonuc);
+            });
+        }
+        
     }
 </script>
