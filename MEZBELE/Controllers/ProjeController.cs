@@ -59,11 +59,11 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        /// <param name="projeID"></param>
+        /// <param name="projeKimligi"></param>
         /// <returns></returns>
-        public ActionResult SurecEkle(int projeID)
+        public ActionResult SurecEkle(int projeKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
@@ -73,14 +73,14 @@ namespace MEZBELE.Controllers
                                 where k.ID == kullaniciKimligi
                                 select k).SingleOrDefault();
                 vm.AktifProje = (from p in db.Proje
-                                 where p.ID == projeID
+                                 where p.ID == projeKimligi
                                  select p).SingleOrDefault();
 
                 if (vm.Kullanici.ID == vm.AktifProje.YoneticiID)
                     return View(vm);
                 else
                     return RedirectToAction("Index", "App");
-                
+
             }
             return RedirectToAction("Index", "Landing");
         }
