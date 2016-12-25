@@ -53,6 +53,11 @@ namespace MEZBELE.Controllers
                                  join k in db.KullaniciProjeRol on c.ID equals k.KullaniciID
                                  where k.ProjeID == vm.AktifProje.ID
                                  select c).Distinct().ToList();
+
+                vm.Roller = (from r in db.Rol
+                             where r.RolAdi != "Müşteri" && r.RolAdi != "Yönetici"
+                             select r).ToList();
+
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
@@ -85,6 +90,11 @@ namespace MEZBELE.Controllers
             return RedirectToAction("Index", "Landing");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="surec"></param>
+        /// <returns></returns>
         public JsonResult SurecKaydet(Surec surec)
         {
             int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
@@ -97,6 +107,43 @@ namespace MEZBELE.Controllers
             db.SaveChanges();
 
             return Json("başarılı");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult KullanicilariGetir()
+        {
+            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+            var kullanicilar = (from k in db.Kullanici
+                                where k.ID != kullaniciKimligi
+                                select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).ToList();
+            return Json(kullanicilar);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="kpr"></param>
+        /// <returns></returns>
+        public JsonResult ProjeyeAta(KullaniciProjeRol kpr)
+        {
+            var rolDurum = (from r in db.KullaniciProjeRol
+                            where r.KullaniciID == kpr.KullaniciID && r.ProjeID == kpr.ProjeID && r.RolID == kpr.RolID
+                            select r).SingleOrDefault();
+            if (rolDurum == null)
+            {
+                db.KullaniciProjeRol.Add(kpr);
+                db.SaveChanges();
+                var kullanici = (from k in db.Kullanici
+                                 where k.ID == 2
+                                 select k.KullaniciProjeRol).ToList();
+                return Json("Kayıt başarılı.");
+            }
+            else
+                return Json("Kullanıcı zaten bu rol ile bu projede kayıtlı.");
+
         }
     }
 }

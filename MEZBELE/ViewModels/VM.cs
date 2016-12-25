@@ -28,5 +28,9 @@ namespace MEZBELE.ViewModels
         /// 
         /// </summary>
         public List<Kullanici> Calisanlar { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Rol> Roller { get; set; }
     }
 }
