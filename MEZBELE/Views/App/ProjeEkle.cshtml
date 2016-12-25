@@ -1,52 +1,66 @@
 ﻿@model MEZBELE.ViewModels.VM
 @{
-    ViewBag.Title = "ProjeEkle";
+    ViewBag.Title = "Proje Ekle";
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
-
-<h2>Proje Ekle</h2>
-
+<br />
 <div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="projeAdi" type="text" class="validate" name="Proje Adı">
-                <label for="projeAdi">Proje Adı</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="projeAciklama" class="materialize-textarea"></textarea>
-                <label for="projeAciklama">Açıklama</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input id="butce" type="text" class="validate" name="Bütçe">
-                <label for="butce">Bütçe</label>
-            </div>
-        </div>
-
-        <p>
-            <input name="group1" type="radio" id="yoneticiyim" onclick="YoneticiGizle()" value="yonetici" checked />
-            <label for="yoneticiyim">Yöneticiyim.</label>
-        </p>
-        <p>
-            <input name="group1" type="radio" id="yoneticiSecmek" value="yoneticiDegil" onclick="YoneticiSec()" />
-            <label for="yoneticiSecmek">Müşteriyim ve yönetici seçmek istiyorum.</label>
-        </p>
-        <div class="row yoneyiciSec" style="display: none;">
+    <nav>
+        <div class="nav-wrapper blue-grey darken-1">
             <div class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="text" name="Yönetici" id="autocomplete-input" class="autocomplete">
-                        <label for="autocomplete-input">Yönetici Bul</label>
-                    </div>
-                </div>
+                <a href="/App/Projeler" class="breadcrumb">Projeler</a>
+                <a class="breadcrumb">Proje Ekle</a>
             </div>
         </div>
-    </form>
-    <button onclick="ProjeEkle(@Model.Kullanici.ID)">Kaydet</button>
+    </nav>
+</div>
+<div class="row">
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="projeAdi" type="text" class="validate" name="Proje Adı">
+                            <label for="projeAdi" class="white-text">Proje Adı</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="projeAciklama" class="materialize-textarea"></textarea>
+                            <label for="projeAciklama" class="white-text">Açıklama</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="butce" type="text" class="validate" name="Bütçe">
+                            <label for="butce" class="white-text">Bütçe</label>
+                        </div>
+                    </div>
+
+                    <p>
+                        <input name="group1" type="radio" id="yoneticiyim" onclick="YoneticiGizle()" value="yonetici" checked />
+                        <label for="yoneticiyim" class="white-text">Yöneticiyim.</label>
+                    </p>
+                    <p>
+                        <input name="group1" type="radio" id="yoneticiSecmek" value="yoneticiDegil" onclick="YoneticiSec()" />
+                        <label for="yoneticiSecmek" class="white-text">Müşteriyim ve yönetici seçmek istiyorum.</label>
+                    </p>
+                    <div class="row yoneyiciSec" style="display: none;">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="text" name="Yönetici" id="autocomplete-input" class="autocomplete">
+                                    <label for="autocomplete-input" class="white-text">Yönetici Bul</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button class="waves-effect waves-green btn green" onclick="ProjeEkle(@Model.Kullanici.ID)">Kaydet</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -64,7 +78,7 @@
             });
 
             $('input.autocomplete').autocomplete({
-                data : veri
+                data: veri
             });
         });
 
