@@ -10,7 +10,7 @@
             <div class="card-content white-text">
                 <div class="row">
                     <div class="col s1">
-                        <a href="#!user"><img class="circle" src="@Model.Yonetici.Avatar" style="width:32px; height:32px;"></a>
+                        <a href="#!user"><img class="circle responsive-img" src="@Model.Yonetici.Avatar"></a>
                     </div>
 
                     <div class="col s9">
@@ -18,18 +18,12 @@
                         <p>
                             @Model.AktifProje.Aciklama
                         </p>
-                        @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
-                        {
-                            @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeID = Model.AktifProje.ID }, new { @class = "waves-effect waves-light btn right" })
-                            <a class="waves-effect waves-light btn right">Süreç Ekle</a>
-                        }
                     </div>
                     <div class="col s2">
-                        @foreach (var item in Model.Calisanlar)
+                        @foreach (var calisan in Model.Calisanlar)
                         {
-                            <a href="#!user"><img class="circle" src="@item.Avatar" style="width:32px; height:32px;"></a>
+                        <a href="#!"><img class="circle" src="@calisan.Avatar" style="width:32px; height:32px;"></a>
                         }
-                        Projede çalışan avatarları
                     </div>
                 </div>
             </div>
@@ -127,6 +121,10 @@
                         </ul>
                     </div>
                 </div>
+                @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                {
+                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeID = Model.AktifProje.ID }, new { @class = "waves-effect waves-green btn green right" })
+                }
             </div>
         </div>
     </div>
