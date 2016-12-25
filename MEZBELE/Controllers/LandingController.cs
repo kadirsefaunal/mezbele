@@ -33,6 +33,10 @@ namespace MEZBELE.Controllers
         [Route("Login")]
         public ActionResult Login()
         {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                return RedirectToAction("Index", "App");
+            }
             return View();
         }
 

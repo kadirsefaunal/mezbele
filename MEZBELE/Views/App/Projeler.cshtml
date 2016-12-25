@@ -4,7 +4,7 @@
 }
 <br />
 <div class="row">
-    <a href="/App/ProjeEkle" class="waves-effect waves-light btn"><i class="material-icons left">playlist_add</i>Proje Ekle</a>
+    <a href="/App/ProjeEkle" class="waves-effect waves-light btn green right"><i class="material-icons left">playlist_add</i>Proje Ekle</a>
 </div>
 <div class="row">
     <ul class="collection with-header">
@@ -23,9 +23,15 @@
             <p class="flow-text">
                 @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
             </p>
-            <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
-                @proje.YoneticiID
-            </p>
+            @foreach (var rol in proje.KullaniciProjeRol)
+            {
+                if (rol.KullaniciID == proje.YoneticiID)
+                {
+                    <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                        @rol.Kullanici.Adi @rol.Kullanici.Soyadi
+                    </p>
+                }
+            }
         </li>
         }
     </ul>

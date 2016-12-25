@@ -32,7 +32,7 @@ namespace MEZBELE.Controllers
                                 where k.ID == kullaniciID
                                 select k).SingleOrDefault();
                 vm.Projeler = (from p in db.KullaniciProjeRol
-                               where p.KullaniciID == kullaniciID 
+                               where p.KullaniciID == kullaniciID
                                orderby p.Proje.OlusturmaTarihi descending
                                select p.Proje).Distinct().ToList();
                 return View(vm);
@@ -44,7 +44,7 @@ namespace MEZBELE.Controllers
         ///
         /// </summary>
         /// <returns></returns>
-        public new ActionResult Profile()
+        public new ActionResult Profil()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
@@ -62,7 +62,7 @@ namespace MEZBELE.Controllers
         ///
         /// </summary>
         /// <returns></returns>
-        public ActionResult Projects()
+        public ActionResult Projeler()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
