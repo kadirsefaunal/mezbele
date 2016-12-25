@@ -51,7 +51,7 @@
                         <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="expandable">
                             <li>
                                 <div class="collapsible-header"><i class="material-icons">filter_drama</i>Süreç Adı</div>
-                                <div class="collapsible-body">
+                                <div class="collapsible-body white">
                                     <ul class="collection">
                                         <li class="collection-item">
                                             <div class="row valign-wrapper" style="margin-bottom:-1rem;">
@@ -72,15 +72,10 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">place</i>Süreç Adı 2</div>
-                                <div class="collapsible-body white-text">
                                     <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
                                         <li>
                                             <div class="collapsible-header"><i class="material-icons">filter_drama</i>Alt Süreç Adı</div>
-                                            <div class="collapsible-body white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                                         </li>
                                         <li>
                                             <div class="collapsible-header"><i class="material-icons">place</i>Alt Süreç Adı 2</div>
@@ -109,7 +104,7 @@
                                         </li>
                                         <li>
                                             <div class="collapsible-header"><i class="material-icons">whatshot</i>Alt Süreç Adı 3</div>
-                                            <div class="collapsible-body white-text"><p>Lorem ipsum dolor sit amet.</p></div>
+                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -154,7 +149,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="collapsible-body white-text"><p>@surec.Aciklama</p></div>
+                                    <div class="collapsible-body white">
+                                        <p>@surec.Aciklama</p>
+                                        @foreach (var i in surec.Is)
+                                        {
+                                        <ul class="collection">
+                                            <li class="collection-item">
+                                                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                    <div class="col s5">
+                                                        <p class="flow-text">
+                                                            <b>@i.ID</b>
+                                                            @i.IsAdi
+                                                        </p>
+                                                    </div>
+                                                    <div class="col s3 pull-s1">
+                                                        <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                    </div>
+                                                    <div class="col s4">
+                                                        <div class="progress valign pink lighten-3">
+                                                            <div class="determinate pink darken-1" style="width: 30%"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        }
+                                    </div>
                                 </li>
                                 }
                             }
