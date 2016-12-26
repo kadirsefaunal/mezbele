@@ -196,6 +196,10 @@
                                     </li>
                                 }
                             </ul>
+                            @if (Model.AktifSurec.AnaSurecID == null)
+                            {
+                                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = Model.AktifSurec.ID }, new { @class = "waves-effect waves-green btn green right valign" })
+                            }
                             <a href="#IsEkle" class="waves-effect waves-green btn green right" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">İş Ekle</a>
                         </div>
                     </div>
