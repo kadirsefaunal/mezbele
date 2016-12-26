@@ -1,0 +1,40 @@
+﻿@model MEZBELE.ViewModels.VM
+@{
+    ViewBag.Title = "Süreç Detayı";
+    Layout = "~/Views/Shared/App/_AppLayout.cshtml";
+}
+<br />
+<div class="row">
+    <nav>
+        <div class="nav-wrapper blue-grey darken-1">
+            <div class="col s12">
+                <a href="#!" class="breadcrumb">@Model.AktifSurec.Proje.ProjeAdi </a>
+                <a href="#!" class="breadcrumb">@Model.AktifSurec.SurecAdi</a>
+                <a href="#!" class="breadcrumb">Süreç Detayı</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="col s9">
+                        <span class="card-title">@Model.AktifSurec.SurecAdi - Süreç Detayı</span>
+                        <p>
+                            @Model.AktifSurec.Aciklama
+                        </p>
+                    </div>
+                    <div class="col s1">
+                    </div>
+                    <div class="col s1">
+                    </div>
+                    <div class="col s1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
