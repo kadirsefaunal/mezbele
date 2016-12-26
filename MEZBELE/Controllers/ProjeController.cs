@@ -173,5 +173,40 @@ namespace MEZBELE.Controllers
                 return Json("Kayıt başarısız.");
             }
         }
+
+        public JsonResult IsEkle(Is eklenecekIs)
+        {
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                eklenecekIs.OlusturanID = kullaniciKimligi;
+                eklenecekIs.OlusturmaTarihi = DateTime.Now;
+                db.Is.Add(eklenecekIs);
+                db.SaveChanges();
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+            
+        }
+
+        public JsonResult SureceNotEkle(int surecKimligi, string eklenecekNot)
+        {
+            try
+            {
+                var surec = (from s in db.Surec
+                             where s.ID == surecKimligi
+                             select s).SingleOrDefault();
+                surec.Notlar = eklenecekNot;
+                db.SaveChanges();
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
     }
 }

@@ -66,7 +66,7 @@
                         </div>
                         <div class="row">
                             <div class="col s12">
-                                <a href="#!" class="waves-effect waves-green btn green right" onclick="notuKaydet()">Kaydet</a>
+                                <a href="#!" class="waves-effect waves-green btn green right" onclick="notuKaydet(@Model.AktifSurec.ID)">Kaydet</a>
                             </div>
                         </div>
                     </div>
@@ -88,71 +88,71 @@
                             <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
                                 @foreach (var altSurec in Model.AktifSurec.Surec1)
                                 {
-                                <li>
-                                    <div class="collapsible-header">
-                                        <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                            <div class="col s4">
-                                                @altSurec.SurecAdi
-                                            </div>
-                                            <div class="col s1">
-                                                @switch (altSurec.Oncelik)
-                                                {
-                                                    case 1:
-                                                <span class="badge green white-text" style="width:2rem">D</span>
-                                                        break;
-                                                    case 2:
-                                                <span class="badge orange white-text" style="width:2rem">O</span>
-                                                        break;
-                                                    case 3:
-                                                <span class="badge red white-text" style="width:2rem">Y</span>
-                                                        break;
-                                                    default:
-                                                        break;
-                                                }
-                                            </div>
-                                            <div class="col s1">
-                                                @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
-                                            </div>
-                                            <div class="col s1">
-                                                @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
-                                            </div>
-                                            <div class="col s3">
-                                                <div class="progress valign pink lighten-3">
-                                                    <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
+                                    <li>
+                                        <div class="collapsible-header">
+                                            <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                <div class="col s4">
+                                                    @altSurec.SurecAdi
+                                                </div>
+                                                <div class="col s1">
+                                                    @switch (altSurec.Oncelik)
+                                                    {
+                                                        case 1:
+                                                            <span class="badge green white-text" style="width:2rem">D</span>
+                                                            break;
+                                                        case 2:
+                                                            <span class="badge orange white-text" style="width:2rem">O</span>
+                                                            break;
+                                                        case 3:
+                                                            <span class="badge red white-text" style="width:2rem">Y</span>
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
+                                                </div>
+                                                <div class="col s1">
+                                                    @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
+                                                </div>
+                                                <div class="col s1">
+                                                    @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                </div>
+                                                <div class="col s3">
+                                                    <div class="progress valign pink lighten-3">
+                                                        <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="collapsible-body white">
-                                        <ul class="collection">
-                                            <li class="collection-item">
-                                                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                    <div class="col s5">
-                                                        <p class="flow-text">
-                                                            <b>#ID</b>
-                                                            İş Adı
-                                                        </p>
-                                                    </div>
-                                                    <div class="col s3 pull-s1">
-                                                        <span class="badge red white-text">Atanan çalışan avatarları</span>
-                                                    </div>
-                                                    <div class="col s4">
-                                                        <div class="progress valign pink lighten-3">
-                                                            <div class="determinate pink darken-1" style="width: 70%"></div>
+                                        <div class="collapsible-body white">
+                                            <ul class="collection">
+                                                <li class="collection-item">
+                                                    <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                        <div class="col s5">
+                                                            <p class="flow-text">
+                                                                <b>#ID</b>
+                                                                İş Adı
+                                                            </p>
+                                                        </div>
+                                                        <div class="col s3 pull-s1">
+                                                            <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                        </div>
+                                                        <div class="col s4">
+                                                            <div class="progress valign pink lighten-3">
+                                                                <div class="determinate pink darken-1" style="width: 70%"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li class="row" style="margin:1rem 0rem;padding-right:1rem;">
-                                                <a href="#!" class="waves-effect waves-green btn green right" onclick="isEkle(@altSurec.ID)">İş Ekle</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                                </li>
+                                                <li class="row" style="margin:1rem 0rem;padding-right:1rem;">
+                                                    <a href="#IsEkle" class="waves-effect waves-green btn green right" onclick="surecKimligiGetir(@altSurec.ID)">İş Ekle</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                 }
                             </ul>
-                            <a href="#!" class="waves-effect waves-green btn green right" onclick="isEkle(@Model.AktifSurec.ID)">İş Ekle</a>
+                            <a href="#IsEkle" class="waves-effect waves-green btn green right" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">İş Ekle</a>
                         </div>
                     </div>
                 </div>
@@ -163,9 +163,40 @@
 
 
 
+<!-- Modal Structure -->
+<div id="IsEkle" class="modal modal-fixed-footer" style="min-height: 95vh; margin-top: -3rem">
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="IsAdi" type="text" class="validate" name="İş Adı">
+                        <label for="IsAdi">İş Adı</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="IsAciklama" class="materialize-textarea" name="Açıklama"></textarea>
+                        <label for="IsAciklama">Açıklama</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="BitisTarihi" type="date" class="datepicker" placeholder="Bitiş Tarihi" name="Bitiş Tarihi">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="isEkle()">İşi Ekle</a>
+    </div>
+</div>
+
+
 
 <script type="text/javascript">
-    function notuKaydet() {
+    function temizle() {
+        $(':input').removeAttr('checked').removeAttr('selected').not(':button, :submit, :reset, :hidden, :radio, :checkbox').val('').blur();
+    }
+
+    function notuKaydet(surekKimlik) {
         var kontrol = true;
         $('textarea#surecNotlari').each(function () {
             if ($.trim($(this).val()) == "") {
@@ -178,11 +209,62 @@
         });
 
         if (kontrol == true) {
-            console.log($("#surecNotlari").val());
+            var eklenecekNot = $("#surecNotlari").val();
+            var sk = surekKimlik;
+            $.post("/Proje/SureceNotEkle", { surecKimligi: sk, eklenecekNot: eklenecekNot}, function (cevap) {
+                if (cevap == "Başarılı.") {
+                    Materialize.toast('Not başarıyla güncellendi.', 3000, 'green rounded');
+                    location.reload(true);
+                } else {
+                    Materialize.toast('Not güncelleme işlemi başarısız!', 3000, 'red rounded');
+                }
+            });            
         }
     }
 
-    function isEkle(surecKimligi) {
-        console.log(surecKimligi);
+    var surecKimligi;
+    function surecKimligiGetir(kimlik) {
+        surecKimligi = kimlik;
+    }
+
+    function isEkle() {
+        var kontrol = true;
+        $('input').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
+        });
+
+        if ($.trim($('#IsAciklama').val()) == "") {
+            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
+            kontrol = false;
+            $('#IsAciklama').addClass("invalid");
+        } else {
+            $('#IsAciklama').removeClass("invalid");
+        }
+        if (kontrol)
+        {
+            var eklenecekIs = {
+                AktifMi: true,
+                IsAdi: $("#IsAdi").val(),
+                Aciklama: $("#IsAciklama").val(),
+                BitisTarihi: $("#BitisTarihi").val(),
+                SurecID: surecKimligi
+            };
+
+            $.post("/Proje/IsEkle", eklenecekIs, function (cevap) {
+                if (cevap == "Başarılı.") {
+                    Materialize.toast('İş başarıyla eklendi.', 3000, 'green rounded');
+                    location.reload(true);
+                } else {
+                    Materialize.toast('İş eklenirken hata!', 3000, 'red rounded');
+                }
+            });
+            temizle();
+        }
     }
 </script>
