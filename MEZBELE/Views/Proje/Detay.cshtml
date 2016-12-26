@@ -10,7 +10,7 @@
             <div class="card-content white-text">
                 <div class="row">
                     <div class="col s1">
-                        <a href="#!user"><img class="circle responsive-img" src="@Model.Yonetici.Avatar"></a>
+                        <a href="#!user"><img class="tooltipped circle responsive-img" data-position="top" data-delay="50" data-tooltip="@Model.Yonetici.Adi @Model.Yonetici.Soyadi" src="@Model.Yonetici.Avatar"></a>
                     </div>
 
                     <div class="col s9">
@@ -22,7 +22,7 @@
                     <div class="col s2">
                         @foreach (var calisan in Model.Calisanlar)
                         {
-                        <a href="#!"><img class="circle" src="@calisan.Avatar" style="width:32px; height:32px;"></a>
+                            <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi Avatar" class="tooltipped circle responsive-img" style="width:32px; height:32px;" data-position="top" data-delay="50" data-tooltip="@calisan.Adi @calisan.Soyadi" />
                         }
                     </div>
                 </div>
@@ -217,6 +217,7 @@
                                         }
                                     </ul>
                                     <br />
+                                    @Html.ActionLink("Detayları Göster", "SurecDetay", "Proje", new { surecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
                                     @Html.ActionLink("Alt Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
                                     <br /><br />
                                     @foreach (var i in surec.Is)
