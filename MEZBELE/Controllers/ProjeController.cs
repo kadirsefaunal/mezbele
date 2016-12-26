@@ -322,6 +322,11 @@ namespace MEZBELE.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="proje"></param>
+        /// <returns></returns>
         public JsonResult ProjeGuncelle(Proje proje)
         {
             try
@@ -334,6 +339,28 @@ namespace MEZBELE.Controllers
                 guncellenecekProje.Butce = proje.Butce;
                 guncellenecekProje.Aciklama = proje.Aciklama;
                 guncellenecekProje.DegistirmeTarihi = DateTime.Now;
+
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
+
+        public JsonResult SurecGuncelle(Surec surec)
+        {
+            try
+            {
+                var guncellenecekSurec = (from s in db.Surec
+                                          where s.ID == surec.ID
+                                          select s).SingleOrDefault();
+
+                guncellenecekSurec.SurecAdi = surec.SurecAdi;
+                guncellenecekSurec.Oncelik = surec.Oncelik;
+                guncellenecekSurec.Aciklama = surec.SurecAdi;
 
                 db.SaveChanges();
 

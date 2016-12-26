@@ -27,6 +27,7 @@
                         <p>
                             @Model.AktifSurec.Aciklama
                         </p>
+                        <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -237,6 +238,37 @@
     </div>
 </div>
 
+<!-- Süreç Bilgilerini Güncelleme Modalı -->
+<div id="SurecBilGuncelle" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="SurecAdi" type="text" class="validate" name="Süreç Adı">
+                        <label for="SurecAdi">Süreç Adı</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="Oncelik" name="Öncelik">
+                            <option value="1">Düşük</option>
+                            <option value="2">Orta</option>
+                            <option value="3">Yüksek</option>
+                        </select>
+                        <label class="white-text">Öncelik</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="Aciklama" class="materialize-textarea"></textarea>
+                        <label for="Aciklama">Açıklama</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="SurecGuncelle()">Güncelle</a>
+    </div>
+</div>
+<!-- Süreç Bilgilerini Güncelleme Modalı Bitiş -->
 
 
 <script type="text/javascript">
@@ -313,6 +345,44 @@
                 }
             });
             temizle();
+        }
+    }
+
+    function SurecGuncelle() {
+        var kontrol = true;
+        $('input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
+            if ($.trim($(this).val()) == "") {
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
+                kontrol = false;
+                $(this).addClass("invalid");
+            } else {
+                $(this).removeClass("invalid");
+            }
+        });
+        if ($.trim($('#Aciklama').val()) == "") {
+            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
+            kontrol = false;
+            $('#Aciklama').addClass("invalid");
+        } else {
+            $('#Aciklama').removeClass("invalid");
+        }
+
+        if (kontrol) {
+            var surec = {
+                Oncelik: $("#Oncelik").val(),
+                SurecAdi: $("#SurecAdi").val(),
+                Aciklama: $("#Aciklama").val(),
+                ID: surecKimligi
+            };
+
+            $.post("/Proje/SurecGuncelle", surec, function (cevap) {
+                if (cevap == "Başarılı.") {
+                    Materialize.toast('Süreç Güncelleme İşlemi Başarılı.', 3000, 'green rounded');
+                    location.reload(true);
+                } else {
+                    Materialize.toast('Süreç Güncelleme Hatası!', 3000, 'red rounded');
+                }
+            });
         }
     }
 </script>
