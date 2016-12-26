@@ -80,6 +80,7 @@
                 $(this).removeClass("invalid");
             }
         });
+
         if ($.trim($('#SurecAciklama').val()) == "") {
             Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
             kontrol = false;
@@ -97,11 +98,10 @@
                 Oncelik: $("#Oncelik").val(),
                 ProjeID: projeID
             };
+
             if (anaSurecKimligi != -1) {
                 surec.AnaSurecID = anaSurecKimligi;
             }
-            
-            console.log(surec);
 
             $.post("../Proje/SurecKaydet", surec, function (cevap) {
                 if (cevap === "başarılı") {

@@ -97,7 +97,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="surec"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public JsonResult KullanicilariGetir()
@@ -125,11 +125,12 @@ namespace MEZBELE.Controllers
             var kullanicilar = (from k in db.Kullanici
                                 where k.ID != kullaniciKimligi
                                 select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).ToList();
+
             return Json(kullanicilar);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="kpr"></param>
         /// <returns></returns>
@@ -142,14 +143,12 @@ namespace MEZBELE.Controllers
             {
                 db.KullaniciProjeRol.Add(kpr);
                 db.SaveChanges();
-                var kullanici = (from k in db.Kullanici
-                                 where k.ID == 2
-                                 select k.KullaniciProjeRol).ToList();
                 return Json("Kayıt başarılı.");
             }
             else
-                return Json("Kullanıcı zaten bu rol ile bu projede kayıtlı.");
-
+            {
+                return Json("Kayıt başarısız.");
+            }
         }
     }
 }
