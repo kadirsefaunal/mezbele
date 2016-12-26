@@ -184,17 +184,35 @@ namespace MEZBELE.Controllers
             try
             {
                 int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+
                 eklenecekIs.OlusturanID = kullaniciKimligi;
                 eklenecekIs.OlusturmaTarihi = DateTime.Now;
+
                 db.Is.Add(eklenecekIs);
+
+                var surec = (from s in db.Surec
+                             where s.ID == eklenecekIs.SurecID
+                             select s).SingleOrDefault();
+
+                float tamamlanan = 0, bolum = 0;
+
+                foreach (var item in surec.Is)
+                {
+                    if (item.AktifMi == false)
+                        tamamlanan++;                        
+                }
+
+                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                surec.TamamlanmaOrani = Convert.ToInt32(bolum);
+
                 db.SaveChanges();
+
                 return Json("Başarılı.");
             }
             catch (Exception)
             {
                 return Json("Başarısız!");
             }
-
         }
 
         /// <summary>
