@@ -132,6 +132,42 @@ namespace MEZBELE.Controllers
         /// <summary>
         ///
         /// </summary>
+        /// <param name="projeKimligi"></param>
+        /// <param name="surecKimligi"></param>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
+        public ActionResult IsDetay(int projeKimligi, int surecKimligi, int isKimligi)
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                vm = new VM();
+
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+
+                vm.Kullanici = (from k in db.Kullanici
+                                where k.ID == kullaniciKimligi
+                                select k).SingleOrDefault();
+
+                vm.AktifSurec = (from s in db.Surec
+                                 where s.ID == surecKimligi
+                                 select s).SingleOrDefault();
+
+                vm.AktifProje = (from p in db.Proje
+                                 where p.ID == projeKimligi
+                                 select p).SingleOrDefault();
+
+                vm.AktifIs = (from i in db.Is
+                              where i.ID == isKimligi
+                              select i).SingleOrDefault();
+
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="surec"></param>
         /// <returns></returns>
         public JsonResult SurecKaydet(Surec surec)

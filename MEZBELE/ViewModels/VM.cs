@@ -21,20 +21,24 @@ namespace MEZBELE.ViewModels
         /// </summary>
         public Proje AktifProje { get; set; }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Kullanici Yonetici { get; set; }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public List<Kullanici> Calisanlar { get; set; }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public List<Rol> Roller { get; set; }
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public Surec AktifSurec { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public Is AktifIs { get; set; }
     }
 }

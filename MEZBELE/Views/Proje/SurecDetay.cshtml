@@ -36,6 +36,9 @@
                             <span class="badge red white-text">@DateTime.Parse(Model.AktifSurec.BitisTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
+                            <span class="badge deep-red white-text">@Model.AktifSurec.Proje.ProjeAdi</span>
+                        </div>
+                        <div class="row">
                             <span class="badge orange white-text">@Model.AktifSurec.Surec1.Count Alt Süreç</span>
                         </div>
                         <div class="row">
@@ -110,7 +113,7 @@
                                             @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
                                         </div>
                                         <div class="col s3 push-s1">
-                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
+                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
                                         </div>
                                     </div>
                                 </li>
@@ -132,13 +135,13 @@
                                                     @switch (altSurec.Oncelik)
                                                     {
                                                         case 1:
-                                                            <span class="badge green white-text" style="width:2rem">D</span>
+                                                            <span class="badge green white-text" style="width:2rem;">D</span>
                                                             break;
                                                         case 2:
-                                                            <span class="badge orange white-text" style="width:2rem">O</span>
+                                                            <span class="badge orange white-text" style="width:2rem;">O</span>
                                                             break;
                                                         case 3:
-                                                            <span class="badge red white-text" style="width:2rem">Y</span>
+                                                            <span class="badge red white-text" style="width:2rem;">Y</span>
                                                             break;
                                                         default:
                                                             break;
@@ -179,7 +182,7 @@
                                                             @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
                                                         </div>
                                                         <div class="col s3">
-                                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
+                                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
                                                         </div>
                                                     </div>
                                                 </li>
