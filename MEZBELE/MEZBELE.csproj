@@ -258,6 +258,7 @@
     <Content Include="Views\App\ProjeEkle.cshtml" />
     <Content Include="Views\Proje\Detay.cshtml" />
     <Content Include="Views\Proje\SurecEkle.cshtml" />
+    <Content Include="Views\Proje\SurecDetay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

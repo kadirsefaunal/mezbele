@@ -99,6 +99,26 @@ namespace MEZBELE.Controllers
         /// <summary>
         ///
         /// </summary>
+        /// <param name="surecKimligi"></param>
+        /// <returns></returns>
+        public ActionResult SurecDetay(int surecKimligi)
+        {
+            if (Request.Cookies["KullaniciKimligi"] != null)
+            {
+                vm = new VM();
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                vm.Kullanici = (from k in db.Kullanici
+                                where k.ID == kullaniciKimligi
+                                select k).SingleOrDefault();
+
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Landing");
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="surec"></param>
         /// <returns></returns>
         public JsonResult SurecKaydet(Surec surec)
