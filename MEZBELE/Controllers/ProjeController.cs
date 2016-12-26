@@ -350,6 +350,11 @@ namespace MEZBELE.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="surec"></param>
+        /// <returns></returns>
         public JsonResult SurecGuncelle(Surec surec)
         {
             try
@@ -364,6 +369,62 @@ namespace MEZBELE.Controllers
 
                 db.SaveChanges();
 
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
+
+        public JsonResult ProjeSil(int projeKimligi)
+        {
+            try
+            {
+                var kprList = (from k in db.KullaniciProjeRol
+                               where k.ProjeID == projeKimligi
+                               select k).ToList();
+
+                foreach (var kpr in kprList)
+                {
+                    db.KullaniciProjeRol.Remove(kpr);
+                }
+
+                var ikListesi = (from ik in db.IsKullanici
+                                 where ik.Is.Surec.ProjeID == projeKimligi
+                                 select ik).ToList();
+
+                foreach (var ik in ikListesi)
+                {
+                    db.IsKullanici.Remove(ik);
+                }
+
+                var isListesi = (from i in db.Is
+                                 where i.Surec.ProjeID == projeKimligi
+                                 select i).ToList();
+
+                foreach (var i in isListesi)
+                {
+                    db.Is.Remove(i);
+                }
+
+                var surecListesi = (from s in db.Surec
+                                    where s.ProjeID == projeKimligi
+                                    select s).ToList();
+
+                foreach (var surec in surecListesi)
+                {
+                    db.Surec.Remove(surec);
+                }
+
+                var proje = (from p in db.Proje
+                             where p.ID == projeKimligi
+                             select p).SingleOrDefault();
+
+                db.Proje.Remove(proje);
+
+                db.SaveChanges();
+                
                 return Json("Başarılı.");
             }
             catch (Exception)

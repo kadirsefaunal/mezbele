@@ -20,6 +20,7 @@
                             @Model.AktifProje.Aciklama
                         </p>
                         <a class="waves-effect waves-light btn" href="#ProjeBilgGüncelle" onclick="ProjeKimlikGetir(@Model.AktifProje.ID)">Bilgileri Güncelle</a>
+                        <a class="waves-effect waves-light red btn" href="#ProjeSil" onclick="ProjeKimlikGetir(@Model.AktifProje.ID)">Projeyi Sil</a>
                     </div>
                     <div class="col s2">
                         @foreach (var calisan in Model.Calisanlar)
@@ -382,6 +383,19 @@ else
 </div>
 <!-- Proje Bilgileri Güncelleme Modal Sonu -->
 
+<!-- Proje Sil Modal -->
+<div id="ProjeSil" class="modal">
+    <div class="modal-content">
+        <p>@Model.AktifProje.ProjeAdi adlı projeyi silmek istediğinizden emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="ProjeyiSil()">Sil</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Vazgeç</a>
+    </div>
+</div>
+<!-- Proje Sil Modal Sonu -->
+
+
 <script type="text/javascript">
     var s = 0;
     function KullaniciGetir() {
@@ -481,5 +495,21 @@ else
                 }
             });
         }
+    }
+
+    function ProjeyiSil() {
+        var projeKimligi = {
+            projeKimligi: projeKimlik
+        };
+
+        console.log(projeKimligi);
+        $.post("/Proje/ProjeSil", projeKimligi, function (cevap) {
+            if(cevap == "Başarılı."){
+                Materialize.toast('Proje başarıyla silindi.', 3000, 'green rounded');
+                window.location("../App/Index");
+            } else {
+                Materialize.toast('Proje silinirken hata!', 3000, 'red rounded');
+            }
+        });
     }
 </script>
