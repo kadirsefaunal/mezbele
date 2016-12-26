@@ -124,25 +124,25 @@
                                             @switch (surec.Oncelik)
                                             {
                                             case 1:
-                                            <span class="badge green white-text" style="width:100%">Düşük</span>
+                                            <span class="badge green white-text" style="width:2rem">D</span>
                                             break;
                                             case 2:
-                                            <span class="badge orange white-text" style="width:100%">Orta</span>
+                                            <span class="badge orange white-text" style="width:2rem">O</span>
                                             break;
                                             case 3:
-                                            <span class="badge red white-text" style="width:100%">Yüksek</span>
+                                            <span class="badge red white-text" style="width:2rem">Y</span>
                                             break;
                                             default:
                                             break;
                                             }
                                         </div>
-                                        <div class="col s1 offset-s1">
+                                        <div class="col s1">
                                             @DateTime.Parse(surec.BaslamaTarihi.Value.ToString()).ToShortDateString()
                                         </div>
                                         <div class="col s1">
                                             @DateTime.Parse(surec.BitisTarihi.Value.ToString()).ToShortDateString()
                                         </div>
-                                        <div class="col s3 offset-s1">
+                                        <div class="col s3">
                                             <div class="progress valign pink lighten-3">
                                                 <div class="determinate pink darken-1" style="width:@surec.TamamlanmaOrani%"></div>
                                             </div>
@@ -165,19 +165,25 @@
                                                         @switch (altSurec.Oncelik)
                                                         {
                                                         case 1:
-                                                        <span class="badge green white-text" style="width:100%">Düşük</span>
+                                                        <span class="badge green white-text" style="width:2rem">D</span>
                                                         break;
                                                         case 2:
-                                                        <span class="badge orange white-text" style="width:100%">Orta</span>
+                                                        <span class="badge orange white-text" style="width:2rem">O</span>
                                                         break;
                                                         case 3:
-                                                        <span class="badge red white-text" style="width:100%">Yüksek</span>
+                                                        <span class="badge red white-text" style="width:2rem">Y</span>
                                                         break;
                                                         default:
                                                         break;
                                                         }
                                                     </div>
-                                                    <div class="col s3 offset-s1">
+                                                    <div class="col s1">
+                                                        @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
+                                                    </div>
+                                                    <div class="col s1">
+                                                        @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                    </div>
+                                                    <div class="col s3">
                                                         <div class="progress valign pink lighten-3">
                                                             <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
                                                         </div>
@@ -240,7 +246,6 @@
                                 </div>
                             </li>
                             }
-
                             }
 
                         </ul>
@@ -328,4 +333,3 @@
         });
     }
 </script>
-
