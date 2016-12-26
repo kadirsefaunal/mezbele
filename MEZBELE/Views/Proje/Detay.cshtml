@@ -150,15 +150,15 @@
                                     </div>
                                 </div>
                                 <div class="collapsible-body white">
-                                    <p>@surec.Aciklama</p>
-
-                                    <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
+                                    <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion" style="margin-top: 0px;">
                                         @foreach (var altSurec in surec.Surec1)
                                         {
                                         <li>
                                             <div class="collapsible-header">
+                                                
                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                    <div class="col s4">
+                                                    <i class="material-icons">trending_flat</i>
+                                                    <div class="col s4" style="margin-left: -1rem;">
                                                         @altSurec.SurecAdi
                                                     </div>
                                                     <div class="col s1">
