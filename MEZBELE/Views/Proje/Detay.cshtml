@@ -122,6 +122,8 @@
                                             </ul>
                                             }
 
+                                            @if (surec.Surec1.Count > 0)
+                                            {
                                             <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
                                                 @foreach (var altSurec in surec.Surec1)
                                                 {
@@ -163,13 +165,17 @@
                                                     </div>
 
                                                     <div class="collapsible-body">
+                                                        @if (altSurec.Is.Count > 0)
+                                                        {
                                                         <ul class="collection">
+                                                            @foreach (var ai in altSurec.Is)
+                                                            {
                                                             <li class="collection-item">
                                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
                                                                     <div class="col s5">
                                                                         <p class="flow-text">
-                                                                            <b>#ID</b>
-                                                                            İş Adı
+                                                                            <b>#@ai.ID</b>
+                                                                            @ai.IsAdi
                                                                         </p>
                                                                     </div>
                                                                     <div class="col s3 pull-s1">
@@ -182,11 +188,14 @@
                                                                     </div>
                                                                 </div>
                                                             </li>
+                                                            }
                                                         </ul>
+                                                        }
                                                     </div>
                                                 </li>
                                                 }
                                             </ul>
+                                            }
                                             <div class="row" style="padding:0.5rem 2rem;">
                                                 @Html.ActionLink("Alt Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green left" })
                                                 @Html.ActionLink("Detayları Göster", "SurecDetay", "Proje", new { surecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
@@ -209,6 +218,18 @@
         </div>
     </div>
 }
+else
+{
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel teal">
+            <span class="white-text">
+                @Model.AktifProje.ProjeAdi isimli projede henüz bir süreç yok.
+            </span>
+        </div>
+    </div>
+</div>
+}
 
 <!-- Çalışanlar Nav -->
 <div class="row">
@@ -225,55 +246,55 @@
 <!-- Çalışanlar -->
 @if (Model.Calisanlar.Count > 1)
 {
-    <div class="row">
-        <div class="col s12">
-            <div class="card blue-grey darken-1">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s12">
-                            <ul class="collection">
-                                @foreach (var calisan in Model.Calisanlar)
-                                {
-                                    if (calisan.ID != Model.AktifProje.YoneticiID)
-                                    {
-                                    <li class="collection-item avatar">
-                                        <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi" class="circle responsive-img">
-                                        <span class="title">@calisan.Adi @calisan.Soyadi</span>
-                                        <p>
-                                            @foreach (var rol in calisan.KullaniciProjeRol)
-                                            {
-                                                if (rol.ProjeID == Model.AktifProje.ID)
-                                                {
-                                                <span>@rol.Rol.RolAdi </span>
-                                                }
-                                            }
-                                            rollerine sahip.
-                                            <br>
-                                            @{int isSayisi = 0; }
-                                            @foreach (var i in calisan.IsKullanici)
-                                            {
-                                                if (i.Is.Surec.ProjeID == Model.AktifProje.ID)
-                                                {
-                                                    isSayisi++;
-                                                }
-                                            }
-                                            @isSayisi işe atanmış.
-                                        </p>
-
-                                        @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+<div class="row">
+    <div class="col s12">
+        <div class="card blue-grey darken-1">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12">
+                        <ul class="collection">
+                            @foreach (var calisan in Model.Calisanlar)
+                        {
+                            if (calisan.ID != Model.AktifProje.YoneticiID)
+                            {
+                        <li class="collection-item avatar">
+                            <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi" class="circle responsive-img">
+                            <span class="title">@calisan.Adi @calisan.Soyadi</span>
+                            <p>
+                                @foreach (var rol in calisan.KullaniciProjeRol)
                                         {
-                                        <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
+                                            if (rol.ProjeID == Model.AktifProje.ID)
+                                            {
+                                    <span>@rol.Rol.RolAdi </span>
+                                            }
                                         }
-                                    </li>
-                                                    }
-                                                }
-                            </ul>
-                        </div>
+                                rollerine sahip.
+                                <br>
+                                @{int isSayisi = 0; }
+                                @foreach (var i in calisan.IsKullanici)
+                                        {
+                                            if (i.Is.Surec.ProjeID == Model.AktifProje.ID)
+                                            {
+                                                isSayisi++;
+                                            }
+                                        }
+                                @isSayisi işe atanmış.
+                            </p>
+
+                            @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                                {
+                                <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
+                                }
+                        </li>
+                            }
+                        }
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 }
 else
 {
@@ -286,7 +307,6 @@ else
         </div>
     </div>
 </div>
-
 }
 <!-- Rol Atama Modal -->
 <div id="RolAta" class="modal">
