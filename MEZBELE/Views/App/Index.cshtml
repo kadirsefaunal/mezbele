@@ -48,6 +48,18 @@
     </ul>
     </div>
 }
+else
+{
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel teal">
+            <span class="white-text">
+                Henüz size atanmış bir iş yok.
+            </span>
+        </div>
+    </div>
+</div>
+}
 
 <!-- Projeler -->
 @if (Model.Kullanici.KullaniciProjeRol.Count > 0)
@@ -82,5 +94,17 @@
         </li>
         }
     </ul>
+</div>
+}
+else
+{
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel teal">
+            <span class="white-text">
+                Henüz dahil olduğunuz bir proje yok.
+            </span>
+        </div>
+    </div>
 </div>
 }
