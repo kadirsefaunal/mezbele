@@ -110,6 +110,9 @@ namespace MEZBELE.Controllers
                 vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciKimligi
                                 select k).SingleOrDefault();
+                vm.AktifSurec = (from s in db.Surec
+                                 where s.ID == surecKimligi
+                                 select s).SingleOrDefault();
 
                 return View(vm);
             }
