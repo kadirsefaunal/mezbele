@@ -211,7 +211,6 @@
                     @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
                     {
                     @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = -1 }, new { @class = "waves-effect waves-green btn green right" })
-                    <a class="waves-effect waves-light btn" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
                     }
                 </div>
             </div>
@@ -225,6 +224,11 @@ else
         <div class="card-panel teal">
             <span class="white-text">
                 @Model.AktifProje.ProjeAdi isimli projede henüz bir süreç yok.
+                <br />
+                @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                {
+                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = -1 }, new { @class = "waves-effect waves-green btn green right" })
+                }
             </span>
         </div>
     </div>
@@ -254,43 +258,47 @@ else
                     <div class="col s12">
                         <ul class="collection">
                             @foreach (var calisan in Model.Calisanlar)
-                        {
-                            if (calisan.ID != Model.AktifProje.YoneticiID)
                             {
-                        <li class="collection-item avatar">
-                            <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi" class="circle responsive-img">
-                            <span class="title">@calisan.Adi @calisan.Soyadi</span>
-                            <p>
-                                @foreach (var rol in calisan.KullaniciProjeRol)
+                                if (calisan.ID != Model.AktifProje.YoneticiID)
+                                {
+                                <li class="collection-item avatar">
+                                    <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi" class="circle responsive-img">
+                                    <span class="title">@calisan.Adi @calisan.Soyadi</span>
+                                    <p>
+                                        @foreach (var rol in calisan.KullaniciProjeRol)
                                         {
                                             if (rol.ProjeID == Model.AktifProje.ID)
                                             {
-                                    <span>@rol.Rol.RolAdi </span>
+                                            <span>@rol.Rol.RolAdi </span>
                                             }
                                         }
-                                rollerine sahip.
-                                <br>
-                                @{int isSayisi = 0; }
-                                @foreach (var i in calisan.IsKullanici)
+                                        rollerine sahip.
+                                        <br>
+                                        @{int isSayisi = 0; }
+                                        @foreach (var i in calisan.IsKullanici)
                                         {
                                             if (i.Is.Surec.ProjeID == Model.AktifProje.ID)
                                             {
                                                 isSayisi++;
                                             }
                                         }
-                                @isSayisi işe atanmış.
-                            </p>
+                                        @isSayisi işe atanmış.
+                                    </p>
 
-                            @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
-                                {
-                                <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
+                                    @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                                    {
+                                    <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
+                                    }
+                                </li>
                                 }
-                        </li>
                             }
-                        }
                         </ul>
                     </div>
                 </div>
+                @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                {
+                <a class="waves-effect waves-light btn" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
+                }
             </div>
         </div>
     </div>
@@ -303,6 +311,11 @@ else
         <div class="card-panel teal">
             <span class="white-text">
                 @Model.AktifProje.ProjeAdi isimli projede yönetici dışında çalışan bir kullanıcı yok.
+                <br />
+                @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                {
+                <a class="waves-effect waves-light btn right" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
+                }
             </span>
         </div>
     </div>
