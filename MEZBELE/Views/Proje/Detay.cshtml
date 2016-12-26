@@ -45,224 +45,170 @@
 </div>
 
 <!-- Süreçler -->
-<div class="row">
-    <div class="col s12">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="expandable">
-                            <li>
-                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>Süreç Adı</div>
-                                <div class="collapsible-body white">
-                                    <ul class="collection">
-                                        <li class="collection-item">
+@if (Model.AktifProje.Surec.Count > 0)
+{
+    <div class="row">
+        <div class="col s12">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <div class="row">
+                        <div class="col s12">
+                            <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="expandable">
+                                @foreach (var surec in Model.AktifProje.Surec)
+                                {
+                                    if (surec.AnaSurecID == null)
+                                    {
+                                    <li>
+                                        <div class="collapsible-header blue-grey darken-3 white-text">
                                             <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                <div class="col s5">
-                                                    <p class="flow-text">
-                                                        <b>#ID</b> >
-                                                        İş Adı
-                                                    </p>
-                                                </div>
-                                                <div class="col s3 pull-s1">
-                                                    <span class="badge red white-text">Atanan çalışan avatarları</span>
-                                                </div>
                                                 <div class="col s4">
-                                                    <div class="progress valign pink lighten-3">
-                                                        <div class="determinate pink darken-1" style="width: 70%"></div>
-                                                    </div>
+                                                    @surec.SurecAdi
                                                 </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Alt Süreç Adı</div>
-                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                                        </li>
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">place</i>Alt Süreç Adı 2</div>
-                                            <div class="collapsible-body">
-                                                <ul class="collection">
-                                                    <li class="collection-item">
-                                                        <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                            <div class="col s5">
-                                                                <p class="flow-text">
-                                                                    <b>#ID</b> >
-                                                                    İş Adı
-                                                                </p>
-                                                            </div>
-                                                            <div class="col s3 pull-s1">
-                                                                <span class="badge red white-text">Atanan çalışan avatarları</span>
-                                                            </div>
-                                                            <div class="col s4">
-                                                                <div class="progress valign pink lighten-3">
-                                                                    <div class="determinate pink darken-1" style="width: 70%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="collapsible-header"><i class="material-icons">whatshot</i>Alt Süreç Adı 3</div>
-                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            @foreach (var surec in Model.AktifProje.Surec)
-                            {
-                            if (surec.AnaSurecID == null)
-                            {
-                            <li>
-                                <div class="collapsible-header">
-                                    <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                        <div class="col s4">
-                                            @surec.SurecAdi
-                                        </div>
-                                        <div class="col s1">
-                                            @switch (surec.Oncelik)
-                                            {
-                                            case 1:
-                                            <span class="badge green white-text" style="width:2rem">D</span>
-                                            break;
-                                            case 2:
-                                            <span class="badge orange white-text" style="width:2rem">O</span>
-                                            break;
-                                            case 3:
-                                            <span class="badge red white-text" style="width:2rem">Y</span>
-                                            break;
-                                            default:
-                                            break;
-                                            }
-                                        </div>
-                                        <div class="col s1">
-                                            @DateTime.Parse(surec.BaslamaTarihi.Value.ToString()).ToShortDateString()
-                                        </div>
-                                        <div class="col s1">
-                                            @DateTime.Parse(surec.BitisTarihi.Value.ToString()).ToShortDateString()
-                                        </div>
-                                        <div class="col s3">
-                                            <div class="progress valign pink lighten-3">
-                                                <div class="determinate pink darken-1" style="width:@surec.TamamlanmaOrani%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapsible-body white">
-                                    <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion" style="margin-top: 0px;">
-                                        @foreach (var altSurec in surec.Surec1)
-                                        {
-                                        <li>
-                                            <div class="collapsible-header">
-                                                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                    <i class="material-icons">trending_flat</i>
-                                                    <div class="col s4" style="margin-left: -1rem;">
-                                                        @altSurec.SurecAdi
-                                                    </div>
-                                                    <div class="col s1">
-                                                        @switch (altSurec.Oncelik)
-                                                        {
+                                                <div class="col s1">
+                                                    @switch (surec.Oncelik)
+                                                    {
                                                         case 1:
                                                         <span class="badge green white-text" style="width:2rem">D</span>
-                                                        break;
+                                                            break;
                                                         case 2:
                                                         <span class="badge orange white-text" style="width:2rem">O</span>
-                                                        break;
+                                                            break;
                                                         case 3:
                                                         <span class="badge red white-text" style="width:2rem">Y</span>
-                                                        break;
+                                                            break;
                                                         default:
-                                                        break;
-                                                        }
-                                                    </div>
-                                                    <div class="col s1">
-                                                        @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
-                                                    </div>
-                                                    <div class="col s1">
-                                                        @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
-                                                    </div>
-                                                    <div class="col s3">
-                                                        <div class="progress valign pink lighten-3">
-                                                            <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
-                                                        </div>
+                                                            break;
+                                                    }
+                                                </div>
+                                                <div class="col s1">
+                                                    @DateTime.Parse(surec.BaslamaTarihi.Value.ToString()).ToShortDateString()
+                                                </div>
+                                                <div class="col s1">
+                                                    @DateTime.Parse(surec.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                </div>
+                                                <div class="col s3">
+                                                    <div class="progress valign pink lighten-3">
+                                                        <div class="determinate pink darken-1" style="width:@surec.TamamlanmaOrani%"></div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="collapsible-body white">
 
-                                            <div class="collapsible-body">
-                                                <ul class="collection">
-                                                    <li class="collection-item">
+                                            @if (surec.Is.Count > 0)
+                                            {
+                                            <ul class="collection">
+                                                @foreach (var i in surec.Is)
+                                                {
+                                                <li class="collection-item">
+                                                    <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                        <div class="col s5">
+                                                            <p class="flow-text">
+                                                                <b>#@i.ID</b>
+                                                                @i.IsAdi
+                                                            </p>
+                                                        </div>
+                                                        <div class="col s3 pull-s1">
+                                                            <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                        </div>
+                                                        <div class="col s4">
+                                                            <div class="progress valign pink lighten-3">
+                                                                <div class="determinate pink darken-1" style="width: 30%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                }
+                                            </ul>
+                                            }
+
+                                            <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
+                                                @foreach (var altSurec in surec.Surec1)
+                                                {
+                                                <li>
+                                                    <div class="collapsible-header blue-grey darken-1 white-text">
                                                         <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                            <div class="col s5">
-                                                                <p class="flow-text">
-                                                                    <b>#ID</b>
-                                                                    İş Adı
-                                                                </p>
+                                                            <i class="material-icons">trending_flat</i>
+                                                            <div class="col s4" style="margin-left: -1rem;">
+                                                                @altSurec.SurecAdi
                                                             </div>
-                                                            <div class="col s3 pull-s1">
-                                                                <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                            <div class="col s1">
+                                                                @switch (altSurec.Oncelik)
+                                                                {
+                                                                    case 1:
+                                                                    <span class="badge green white-text" style="width:2rem">D</span>
+                                                                        break;
+                                                                    case 2:
+                                                                    <span class="badge orange white-text" style="width:2rem">O</span>
+                                                                        break;
+                                                                    case 3:
+                                                                    <span class="badge red white-text" style="width:2rem">Y</span>
+                                                                        break;
+                                                                    default:
+                                                                        break;
+                                                                }
                                                             </div>
-                                                            <div class="col s4">
+                                                            <div class="col s1">
+                                                                @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
+                                                            </div>
+                                                            <div class="col s1">
+                                                                @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                            </div>
+                                                            <div class="col s3">
                                                                 <div class="progress valign pink lighten-3">
-                                                                    <div class="determinate pink darken-1" style="width: 70%"></div>
+                                                                    <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        }
-                                    </ul>
-                                    <br />
-                                    @Html.ActionLink("Detayları Göster", "SurecDetay", "Proje", new { surecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
-                                    @Html.ActionLink("Alt Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
-                                    <br /><br />
-                                    @foreach (var i in surec.Is)
-                                    {
-                                    <ul class="collection">
-                                        <li class="collection-item">
-                                            <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                <div class="col s5">
-                                                    <p class="flow-text">
-                                                        <b>@i.ID</b>
-                                                        @i.IsAdi
-                                                    </p>
-                                                </div>
-                                                <div class="col s3 pull-s1">
-                                                    <span class="badge red white-text">Atanan çalışan avatarları</span>
-                                                </div>
-                                                <div class="col s4">
-                                                    <div class="progress valign pink lighten-3">
-                                                        <div class="determinate pink darken-1" style="width: 30%"></div>
                                                     </div>
-                                                </div>
+
+                                                    <div class="collapsible-body">
+                                                        <ul class="collection">
+                                                            <li class="collection-item">
+                                                                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                                    <div class="col s5">
+                                                                        <p class="flow-text">
+                                                                            <b>#ID</b>
+                                                                            İş Adı
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col s3 pull-s1">
+                                                                        <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                                    </div>
+                                                                    <div class="col s4">
+                                                                        <div class="progress valign pink lighten-3">
+                                                                            <div class="determinate pink darken-1" style="width: 70%"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                }
+                                            </ul>
+                                            <div class="row" style="padding:0.5rem 2rem;">
+                                                @Html.ActionLink("Alt Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green left" })
+                                                @Html.ActionLink("Detayları Göster", "SurecDetay", "Proje", new { surecKimligi = surec.ID }, new { @class = "waves-effect waves-green btn green right" })
                                             </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </li>
                                     }
+                                }
 
-                                </div>
-                            </li>
-                            }
-                            }
-
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
+                    @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                    {
+                    @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = -1 }, new { @class = "waves-effect waves-green btn green right" })
+                    <a class="waves-effect waves-light btn" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
+                    }
                 </div>
-                @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
-                {
-                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = -1 }, new { @class = "waves-effect waves-green btn green right" })
-                <a class="waves-effect waves-light btn" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
-                }
             </div>
         </div>
     </div>
-</div>
+}
 
 <!-- Çalışanlar Nav -->
 <div class="row">
@@ -319,8 +265,8 @@
                                         <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
                                         }
                                     </li>
-                                    }
-                                }
+                                                    }
+                                                }
                             </ul>
                         </div>
                     </div>
@@ -342,7 +288,6 @@ else
 </div>
 
 }
-
 <!-- Rol Atama Modal -->
 <div id="RolAta" class="modal">
     <div class="modal-content">
