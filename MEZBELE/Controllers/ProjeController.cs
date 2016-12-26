@@ -68,7 +68,7 @@ namespace MEZBELE.Controllers
         /// </summary>
         /// <param name="projeKimligi"></param>
         /// <returns></returns>
-        public ActionResult SurecEkle(int projeKimligi)
+        public ActionResult SurecEkle(int projeKimligi, int anaSurecKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
@@ -80,6 +80,12 @@ namespace MEZBELE.Controllers
                 vm.AktifProje = (from p in db.Proje
                                  where p.ID == projeKimligi
                                  select p).SingleOrDefault();
+                if (anaSurecKimligi != -1)
+                {
+                    vm.AktifSurec = (from s in db.Surec
+                                     where s.ID == anaSurecKimligi
+                                     select s).SingleOrDefault();
+                }
 
                 if (vm.Kullanici.ID == vm.AktifProje.YoneticiID)
                     return View(vm);

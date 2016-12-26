@@ -32,5 +32,9 @@ namespace MEZBELE.ViewModels
         /// 
         /// </summary>
         public List<Rol> Roller { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Surec AktifSurec { get; set; }
     }
 }
