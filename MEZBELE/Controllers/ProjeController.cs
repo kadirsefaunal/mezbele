@@ -173,5 +173,37 @@ namespace MEZBELE.Controllers
                 return Json("Kayıt başarısız.");
             }
         }
+
+        public JsonResult ProjedenCikar(int projeKimligi, int kullaniciKimligi)
+        {
+            try
+            {
+                var kprListe = (from kpr in db.KullaniciProjeRol
+                                where kpr.KullaniciID == kullaniciKimligi && kpr.ProjeID == projeKimligi
+                                select kpr).ToList();
+
+                var kAtananIsler = (from ik in db.IsKullanici
+                                    where ik.KullaniciID == kullaniciKimligi && ik.Is.Surec.ProjeID == projeKimligi
+                                    select ik).ToList();
+
+                foreach (var kpr in kprListe)
+                {
+                    db.KullaniciProjeRol.Remove(kpr);
+                }
+
+                foreach (var kai in kAtananIsler)
+                {
+                    db.IsKullanici.Remove(kai);
+                }
+
+                db.SaveChanges();
+
+                return Json("Çıkarma başarılı.");
+            }
+            catch
+            {
+                return Json("Çıkarma başarısız.");
+            }
+        }
     }
 }

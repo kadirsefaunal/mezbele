@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 <br />
+<!-- Proje Bilgileri -->
 <div class="row">
     <div class="col s12">
         <div class="card blue-grey darken-1">
@@ -22,7 +23,7 @@
                     <div class="col s2">
                         @foreach (var calisan in Model.Calisanlar)
                         {
-                            <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi Avatar" class="tooltipped circle responsive-img" style="width:32px; height:32px;" data-position="top" data-delay="50" data-tooltip="@calisan.Adi @calisan.Soyadi" />
+                        <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi Avatar" class="tooltipped circle responsive-img" style="width:32px; height:32px;" data-position="top" data-delay="50" data-tooltip="@calisan.Adi @calisan.Soyadi" />
                         }
                     </div>
                 </div>
@@ -31,6 +32,7 @@
     </div>
 </div>
 
+<!-- Süreç Nav -->
 <div class="row">
     <nav>
         <div class="nav-wrapper blue-grey darken-1">
@@ -42,6 +44,7 @@
     </nav>
 </div>
 
+<!-- Süreçler -->
 <div class="row">
     <div class="col s12">
         <div class="card blue-grey darken-1">
@@ -155,7 +158,6 @@
                                         {
                                         <li>
                                             <div class="collapsible-header">
-                                                
                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
                                                     <i class="material-icons">trending_flat</i>
                                                     <div class="col s4" style="margin-left: -1rem;">
@@ -262,6 +264,85 @@
     </div>
 </div>
 
+<!-- Çalışanlar Nav -->
+<div class="row">
+    <nav>
+        <div class="nav-wrapper blue-grey darken-1">
+            <div class="col s12">
+                <a href="#!" class="breadcrumb">@Model.AktifProje.ProjeAdi</a>
+                <a href="#!" class="breadcrumb">Çalışanlar</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Çalışanlar -->
+@if (Model.Calisanlar.Count > 1)
+{
+    <div class="row">
+        <div class="col s12">
+            <div class="card blue-grey darken-1">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s12">
+                            <ul class="collection">
+                                @foreach (var calisan in Model.Calisanlar)
+                                {
+                                    if (calisan.ID != Model.AktifProje.YoneticiID)
+                                    {
+                                    <li class="collection-item avatar">
+                                        <img src="@calisan.Avatar" alt="@calisan.Adi @calisan.Soyadi" class="circle responsive-img">
+                                        <span class="title">@calisan.Adi @calisan.Soyadi</span>
+                                        <p>
+                                            @foreach (var rol in calisan.KullaniciProjeRol)
+                                            {
+                                                if (rol.ProjeID == Model.AktifProje.ID)
+                                                {
+                                                <span>@rol.Rol.RolAdi </span>
+                                                }
+                                            }
+                                            rollerine sahip.
+                                            <br>
+                                            @{int isSayisi = 0; }
+                                            @foreach (var i in calisan.IsKullanici)
+                                            {
+                                                if (i.Is.Surec.ProjeID == Model.AktifProje.ID)
+                                                {
+                                                    isSayisi++;
+                                                }
+                                            }
+                                            @isSayisi işe atanmış.
+                                        </p>
+
+                                        @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                                        {
+                                        <a href="#!" class="secondary-content" onclick="KullaniciyiCikar(@calisan.ID)"><i class="medium red-text material-icons">delete_forever</i></a>
+                                        }
+                                    </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel teal">
+            <span class="white-text">
+                @Model.AktifProje.ProjeAdi isimli projede yönetici dışında çalışan bir kullanıcı yok.
+            </span>
+        </div>
+    </div>
+</div>
+
+}
+
 <!-- Rol Atama Modal -->
 <div id="RolAta" class="modal">
     <div class="modal-content">
@@ -288,7 +369,6 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn btn-flat" onclick="KullaniciyiAta(@Model.AktifProje.ID)">Ata</a>
     </div>
 </div>
-
 
 
 <script type="text/javascript">
@@ -333,4 +413,21 @@
             }
         });
     }
+
+    function KullaniciyiCikar(kk) {
+        var veri = {
+            projeKimligi: @Model.AktifProje.ID,
+            kullaniciKimligi: kk
+        }
+
+        $.post("/Proje/ProjedenCikar", veri, function (cevap) {
+            if (cevap === "Çıkarma başarılı.") {
+                Materialize.toast('Kullanıcı projeden başarıyla çıkarıldı!', 3000, 'green rounded');
+                window.location = "/Proje/Detay?projeKimligi=" + @Model.AktifProje.ID;
+            } else {
+                Materialize.toast('Kullanıcı projeden çıkarılamadı.', 3000, 'red rounded');
+            }
+        });
+    }
+
 </script>
