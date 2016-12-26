@@ -6,6 +6,9 @@
 <div class="row">
     <a href="/App/ProjeEkle" class="waves-effect waves-light btn green right"><i class="material-icons left">playlist_add</i>Proje Ekle</a>
 </div>
+
+@if (Model.Projeler.Count > 0)
+{
 <div class="row">
     <ul class="collection with-header">
         <li class="collection-header avatar teal-text">
@@ -36,6 +39,10 @@
         }
     </ul>
 </div>
+}
+
+
+
 <script>
     function projeyeGit(kimlik) {
         var veri = {
