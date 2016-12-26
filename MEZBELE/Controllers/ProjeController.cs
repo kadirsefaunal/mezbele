@@ -73,13 +73,17 @@ namespace MEZBELE.Controllers
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 vm = new VM();
+
                 int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+
                 vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciKimligi
                                 select k).SingleOrDefault();
+
                 vm.AktifProje = (from p in db.Proje
                                  where p.ID == projeKimligi
                                  select p).SingleOrDefault();
+
                 if (anaSurecKimligi != -1)
                 {
                     vm.AktifSurec = (from s in db.Surec
@@ -91,7 +95,6 @@ namespace MEZBELE.Controllers
                     return View(vm);
                 else
                     return RedirectToAction("Index", "App");
-
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -101,18 +104,25 @@ namespace MEZBELE.Controllers
         /// </summary>
         /// <param name="surecKimligi"></param>
         /// <returns></returns>
-        public ActionResult SurecDetay(int surecKimligi)
+        public ActionResult SurecDetay(int projeKimligi, int surecKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
                 vm = new VM();
+
                 int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+
                 vm.Kullanici = (from k in db.Kullanici
                                 where k.ID == kullaniciKimligi
                                 select k).SingleOrDefault();
+
                 vm.AktifSurec = (from s in db.Surec
                                  where s.ID == surecKimligi
                                  select s).SingleOrDefault();
+
+                vm.AktifProje = (from p in db.Proje
+                                 where p.ID == projeKimligi
+                                 select p).SingleOrDefault();
 
                 return View(vm);
             }
@@ -173,9 +183,9 @@ namespace MEZBELE.Controllers
                 return Json("Kayıt başarısız.");
             }
         }
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="eklenecekIs"></param>
         /// <returns></returns>
@@ -199,7 +209,7 @@ namespace MEZBELE.Controllers
                 foreach (var item in surec.Is)
                 {
                     if (item.AktifMi == false)
-                        tamamlanan++;                        
+                        tamamlanan++;
                 }
 
                 bolum = (tamamlanan / surec.Is.Count()) * 100;
@@ -216,7 +226,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="surecKimligi"></param>
         /// <param name="eklenecekNot"></param>
@@ -239,7 +249,7 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="projeKimligi"></param>
         /// <param name="kullaniciKimligi"></param>
