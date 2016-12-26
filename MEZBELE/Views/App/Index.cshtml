@@ -7,6 +7,8 @@
 <br />
 
 <!-- İşler -->
+@if (Model.Kullanici.Is.Count > 0)
+{
 <div class="row">
     <ul class="collection with-header">
         <li class="collection-header avatar deep-orange-text text-darken-3">
@@ -18,19 +20,22 @@
                 </h5>
             </div>
         </li>
+
+        @foreach (var i in Model.Kullanici.Is)
+        {
         <li class="collection-item">
             <div class="row valign-wrapper" style="margin-bottom:-1rem;">
                 <div class="col s5">
                     <p class="flow-text">
-                        <b>#ID</b> >
-                        İş Adı
+                        <b>#@i.ID</b>
+                        @i.IsAdi
                     </p>
                     <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
-                        Proje Adı
+                        @i.Surec.Proje.ProjeAdi
                     </p>
                 </div>
                 <div class="col s3 pull-s1">
-                    <span class="badge red white-text">Süreç Adı</span>
+                    <span class="badge red white-text">@i.Surec.SurecAdi</span>
                 </div>
                 <div class="col s4">
                     <div class="progress valign pink lighten-3">
@@ -39,10 +44,14 @@
                 </div>
             </div>
         </li>
+        }
     </ul>
-</div>
+    </div>
+}
 
 <!-- Projeler -->
+@if (Model.Kullanici.KullaniciProjeRol.Count > 0)
+{
 <div class="row">
     <ul class="collection with-header">
         <li class="collection-header avatar teal-text">
@@ -56,22 +65,22 @@
         </li>
         @foreach (var proje in Model.Projeler)
         {
-            <li class="collection-item">
-                <p class="flow-text">
-                    @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
-                </p>
+        <li class="collection-item">
+            <p class="flow-text">
+                @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
+            </p>
 
-                @foreach (var rol in proje.KullaniciProjeRol)
+            @foreach (var rol in proje.KullaniciProjeRol)
+            {
+                if (rol.KullaniciID == proje.YoneticiID)
                 {
-                    if (rol.KullaniciID == proje.YoneticiID)
-                    {
-                        <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
-                            @rol.Kullanici.Adi @rol.Kullanici.Soyadi
-                        </p>
-                    }
+                <p class="flow-text" style="margin-top:-1rem;font-size:1rem;">
+                    @rol.Kullanici.Adi @rol.Kullanici.Soyadi
+                </p>
                 }
-            </li>
+            }
+        </li>
         }
     </ul>
 </div>
-
+}
