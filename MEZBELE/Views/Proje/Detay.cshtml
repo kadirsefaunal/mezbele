@@ -102,19 +102,20 @@
                                                 {
                                                 <li class="collection-item">
                                                     <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                        <div class="col s5">
+                                                        <div class="col s7">
                                                             <p class="flow-text">
-                                                                <b>#@i.ID</b>
+                                                                <b>#@i.ID </b>
                                                                 @i.IsAdi
                                                             </p>
                                                         </div>
-                                                        <div class="col s3 pull-s1">
-                                                            <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                        <div class="col s1">
+                                                            @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
                                                         </div>
-                                                        <div class="col s4">
-                                                            <div class="progress valign pink lighten-3">
-                                                                <div class="determinate pink darken-1" style="width: 30%"></div>
-                                                            </div>
+                                                        <div class="col s1">
+                                                            @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                        </div>
+                                                        <div class="col s3">
+                                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
                                                         </div>
                                                     </div>
                                                 </li>
@@ -172,19 +173,20 @@
                                                             {
                                                             <li class="collection-item">
                                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                                    <div class="col s5">
+                                                                    <div class="col s7">
                                                                         <p class="flow-text">
-                                                                            <b>#@ai.ID</b>
+                                                                            <b>#@ai.ID </b>
                                                                             @ai.IsAdi
                                                                         </p>
                                                                     </div>
-                                                                    <div class="col s3 pull-s1">
-                                                                        <span class="badge red white-text">Atanan çalışan avatarları</span>
+                                                                    <div class="col s1">
+                                                                        @DateTime.Parse(ai.OlusturmaTarihi.Value.ToString()).ToShortDateString()
                                                                     </div>
-                                                                    <div class="col s4">
-                                                                        <div class="progress valign pink lighten-3">
-                                                                            <div class="determinate pink darken-1" style="width: 70%"></div>
-                                                                        </div>
+                                                                    <div class="col s1">
+                                                                        @DateTime.Parse(ai.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                                    </div>
+                                                                    <div class="col s3">
+                                                                        @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { isKimligi = ai.ID }, new { @class = "waves-effect waves-green btn green right" })
                                                                     </div>
                                                                 </div>
                                                             </li>
