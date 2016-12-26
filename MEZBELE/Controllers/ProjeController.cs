@@ -321,5 +321,28 @@ namespace MEZBELE.Controllers
                 return Json("Çıkarma başarısız.");
             }
         }
+
+        public JsonResult ProjeGuncelle(Proje proje)
+        {
+            try
+            {
+                var guncellenecekProje = (from p in db.Proje
+                                          where p.ID == proje.ID
+                                          select p).SingleOrDefault();
+
+                guncellenecekProje.ProjeAdi = proje.ProjeAdi;
+                guncellenecekProje.Butce = proje.Butce;
+                guncellenecekProje.Aciklama = proje.Aciklama;
+                guncellenecekProje.DegistirmeTarihi = DateTime.Now;
+
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
     }
 }
