@@ -502,7 +502,6 @@ else
             projeKimligi: projeKimlik
         };
 
-        console.log(projeKimligi);
         $.post("/Proje/ProjeSil", projeKimligi, function (cevap) {
             if(cevap == "Başarılı."){
                 Materialize.toast('Proje başarıyla silindi.', 3000, 'green rounded');

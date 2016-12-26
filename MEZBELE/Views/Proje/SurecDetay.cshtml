@@ -28,6 +28,7 @@
                             @Model.AktifSurec.Aciklama
                         </p>
                         <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
+                        <a class="waves-effect waves-light red btn" href="#SurecSil" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Süreci Sil</a>
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -269,6 +270,17 @@
     </div>
 </div>
 <!-- Süreç Bilgilerini Güncelleme Modalı Bitiş -->
+<!-- Süreç Sil Modal -->
+<div id="SurecSil" class="modal">
+    <div class="modal-content">
+        <p>@Model.AktifSurec.SurecAdi adlı süreci silmek istediğinizden emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="SureciSil()">Sil</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Vazgeç</a>
+    </div>
+</div>
+<!-- Süreç Sil Modal Bitiş -->
 
 
 <script type="text/javascript">
@@ -384,5 +396,20 @@
                 }
             });
         }
+    }
+
+    function SureciSil() {
+        var surecKimlik = {
+            surecKimlik: surecKimligi
+        }
+
+        $.post("/Proje/SureciSil", surecKimlik, function (cevap) {
+            if(cevap == "Başarılı."){
+                Materialize.toast('Süreç başarıyla silindi.', 3000, 'green rounded');
+                window.location("../App/Index");
+            } else {
+                Materialize.toast('Süreç silinirken hata!', 3000, 'red rounded');
+            }
+        });
     }
 </script>

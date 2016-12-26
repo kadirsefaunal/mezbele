@@ -377,6 +377,11 @@ namespace MEZBELE.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projeKimligi"></param>
+        /// <returns></returns>
         public JsonResult ProjeSil(int projeKimligi)
         {
             try
@@ -430,6 +435,58 @@ namespace MEZBELE.Controllers
             catch (Exception)
             {
                 return Json("Başarısız!");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="surecKimlik"></param>
+        /// <returns></returns>
+        public JsonResult SureciSil(int surecKimlik)
+        {
+            try
+            {
+                var isKullaniciListesi = (from ik in db.IsKullanici
+                                          where ik.Is.SurecID == surecKimlik
+                                          select ik).ToList();
+
+                foreach (var isK in isKullaniciListesi)
+                {
+                    db.IsKullanici.Remove(isK);
+                }
+
+                var isListesi = (from i in db.Is
+                                 where i.SurecID == surecKimlik
+                                 select i).ToList();
+
+                foreach (var i in isListesi)
+                {
+                    db.Is.Remove(i);
+                }
+
+                var altSurecler = (from s in db.Surec
+                                   where s.AnaSurecID == surecKimlik
+                                   select s).ToList();
+
+                foreach (var altSurec in altSurecler)
+                {
+                    db.Surec.Remove(altSurec);
+                }
+
+                var surec = (from s in db.Surec
+                             where s.ID == surecKimlik
+                             select s).SingleOrDefault();
+
+                db.Surec.Remove(surec);
+
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız.");
             }
         }
     }
