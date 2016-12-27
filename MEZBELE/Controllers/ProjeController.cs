@@ -160,6 +160,10 @@ namespace MEZBELE.Controllers
                               where i.ID == isKimligi
                               select i).SingleOrDefault();
 
+                vm.AtananKisi = (from a in db.IsKullanici
+                                 where a.IsID == isKimligi
+                                 select a).SingleOrDefault();
+
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");
@@ -490,6 +494,11 @@ namespace MEZBELE.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
         public JsonResult IsiSil(int isKimligi)
         {
             try
@@ -534,6 +543,89 @@ namespace MEZBELE.Controllers
             {
                 return Json("Başarısız!");
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="kullaniciKimligi"></param>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
+        public JsonResult IsiAta(IsKullanici ik)
+        {
+            try
+            {
+                db.IsKullanici.Add(ik);
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
+        public JsonResult IsiAl(int isKimligi)
+        {
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+
+                IsKullanici ik = new IsKullanici()
+                {
+                    IsID = isKimligi,
+                    KullaniciID = kullaniciKimligi
+                };
+
+                db.IsKullanici.Add(ik);
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
+        public JsonResult IsiBirak(int isKimligi)
+        {
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                var isKullanici = (from ik in db.IsKullanici
+                                   where ik.IsID == isKimligi && ik.KullaniciID == kullaniciKimligi
+                                   select ik).SingleOrDefault();
+
+                db.IsKullanici.Remove(isKullanici);
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
+
+        public JsonResult ProjedekiKullanicilariGetir(int projeKimligi)
+        {
+            var kullanicilar = (from kpr in db.KullaniciProjeRol join k in db.Kullanici on kpr.KullaniciID equals k.ID
+                                where kpr.ProjeID == projeKimligi
+                                select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).Distinct().ToList();
+
+            return Json(kullanicilar);
         }
     }
 }

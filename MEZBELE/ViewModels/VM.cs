@@ -40,5 +40,9 @@ namespace MEZBELE.ViewModels
         ///
         /// </summary>
         public Is AktifIs { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IsKullanici AtananKisi { get; set; }
     }
 }

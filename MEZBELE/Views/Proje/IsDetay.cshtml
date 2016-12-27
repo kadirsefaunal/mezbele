@@ -11,7 +11,7 @@
                 <a href="/Proje/Detay?projeKimligi=@Model.AktifProje.ID" class="breadcrumb">@Model.AktifSurec.Proje.ProjeAdi </a>
                 @if (Model.AktifSurec.Surec2 != null)
                 {
-                <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.Surec2.ID" class="breadcrumb">@Model.AktifSurec.Surec2.SurecAdi</a>
+                    <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.Surec2.ID" class="breadcrumb">@Model.AktifSurec.Surec2.SurecAdi</a>
                 }
                 <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.ID" class="breadcrumb">@Model.AktifSurec.SurecAdi</a>
                 <a href="#!" class="breadcrumb">@Model.AktifIs.IsAdi</a>
@@ -33,6 +33,21 @@
                             @Model.AktifIs.Aciklama
                         </p>
                         <a class="waves-effect waves-light red btn" href="#İsiSil" onclick="isKimligiGetir(@Model.AktifIs.ID)">İşi Sil</a>
+                        @if (Model.AtananKisi == null)
+                        {
+                            <a class="waves-effect waves-light orange btn" href="#!" onclick="isiAl(@Model.AktifIs.ID)">İşi Al</a>
+                            if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                            {
+                                <a class="waves-effect waves-light deep-orange btn" href="#isAtaModal" onclick="isKimligiGetir(@Model.AktifIs.ID); KullaniciGetir(@Model.AktifProje.ID);">İşi Ata</a>
+                            }
+                        }
+                        else
+                        {
+                            if (Model.Kullanici.ID == Model.AtananKisi.KullaniciID)
+                            {
+                                <a class="waves-effect waves-light orange btn" href="#!" onclick="isiBirak(@Model.AktifIs.ID)">İşi Bırak</a>
+                            }
+                        }
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -47,9 +62,9 @@
 
                         @if (Model.AktifSurec.Surec2 != null)
                         {
-                        <div class="row">
-                            <span class="badge indigo darken-2 white-text">@Model.AktifSurec.Surec2.SurecAdi</span>
-                        </div>
+                            <div class="row">
+                                <span class="badge indigo darken-2 white-text">@Model.AktifSurec.Surec2.SurecAdi</span>
+                            </div>
                         }
                         <div class="row">
                             <span class="badge orange white-text">@Model.AktifIs.Surec.SurecAdi</span>
@@ -75,12 +90,44 @@
     </div>
 </div>
 <!-- İş Silme Modal Sonu -->
-
+<!-- İş Atama Modal -->
+<div id="isAtaModal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="text" name="Kullanıcı" id="kullanicilar" class="autocomplete">
+                <label for="kullanicilar">Kullanıcı Bul</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="isiAta()">Ata</a>
+    </div>
+</div>
+<!-- İş Atama Modal Sonu -->
 
 <script>
     var isKimlik;
     function isKimligiGetir(isK) {
         isKimlik = isK;
+    }
+
+    function KullaniciGetir(projeKimlik) {
+        var projeKimligi = projeKimlik;
+        $.post("../Proje/ProjedekiKullanicilariGetir", { projeKimligi }, function (kullanicilar) {
+            var veri = {};
+
+            kullanicilar.forEach(function (k) {
+                var anahtar = "#" + k.ID + " " + k.Adi + " " + k.Soyadi;
+                var deger = k.Avatar;
+
+                veri[anahtar] = deger;
+            });
+
+            $('input.autocomplete').autocomplete({
+                data: veri
+            });
+        });
     }
 
     function isiSil() {
@@ -94,6 +141,47 @@
                 window.location("/App/Index");
             } else {
                 Materialize.toast('İş silinirken hata!', 3000, 'red rounded');
+            }
+        });
+    }
+
+    function isiAl(isKimligi) {
+        var isKimligi = isKimligi;
+        $.post("/Proje/IsiAl", { isKimligi}, function (cevap) {
+            if (cevap == "Başarılı.") {
+                Materialize.toast('İşi üzerine aldın.', 3000, 'green rounded');
+                window.location.reload(true);
+            } else {
+                Materialize.toast('İşi üstüne alamadın!', 3000, 'red rounded');
+            }
+        });
+    }
+
+    function isiBirak(isKimligi) {
+        var isKimligi = isKimligi;
+        $.post("/Proje/IsiBirak", { isKimligi}, function (cevap) {
+            if (cevap == "Başarılı.") {
+                Materialize.toast('İşi bıraktın.', 3000, 'green rounded');
+                window.location.reload(true);
+            } else {
+                Materialize.toast('İşi bırakamadın!', 3000, 'red rounded');
+            }
+        });
+    }
+
+    function isiAta() {
+        var idMetin = $('input.autocomplete').val();
+        var kID = idMetin.substring(idMetin.indexOf("#") + 1, idMetin.indexOf(" "));
+        var ik = {
+            IsID: isKimlik,
+            KullaniciID: kID
+        };
+        $.post("/Proje/IsiAta", ik, function (cevap) {
+            if (cevap == "Başarılı.") {
+                Materialize.toast('İşi atama başarılı.', 3000, 'green rounded');
+                window.location.reload(true);
+            } else {
+                Materialize.toast('İşi atama başarısız!', 3000, 'red rounded');
             }
         });
     }
