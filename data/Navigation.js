@@ -6,6 +6,25 @@ sharpDox.navigationData = [
 			
 
 	{
+		id: 'BirimTesti',
+		text: 'BirimTesti',
+		icon: './assets/icons/namespace_public.png',
+		a_attr: { href : '#/namespace/BirimTesti' },
+		children: [
+			
+ 
+
+		{
+			id: 'BirimTesti.BirimTesti',
+			text: 'BirimTesti',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/BirimTesti.BirimTesti/index' }
+        },	
+
+
+		]
+	},
+	{
 		id: 'MEZBELE',
 		text: 'MEZBELE',
 		icon: './assets/icons/namespace_public.png',
@@ -49,25 +68,6 @@ sharpDox.navigationData = [
 		]
 	},
 	{
-		id: 'MEZBELE.Context',
-		text: 'MEZBELE.Context',
-		icon: './assets/icons/namespace_public.png',
-		a_attr: { href : '#/namespace/MEZBELE.Context' },
-		children: [
-			
- 
-
-		{
-			id: 'MEZBELE.Context.MezbeleContext',
-			text: 'MezbeleContext',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Context.MezbeleContext/index' }
-        },	
-
-
-		]
-	},
-	{
 		id: 'MEZBELE.Controllers',
 		text: 'MEZBELE.Controllers',
 		icon: './assets/icons/namespace_public.png',
@@ -83,77 +83,41 @@ sharpDox.navigationData = [
 			a_attr: { href : '#/type/MEZBELE.Controllers.AppController/index' }
         },	
 		{
-			id: 'MEZBELE.Controllers.CrewsController',
-			text: 'CrewsController',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.CrewsController/index' }
-        },	
-		{
 			id: 'MEZBELE.Controllers.LandingController',
 			text: 'LandingController',
 			icon: './assets/icons/class_public.png',
 			a_attr: { href : '#/type/MEZBELE.Controllers.LandingController/index' }
         },	
 		{
-			id: 'MEZBELE.Controllers.LoginControlAttribute',
-			text: 'LoginControlAttribute',
+			id: 'MEZBELE.Controllers.ProjeController',
+			text: 'ProjeController',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.LoginControlAttribute/index' }
+			a_attr: { href : '#/type/MEZBELE.Controllers.ProjeController/index' }
         },	
 		{
-			id: 'MEZBELE.Controllers.ProfileController',
-			text: 'ProfileController',
+			id: 'MEZBELE.Controllers.RaporController',
+			text: 'RaporController',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.ProfileController/index' }
-        },	
-		{
-			id: 'MEZBELE.Controllers.ProjectsController',
-			text: 'ProjectsController',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.ProjectsController/index' }
-        },	
-		{
-			id: 'MEZBELE.Controllers.UsersController',
-			text: 'UsersController',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Controllers.UsersController/index' }
+			a_attr: { href : '#/type/MEZBELE.Controllers.RaporController/index' }
         },	
 
 
 		]
 	},
 	{
-		id: 'MEZBELE.Migrations',
-		text: 'MEZBELE.Migrations',
+		id: 'MEZBELE.HtmlHelpers',
+		text: 'MEZBELE.HtmlHelpers',
 		icon: './assets/icons/namespace_public.png',
-		a_attr: { href : '#/namespace/MEZBELE.Migrations' },
+		a_attr: { href : '#/namespace/MEZBELE.HtmlHelpers' },
 		children: [
 			
  
 
 		{
-			id: 'MEZBELE.Migrations.Configuration',
-			text: 'Configuration',
-			icon: './assets/icons/class_ınternal.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.Configuration/index' }
-        },	
-		{
-			id: 'MEZBELE.Migrations.EditedCrews',
-			text: 'EditedCrews',
+			id: 'MEZBELE.HtmlHelpers.HtmlHelperExtensions',
+			text: 'HtmlHelperExtensions',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.EditedCrews/index' }
-        },	
-		{
-			id: 'MEZBELE.Migrations.EditedIssues',
-			text: 'EditedIssues',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.EditedIssues/index' }
-        },	
-		{
-			id: 'MEZBELE.Migrations.init',
-			text: 'init',
-			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Migrations.init/index' }
+			a_attr: { href : '#/type/MEZBELE.HtmlHelpers.HtmlHelperExtensions/index' }
         },	
 
 
@@ -169,34 +133,77 @@ sharpDox.navigationData = [
  
 
 		{
-			id: 'MEZBELE.Models.Comments',
-			text: 'Comments',
+			id: 'MEZBELE.Models.Is',
+			text: 'Is',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Models.Comments/index' }
+			a_attr: { href : '#/type/MEZBELE.Models.Is/index' }
         },	
 		{
-			id: 'MEZBELE.Models.Crews',
-			text: 'Crews',
+			id: 'MEZBELE.Models.IsKullanici',
+			text: 'IsKullanici',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Models.Crews/index' }
+			a_attr: { href : '#/type/MEZBELE.Models.IsKullanici/index' }
         },	
 		{
-			id: 'MEZBELE.Models.Issues',
-			text: 'Issues',
+			id: 'MEZBELE.Models.Kullanici',
+			text: 'Kullanici',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Models.Issues/index' }
+			a_attr: { href : '#/type/MEZBELE.Models.Kullanici/index' }
         },	
 		{
-			id: 'MEZBELE.Models.Projects',
-			text: 'Projects',
+			id: 'MEZBELE.Models.KullaniciProjeRol',
+			text: 'KullaniciProjeRol',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Models.Projects/index' }
+			a_attr: { href : '#/type/MEZBELE.Models.KullaniciProjeRol/index' }
         },	
 		{
-			id: 'MEZBELE.Models.Users',
-			text: 'Users',
+			id: 'MEZBELE.Models.Log',
+			text: 'Log',
 			icon: './assets/icons/class_public.png',
-			a_attr: { href : '#/type/MEZBELE.Models.Users/index' }
+			a_attr: { href : '#/type/MEZBELE.Models.Log/index' }
+        },	
+		{
+			id: 'MEZBELE.Models.MezbeleDBEntities',
+			text: 'MezbeleDBEntities',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Models.MezbeleDBEntities/index' }
+        },	
+		{
+			id: 'MEZBELE.Models.Proje',
+			text: 'Proje',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Models.Proje/index' }
+        },	
+		{
+			id: 'MEZBELE.Models.Rol',
+			text: 'Rol',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Models.Rol/index' }
+        },	
+		{
+			id: 'MEZBELE.Models.Surec',
+			text: 'Surec',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.Models.Surec/index' }
+        },	
+
+
+		]
+	},
+	{
+		id: 'MEZBELE.ViewModels',
+		text: 'MEZBELE.ViewModels',
+		icon: './assets/icons/namespace_public.png',
+		a_attr: { href : '#/namespace/MEZBELE.ViewModels' },
+		children: [
+			
+ 
+
+		{
+			id: 'MEZBELE.ViewModels.VM',
+			text: 'VM',
+			icon: './assets/icons/class_public.png',
+			a_attr: { href : '#/type/MEZBELE.ViewModels.VM/index' }
         },	
 
 
