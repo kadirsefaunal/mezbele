@@ -443,7 +443,7 @@
         $.post("/Proje/SureciSil", surecKimlik, function (cevap) {
             if (cevap == "Başarılı.") {
                 Materialize.toast('Süreç başarıyla silindi.', 3000, 'green rounded');
-                window.location("../App/Index");
+                window.location("/Proje/Detay?projeKimligi=@Model.AktifProje.ID");
             } else {
                 Materialize.toast('Süreç silinirken hata!', 3000, 'red rounded');
             }

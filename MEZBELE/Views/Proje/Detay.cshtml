@@ -516,7 +516,7 @@ else
         $.post("/Proje/ProjeSil", projeKimligi, function (cevap) {
             if(cevap == "Başarılı."){
                 Materialize.toast('Proje başarıyla silindi.', 3000, 'green rounded');
-                window.location("../App/Index");
+                window.location("/App/Projeler");
             } else {
                 Materialize.toast('Proje silinirken hata!', 3000, 'red rounded');
             }
