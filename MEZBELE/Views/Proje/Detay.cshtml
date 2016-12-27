@@ -117,7 +117,7 @@
                                                                         @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
                                                                     </div>
                                                                     <div class="col s3">
-                                                                        @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
+                                                                        @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -188,7 +188,7 @@
                                                                                             @DateTime.Parse(ai.BitisTarihi.Value.ToString()).ToShortDateString()
                                                                                         </div>
                                                                                         <div class="col s3">
-                                                                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = ai.Surec.ProjeID, surecKimligi = ai.SurecID, isKimligi = ai.ID }, new { @class = "waves-effect waves-green btn green right" })
+                                                                                            @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = ai.Surec.ProjeID, surecKimligi = ai.SurecID, isKimligi = ai.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
                                                                                         </div>
                                                                                     </div>
                                                                                 </li>

@@ -24,11 +24,18 @@
                     <div class="col s10">
                         <span class="card-title">@Model.AktifSurec.SurecAdi - Açıklama</span>
                         <div class="divider"></div><br />
-                        <p>
-                            @Model.AktifSurec.Aciklama
-                        </p>
-                        <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
-                        <a class="waves-effect waves-light red btn" href="#SurecSil" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Süreci Sil</a>
+                        <div class="row">
+                            <div class="col s12">
+                                <p class="flow-text" style="text-align:justify;font-size:1.5rem;">
+                                    @Model.AktifSurec.Aciklama
+                                </p>
+                            </div>
+                        </div>
+                        <div class="divider"></div><br />
+                        <div class="row">
+                            <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
+                            <a class="waves-effect waves-light red btn" href="#SurecSil" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Süreci Sil</a>
+                        </div>
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -38,7 +45,7 @@
                             <span class="badge red white-text">@DateTime.Parse(Model.AktifSurec.BitisTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
-                            <span class="badge deep-red white-text">@Model.AktifSurec.Proje.ProjeAdi</span>
+                            <span class="badge indigo darken-1 white-text">@Model.AktifSurec.Proje.ProjeAdi</span>
                         </div>
                         <div class="row">
                             <span class="badge orange white-text">@Model.AktifSurec.Surec1.Count Alt Süreç</span>
@@ -115,94 +122,119 @@
                                             @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
                                         </div>
                                         <div class="col s3 push-s1">
-                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
+                                            @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
                                         </div>
                                     </div>
                                 </li>
                                 }
                             </ul>
                             }
+                            else
+                            {
+                            <div class="col s12">
+                                <div class="card-panel teal">
+                                    <span class="white-text">
+                                        Bu süreç henüz bir işe sahip değil.
+                                    </span>
+                                </div>
+                            </div>
+                            }
                         </div>
                         <div class="row">
+                            @if (Model.AktifSurec.Surec1.Count > 0)
+                            {
                             <ul class="collapsible blue-grey-text text-darken-1" data-collapsible="accordion">
                                 @foreach (var altSurec in Model.AktifSurec.Surec1)
                                 {
-                                    <li>
-                                        <div class="collapsible-header">
-                                            <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                <div class="col s4">
-                                                    @altSurec.SurecAdi
-                                                </div>
-                                                <div class="col s1">
-                                                    @switch (altSurec.Oncelik)
-                                                    {
-                                                        case 1:
-                                                            <span class="badge green white-text" style="width:2rem;">D</span>
-                                                            break;
-                                                        case 2:
-                                                            <span class="badge orange white-text" style="width:2rem;">O</span>
-                                                            break;
-                                                        case 3:
-                                                            <span class="badge red white-text" style="width:2rem;">Y</span>
-                                                            break;
-                                                        default:
-                                                            break;
-                                                    }
-                                                </div>
-                                                <div class="col s1">
-                                                    @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
-                                                </div>
-                                                <div class="col s1">
-                                                    @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
-                                                </div>
-                                                <div class="col s3">
-                                                    <div class="progress valign pink lighten-3">
-                                                        <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
-                                                    </div>
+                                <li>
+                                    <div class="collapsible-header">
+                                        <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                            <div class="col s4">
+                                                @altSurec.SurecAdi
+                                            </div>
+                                            <div class="col s1">
+                                                @switch (altSurec.Oncelik)
+                                                {
+                                                    case 1:
+                                                <span class="badge green white-text" style="width:2rem;">D</span>
+                                                        break;
+                                                    case 2:
+                                                <span class="badge orange white-text" style="width:2rem;">O</span>
+                                                        break;
+                                                    case 3:
+                                                <span class="badge red white-text" style="width:2rem;">Y</span>
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            </div>
+                                            <div class="col s1">
+                                                @DateTime.Parse(altSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()
+                                            </div>
+                                            <div class="col s1">
+                                                @DateTime.Parse(altSurec.BitisTarihi.Value.ToString()).ToShortDateString()
+                                            </div>
+                                            <div class="col s3">
+                                                <div class="progress valign pink lighten-3">
+                                                    <div class="determinate pink darken-1" style="width:@altSurec.TamamlanmaOrani%"></div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="collapsible-body white">
-                                            @if (altSurec.Is.Count > 0)
+                                    <div class="collapsible-body white">
+                                        @if (altSurec.Is.Count > 0)
+                                        {
+                                        <ul class="collection">
+                                            @foreach (var i in altSurec.Is)
                                             {
-                                            <ul class="collection">
-                                                @foreach (var i in altSurec.Is)
-                                                {
-                                                <li class="collection-item">
-                                                    <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                        <div class="col s7">
-                                                            <p class="flow-text">
-                                                                <b>#@i.ID </b>
-                                                                @i.IsAdi
-                                                            </p>
-                                                        </div>
-                                                        <div class="col s1">
-                                                            @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
-                                                        </div>
-                                                        <div class="col s1">
-                                                            @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
-                                                        </div>
-                                                        <div class="col s3">
-                                                            @Html.ActionLink("Detayları Göster", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn green right" })
-                                                        </div>
+                                            <li class="collection-item">
+                                                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                                                    <div class="col s7">
+                                                        <p class="flow-text">
+                                                            <b>#@i.ID </b>
+                                                            @i.IsAdi
+                                                        </p>
                                                     </div>
-                                                </li>
-                                                }
-                                                <li class="row" style="margin:1rem 0rem;padding-right:1rem;">
-                                                    <a href="#IsEkle" class="waves-effect waves-green btn green right valign" onclick="surecKimligiGetir(@altSurec.ID)">İş Ekle</a>
-                                                </li>
-                                            </ul>
+                                                    <div class="col s1">
+                                                        @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
+                                                    </div>
+                                                    <div class="col s1">
+                                                        @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
+                                                    </div>
+                                                    <div class="col s3">
+                                                        @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
+                                                    </div>
+                                                </div>
+                                            </li>
                                             }
-                                        </div>
-                                    </li>
+                                            <li class="row" style="margin:1rem 0rem;padding-right:1rem;">
+                                                <a href="#IsEkle" class="waves-effect waves-green btn green right valign" onclick="surecKimligiGetir(@altSurec.ID)">İş Ekle</a>
+                                            </li>
+                                        </ul>
+                                        }
+                                    </div>
+                                </li>
                                 }
                             </ul>
-                            @if (Model.AktifSurec.AnaSurecID == null)
-                            {
-                                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = Model.AktifSurec.ID }, new { @class = "waves-effect waves-green btn green right valign" })
                             }
-                            <a href="#IsEkle" class="waves-effect waves-green btn green right" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">İş Ekle</a>
+                            else
+                            {
+                            <div class="col s12">
+                                <div class="card-panel teal">
+                                    <span class="white-text">
+                                        Bu süreç henüz bir alt sürece sahip değil.
+                                    </span>
+                                </div>
+                            </div>
+                            }
+                            <div class="right">
+                                @if (Model.AktifSurec.AnaSurecID == null)
+                                {
+                                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = Model.AktifSurec.ID }, new { @class = "waves-effect waves-green btn green valign"})
+                                }
+                                <a href="#IsEkle" class="waves-effect waves-green btn green" onclick="surecKimligiGetir(@Model.AktifSurec.ID)" style="margin-right:1rem;">İş Ekle</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -303,7 +335,7 @@
         if (kontrol == true) {
             var eklenecekNot = $("#surecNotlari").val();
             var sk = surekKimlik;
-            $.post("/Proje/SureceNotEkle", { surecKimligi: sk, eklenecekNot: eklenecekNot}, function (cevap) {
+            $.post("/Proje/SureceNotEkle", { surecKimligi: sk, eklenecekNot: eklenecekNot }, function (cevap) {
                 if (cevap == "Başarılı.") {
                     Materialize.toast('Not başarıyla güncellendi.', 3000, 'green rounded');
                     location.reload(true);
@@ -338,8 +370,7 @@
         } else {
             $('#IsAciklama').removeClass("invalid");
         }
-        if (kontrol)
-        {
+        if (kontrol) {
             var eklenecekIs = {
                 AktifMi: true,
                 IsAdi: $("#IsAdi").val(),
@@ -404,7 +435,7 @@
         }
 
         $.post("/Proje/SureciSil", surecKimlik, function (cevap) {
-            if(cevap == "Başarılı."){
+            if (cevap == "Başarılı.") {
                 Materialize.toast('Süreç başarıyla silindi.', 3000, 'green rounded');
                 window.location("../App/Index");
             } else {
