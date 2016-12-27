@@ -1,0 +1,201 @@
+﻿@model MEZBELE.ViewModels.VM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rapor - MEZBELE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Proje Adı</th>
+                        <th>Açıklama</th>
+                        <th>Bütçe</th>
+                        <th>Yönetici</th>
+                        <th>Müşteri</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>@Model.AktifProje.ProjeAdi</td>
+                        <td>@Model.AktifProje.Aciklama</td>
+                        <td>@Model.AktifProje.Butce ₺</td>
+                        <td>@Model.Yonetici.Adi @Model.Yonetici.Soyadi</td>
+                        <td>@Model.Musteri.Adi @Model.Musteri.Soyadi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <ul class="collection">
+                @foreach (var s in Model.AktifProje.Surec)
+                {
+                    if (s.AnaSurecID == null)
+                    {
+                    <li class="collection-item">
+                        <div class="row">
+                            <table class="striped responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>Süreç Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Öncelik</th>
+                                        <th>Başlangıç Tarihi</th>
+                                        <th>Bitiş Tarihi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@s.SurecAdi</td>
+                                        <td>@s.Aciklama</td>
+                                        @switch (s.Oncelik)
+                                        {
+                                            case 1:
+                                            <td>Düşük</td>
+                                                break;
+                                            case 2:
+                                            <td>Orta</td>
+                                                break;
+                                            case 3:
+                                            <td>Yüksek</td>
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        <td>@DateTime.Parse(s.BaslamaTarihi.Value.ToString()).ToShortDateString()</td>
+                                        <td>@DateTime.Parse(s.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        @if (s.Is.Count > 0)
+                        {
+                        <div class="divider"></div>
+                        <div class="row">
+                            <table class="bordered responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>İş Adı</th>
+                                        <th>Açıklama</th>
+                                        <th>Oluşturma Tarihi</th>
+                                        <th>Bitiş Tarihi</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var i in s.Is)
+                                    {
+                                    <tr>
+                                        <td>@i.IsAdi</td>
+                                        <td>@i.Aciklama</td>
+                                        <td>@DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()</td>
+                                        <td>@DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        }
+                        @if (s.Surec1.Count > 0)
+                        {
+                        <div class="divider"></div>
+                        <div class="row">
+                            <ul class="collection">
+                                @foreach (var ss in s.Surec1)
+                                {
+                                <li class="collection-item">
+                                    <div class="row">
+                                        <table class="striped responsive-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Alt Süreç Adı</th>
+                                                    <th>Açıklama</th>
+                                                    <th>Öncelik</th>
+                                                    <th>Başlangıç Tarihi</th>
+                                                    <th>Bitiş Tarihi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@ss.SurecAdi</td>
+                                                    <td>@ss.Aciklama</td>
+                                                    @switch (s.Oncelik)
+                                                    {
+                                                        case 1:
+                                                        <td>Düşük</td>
+                                                            break;
+                                                        case 2:
+                                                        <td>Orta</td>
+                                                            break;
+                                                        case 3:
+                                                        <td>Yüksek</td>
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
+                                                    <td>@DateTime.Parse(ss.BaslamaTarihi.Value.ToString()).ToShortDateString()</td>
+                                                    <td>@DateTime.Parse(ss.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    @if (ss.Is.Count > 0)
+                                    {
+                                    <div class="divider"></div>
+                                    <div class="row">
+                                        <table class="bordered responsive-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>İş Adı</th>
+                                                    <th>Açıklama</th>
+                                                    <th>Oluşturma Tarihi</th>
+                                                    <th>Bitiş Tarihi</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach (var i in ss.Is)
+                                                {
+                                                <tr>
+                                                    <td>@i.IsAdi</td>
+                                                    <td>@i.Aciklama</td>
+                                                    <td>@DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()</td>
+                                                    <td>@DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    }
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                        }
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.print();
+        });
+    </script>
+</body>
+</html>

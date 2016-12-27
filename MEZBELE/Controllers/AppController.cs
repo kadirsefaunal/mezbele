@@ -155,7 +155,7 @@ namespace MEZBELE.Controllers
         ///
         /// </summary>
         /// <returns></returns>
-        public JsonResult YoneticiAdaylariniGetir(string a)
+        public JsonResult YoneticiAdaylariniGetir()
         {
             var kullanicilar = (from k in db.Kullanici
                                 select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).ToList();

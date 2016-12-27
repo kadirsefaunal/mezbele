@@ -619,6 +619,11 @@ namespace MEZBELE.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projeKimligi"></param>
+        /// <returns></returns>
         public JsonResult ProjedekiKullanicilariGetir(int projeKimligi)
         {
             var kullanicilar = (from kpr in db.KullaniciProjeRol join k in db.Kullanici on kpr.KullaniciID equals k.ID

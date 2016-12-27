@@ -44,5 +44,9 @@ namespace MEZBELE.ViewModels
         /// 
         /// </summary>
         public IsKullanici AtananKisi { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Kullanici Musteri { get; set; }
     }
 }
