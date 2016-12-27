@@ -16,12 +16,16 @@ namespace MEZBELE.Controllers
         /// Veritabanı.
         /// </summary>
         private readonly MezbeleDBEntities db = new MezbeleDBEntities();
+
+        /// <summary>
+        /// ViewModel.
+        /// </summary>
         private VM vm;
 
         /// <summary>
-        ///
+        /// Uygulama anasayfası.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Sistemde kullanıcı var ise anasayfaya yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult Index()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -43,10 +47,10 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Kullanıcı profil sayfası.
         /// </summary>
-        /// <returns></returns>
-        public new ActionResult Profil()
+        /// <returns>Sistemde kullanıcı varsa profil sayfasına yoksa karşılama sayfasına yönlendirir</returns>
+        public ActionResult Profil()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
             {
@@ -61,9 +65,9 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Projeler sayfası.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Sistemde kullanıcı varsa projeler sayfasına yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult Projeler()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -82,9 +86,9 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// ProjeEkle sayfası.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Sistemde kullanıcı varsa proje ekleme sayfasına yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult ProjeEkle()
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -100,11 +104,10 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Projeyi sisteme kaydeder.
         /// </summary>
-        /// <param name="proje"></param>
-        /// <param name="yonetici"></param>
-        /// <returns></returns>
+        /// <param name="proje">Kaydedilecek proje.</param>
+        /// <returns>Proje kaydetme durumunu döndürür</returns>
         public JsonResult ProjeKaydet(Proje proje)
         {
             try
@@ -155,9 +158,9 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Proje yönetici adaylarını getirir.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Yönetici adaylarını döndürür</returns>
         public JsonResult YoneticiAdaylariniGetir()
         {
             var kullanicilar = (from k in db.Kullanici
@@ -166,52 +169,58 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Kullanıcı bilgilerini günceller.
         /// </summary>
-        /// <param name="isim"></param>
-        /// <param name="soyisim"></param>
-        /// <param name="eposta"></param>
-        /// <param name="parola"></param>
-        /// <param name="webLink"></param>
-        /// <param name="konum"></param>
-        /// <param name="bolge"></param>
-        /// <param name="avatarLink"></param>
-        /// <returns></returns>
+        /// <param name="isim">Yeni kullanıcı ismi</param>
+        /// <param name="soyisim">Yeni kullanıcı soyismi</param>
+        /// <param name="eposta">Yeni kullanıcı epostası</param>
+        /// <param name="parola">Yeni kullanıcı parolası</param>
+        /// <param name="webLink">Yeni kullanıcı web bağlantısı</param>
+        /// <param name="avatarLink">Yeni kullanıcı resim bağlantısı</param>
+        /// <returns>Güncelleme durumunu döndürür</returns>
         public JsonResult UpdateUserInfo(string isim, string soyisim, string eposta,
-                                         string parola, string webLink, string konum,
-                                         string bolge, string avatarLink)
+                                         string parola, string webLink, string avatarLink)
         {
-            if (Request.Cookies["KullaniciKimligi"] != null)
+            try
             {
-                int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                var kullanici = (from k in db.Kullanici where k.ID == kullaniciID select k).SingleOrDefault();
-
-                if (kullanici != null)
+                if (Request.Cookies["KullaniciKimligi"] != null)
                 {
-                    kullanici.Adi = isim;
-                    kullanici.Soyadi = soyisim;
-                    kullanici.EMail = eposta;
-                    kullanici.Parola = parola;
-                    kullanici.WebAdresi = webLink;
-                    kullanici.Avatar = avatarLink;
+                    int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
+                    var kullanici = (from k in db.Kullanici where k.ID == kullaniciID select k).SingleOrDefault();
 
-                    var girdi = db.Entry(kullanici);
+                    if (kullanici != null)
+                    {
+                        kullanici.Adi = isim;
+                        kullanici.Soyadi = soyisim;
+                        kullanici.EMail = eposta;
+                        kullanici.Parola = parola;
+                        kullanici.WebAdresi = webLink;
+                        kullanici.Avatar = avatarLink;
 
-                    girdi.State = EntityState.Modified;
-                    girdi.Property(k => k.KullaniciAdi).IsModified = false;
-                    girdi.Property(k => k.SonGiris).IsModified = false;
+                        var girdi = db.Entry(kullanici);
 
-                    db.SaveChanges();
+                        girdi.State = EntityState.Modified;
+                        girdi.Property(k => k.KullaniciAdi).IsModified = false;
+                        girdi.Property(k => k.SonGiris).IsModified = false;
 
-                    return Json("Güncelleme başarılı.");
+                        db.SaveChanges();
+
+                        return Json("Güncelleme başarılı.");
+                    }
+                    return Json("Güncelleme başarısız.");
                 }
-
                 return Json("Güncelleme başarısız.");
             }
-
-            return Json("Güncelleme başarısız.");
+            catch
+            {
+                return Json("Güncelleme başarısız.");
+            }
         }
 
+        /// <summary>
+        /// Standart db dispose metodu.
+        /// </summary>
+        /// <param name="disposing">Dispose durumu</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
