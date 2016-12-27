@@ -1,28 +1,30 @@
 ﻿using MEZBELE.Models;
 using MEZBELE.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MEZBELE.Controllers
 {
+    /// <summary>
+    /// Rapor sayfasının kontrolcüsü.
+    /// </summary>
     public class RaporController : Controller
     {
         /// <summary>
         /// Veritabanı.
         /// </summary>
         private readonly MezbeleDBEntities db = new MezbeleDBEntities();
+
         /// <summary>
-        ///
+        /// ViewModel.
         /// </summary>
         private VM vm;
+
         /// <summary>
-        ///
+        /// Rapor sayfası.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Raporu oluşturulacak projenin kimliği</param>
+        /// <returns>Rapor sayfasına yönlendirir</returns>
         public ActionResult Index(int projeKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
