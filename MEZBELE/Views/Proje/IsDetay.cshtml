@@ -32,6 +32,7 @@
                         <p>
                             @Model.AktifIs.Aciklama
                         </p>
+                        <a class="waves-effect waves-light red btn" href="#İsiSil" onclick="isKimligiGetir(@Model.AktifIs.ID)">İşi Sil</a>
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -62,3 +63,38 @@
         </div>
     </div>
 </div>
+
+<!-- İş Silme Modal -->
+<div id="İsiSil" class="modal">
+    <div class="modal-content">
+        <p>@Model.AktifIs.IsAdi adlı işi silmek istediğinizden emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="isiSil()">Sil</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">İptal</a>
+    </div>
+</div>
+<!-- İş Silme Modal Sonu -->
+
+
+<script>
+    var isKimlik;
+    function isKimligiGetir(isK) {
+        isKimlik = isK;
+    }
+
+    function isiSil() {
+        var isKimligi = {
+            isKimligi: isKimlik
+        };
+        console.log(isKimlik);
+        $.post("/Proje/IsiSil", isKimligi, function (cevap) {
+            if (cevap == "Başarılı.") {
+                Materialize.toast('İş başarıyla silindi.', 3000, 'green rounded');
+                window.location("/App/Index");
+            } else {
+                Materialize.toast('İş silinirken hata!', 3000, 'red rounded');
+            }
+        });
+    }
+</script>

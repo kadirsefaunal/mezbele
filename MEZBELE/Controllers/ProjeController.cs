@@ -489,5 +489,51 @@ namespace MEZBELE.Controllers
                 return Json("Başarısız.");
             }
         }
+
+        public JsonResult IsiSil(int isKimligi)
+        {
+            try
+            {
+                var surec = (from i in db.Is
+                             where i.ID == isKimligi
+                             select i.Surec).SingleOrDefault();
+
+                var isKullanici = (from ik in db.IsKullanici
+                                   where ik.IsID == isKimligi
+                                   select ik).ToList();
+
+                foreach (var ik in isKullanici)
+                {
+                    db.IsKullanici.Remove(ik);
+                }
+
+                var silinecekIs = (from i in db.Is
+                                   where i.ID == isKimligi
+                                   select i).SingleOrDefault();
+
+                db.Is.Remove(silinecekIs);
+
+                db.SaveChanges();
+
+                float tamamlanan = 0, bolum = 0;
+
+                foreach (var item in surec.Is)
+                {
+                    if (item.AktifMi == false)
+                        tamamlanan++;
+                }
+
+                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                surec.TamamlanmaOrani = Convert.ToInt32(bolum);
+
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
     }
 }
