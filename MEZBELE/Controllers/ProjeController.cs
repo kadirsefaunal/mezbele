@@ -632,5 +632,26 @@ namespace MEZBELE.Controllers
 
             return Json(kullanicilar);
         }
+
+        public JsonResult IsiTamamla(int isKimligi)
+        {
+            try
+            {
+                var guncellenecekIs = (from i in db.Is
+                                       where i.ID == isKimligi
+                                       select i).SingleOrDefault();
+
+                guncellenecekIs.AktifMi = false;
+                guncellenecekIs.BitisTarihi = DateTime.Now;
+
+                db.SaveChanges();
+
+                return Json("Başarılı.");
+            }
+            catch (Exception)
+            {
+                return Json("Başarısız!");
+            }
+        }
     }
 }

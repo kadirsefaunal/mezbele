@@ -46,6 +46,7 @@
                             if (Model.Kullanici.ID == Model.AtananKisi.KullaniciID)
                             {
                                 <a class="waves-effect waves-light orange btn" href="#!" onclick="isiBirak(@Model.AktifIs.ID)">İşi Bırak</a>
+                                <a class="waves-effect waves-light green btn" href="#!" onclick="isiTamamla(@Model.AktifIs.ID)">İşi Tamamla</a>
                             }
                         }
                     </div>
@@ -182,6 +183,17 @@
                 window.location.reload(true);
             } else {
                 Materialize.toast('İşi atama başarısız!', 3000, 'red rounded');
+            }
+        });
+    }
+
+    function isiTamamla(isKimlik) {
+        var isKimligi = isKimlik;
+        $.post("/Proje/IsiTamamla", { isKimligi }, function (cevap) {
+            if (cevap == "Başarılı.") {
+                Materialize.toast('İş tamamlandı.', 3000, 'green rounded');
+            } else {
+                Materialize.toast('İş tamamlama kayıt hatası!', 3000, 'red rounded');
             }
         });
     }
