@@ -626,23 +626,46 @@ namespace MEZBELE.Controllers
         /// <returns></returns>
         public JsonResult ProjedekiKullanicilariGetir(int projeKimligi)
         {
+            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
             var kullanicilar = (from kpr in db.KullaniciProjeRol join k in db.Kullanici on kpr.KullaniciID equals k.ID
-                                where kpr.ProjeID == projeKimligi
+                                where kpr.ProjeID == projeKimligi  && kpr.KullaniciID != kullaniciKimligi
                                 select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).Distinct().ToList();
 
             return Json(kullanicilar);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isKimligi"></param>
+        /// <returns></returns>
         public JsonResult IsiTamamla(int isKimligi)
         {
             try
             {
+                var surec = (from i in db.Is
+                             where i.ID == isKimligi
+                             select i.Surec).SingleOrDefault();
+
                 var guncellenecekIs = (from i in db.Is
                                        where i.ID == isKimligi
                                        select i).SingleOrDefault();
 
                 guncellenecekIs.AktifMi = false;
                 guncellenecekIs.BitisTarihi = DateTime.Now;
+
+                db.SaveChanges();
+
+                float tamamlanan = 0, bolum = 0;
+
+                foreach (var item in surec.Is)
+                {
+                    if (item.AktifMi == false)
+                        tamamlanan++;
+                }
+
+                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                surec.TamamlanmaOrani = Convert.ToInt32(bolum);
 
                 db.SaveChanges();
 

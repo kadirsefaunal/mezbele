@@ -34,6 +34,9 @@ namespace MEZBELE.Controllers
                 vm.Projeler = (from p in db.KullaniciProjeRol
                                where p.KullaniciID == kullaniciID
                                select p.Proje).Distinct().OrderByDescending(t => t.OlusturmaTarihi).ToList();
+                vm.Isler = (from ik in db.IsKullanici
+                            where ik.KullaniciID == kullaniciID && ik.Is.AktifMi == true
+                            select ik.Is).ToList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Landing");

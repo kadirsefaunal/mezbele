@@ -113,11 +113,21 @@
                                                         {
                                                             <li class="collection-item">
                                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                                    <div class="col s7">
+                                                                    <div class="col s6">
                                                                         <p class="flow-text">
                                                                             <b>#@i.ID </b>
                                                                             @i.IsAdi
                                                                         </p>
+                                                                    </div>
+                                                                    <div class="col" s1>
+                                                                        @if (i.AktifMi == true)
+	                                                                    {
+		                                                                     <span>Açık</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span>Kapalı</span>
+                                                                        }
                                                                     </div>
                                                                     <div class="col s1">
                                                                         @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
@@ -184,11 +194,21 @@
                                                                             {
                                                                                 <li class="collection-item">
                                                                                     <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                                                        <div class="col s7">
+                                                                                        <div class="col s6">
                                                                                             <p class="flow-text">
                                                                                                 <b>#@ai.ID </b>
                                                                                                 @ai.IsAdi
                                                                                             </p>
+                                                                                        </div>
+                                                                                        <div class="col" s1>
+                                                                                            @if (ai.AktifMi == true)
+                                                                                            {
+                                                                                                <span>Açık</span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span>Kapalı</span>
+                                                                                            }
                                                                                         </div>
                                                                                         <div class="col s1">
                                                                                             @DateTime.Parse(ai.OlusturmaTarihi.Value.ToString()).ToShortDateString()

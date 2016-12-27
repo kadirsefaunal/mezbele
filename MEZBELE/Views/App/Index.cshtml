@@ -7,7 +7,7 @@
 <br />
 
 <!-- İşler -->
-@if (Model.Kullanici.Is.Count > 0)
+@if (Model.Isler.Count > 0)
 {
 <div class="row">
     <ul class="collection with-header">
@@ -20,37 +20,33 @@
                 </h5>
             </div>
         </li>
-        @* DÜZENLEME GEREKLİ *@
-        @foreach (var i in Model.Kullanici.Is)
+        @foreach (var i in Model.Isler)
         {
-            if (i.AktifMi == true)
-            {
-                <li class="collection-item">
-                    <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                        <div class="col s5 l6">
-                            <p class="flow-text">
-                                <b>#@i.ID </b>
-                                @i.IsAdi <br />
-                                <small style="font-size:1rem;">
-                                    @i.Surec.Proje.ProjeAdi
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col s1 pull-s1">
-                            <span class="badge indigo darken-1 white-text">@i.Surec.SurecAdi</span>
-                        </div>
-                        <div class="col s2 l1">
-                            @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
-                        </div>
-                        <div class="col s1">
-                            @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
-                        </div>
-                        <div class="col s3">
-                            @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
-                        </div>
+            <li class="collection-item">
+                <div class="row valign-wrapper" style="margin-bottom:-1rem;">
+                    <div class="col s5 l6">
+                        <p class="flow-text">
+                            <b>#@i.ID </b>
+                            @i.IsAdi <br />
+                            <small style="font-size:1rem;">
+                                @i.Surec.Proje.ProjeAdi
+                            </small>
+                        </p>
                     </div>
-                </li>
-            }
+                    <div class="col s1 pull-s1">
+                        <span class="badge indigo darken-1 white-text">@i.Surec.SurecAdi</span>
+                    </div>
+                    <div class="col s2 l1">
+                        @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
+                    </div>
+                    <div class="col s1">
+                        @DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()
+                    </div>
+                    <div class="col s3">
+                        @Html.ActionLink("Detaylar", "IsDetay", "Proje", new { projeKimligi = i.Surec.ProjeID, surecKimligi = i.SurecID, isKimligi = i.ID }, new { @class = "waves-effect waves-green btn deep-orange darken-3 right" })
+                    </div>
+                </div>
+            </li>
         }
     </ul>
     </div>

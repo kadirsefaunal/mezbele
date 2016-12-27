@@ -48,5 +48,9 @@ namespace MEZBELE.ViewModels
         /// 
         /// </summary>
         public Kullanici Musteri { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<Is> Isler { get; set; }
     }
 }
