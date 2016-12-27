@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEZBELE", "MEZBELE\MEZBELE.csproj", "{057E7E07-CAD8-4C18-8CA7-92717EB8BD6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{71AE4081-B1E2-4CD4-93F6-A0B9B3EAE188}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirimTesti", "UnitTest\BirimTesti.csproj", "{71AE4081-B1E2-4CD4-93F6-A0B9B3EAE188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

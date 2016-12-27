@@ -3,16 +3,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MEZBELE.Controllers;
 using System.Web.Mvc;
 
-namespace UnitTest
+namespace BirimTesti
 {
     [TestClass]
-    public class UnitTest1
+    public class BirimTesti
     {
         /// <summary>
-        ///
+        /// İki kez yanlış girdi yollayarak test eder, sonuçları eşitse test başarılıdır.
         /// </summary>
         [TestMethod]
-        public void LoginTest()
+        public void GirisTesti()
         {
             LandingController lc = new LandingController();
             var a = lc.LoginControl("321", "321") as JsonResult;
@@ -21,10 +21,10 @@ namespace UnitTest
         }
 
         /// <summary>
-        ///
+        /// İki kez yanlış girdi yollayarak test eder, sonuçları eşitse test başarılıdır.
         /// </summary>
         [TestMethod]
-        public void ProjeKaydetTest()
+        public void ProjeKaydetTesti()
         {
             AppController ac = new AppController();
             var a = ac.ProjeKaydet(null) as JsonResult;
@@ -33,10 +33,10 @@ namespace UnitTest
         }
 
         /// <summary>
-        ///
+        /// İki kez yanlış girdi yollayarak test eder, sonuçları eşitse test başarılıdır.
         /// </summary>
         [TestMethod]
-        public void IsEkleTest()
+        public void IsEkleTesti()
         {
             ProjeController pc = new ProjeController();
             var a = pc.IsEkle(null) as JsonResult;
