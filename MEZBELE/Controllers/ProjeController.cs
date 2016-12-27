@@ -8,22 +8,26 @@ using System.Net;
 
 namespace MEZBELE.Controllers
 {
+    /// <summary>
+    /// Proje sisteminin kontrolcüsü.
+    /// </summary>
     public class ProjeController : Controller
     {
         /// <summary>
-        ///
+        /// Veritabanı.
         /// </summary>
         private readonly MezbeleDBEntities db = new MezbeleDBEntities();
+
         /// <summary>
-        ///
+        /// ViewModel.
         /// </summary>
         private VM vm;
 
         /// <summary>
-        ///
+        /// Proje detay sayfası.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Detayları gösterilecek projenin kimliği</param>
+        /// <returns>Sistemde kullanıcı varsa proje detay sayfasına yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult Detay(int projeKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -64,10 +68,11 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Süreç ekle sayfası.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Süreç eklenecek projenin kimliği</param>
+        /// <param name="anaSurecKimligi">Süreç alt süreç olacaksa ana sürecinin kimliği</param>
+        /// <returns>Sistemde kullanıcı varsa süreç ekleme sayfasına yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult SurecEkle(int projeKimligi, int anaSurecKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -100,10 +105,11 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Süreç detay sayfası.
         /// </summary>
-        /// <param name="surecKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Sürecin ait olduğu projenin kimliği</param>
+        /// <param name="surecKimligi">Detayları gösterilecek sürecin kimliği</param>
+        /// <returns>Sistemde kullanıcı varsa süreç detay sayfasına yoksa karşılama sayfasına yönlendirir</returns>
         public ActionResult SurecDetay(int projeKimligi, int surecKimligi)
         {
             if (Request.Cookies["KullaniciKimligi"] != null)
@@ -130,11 +136,11 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// İş detay sayfası.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <param name="surecKimligi"></param>
-        /// <param name="isKimligi"></param>
+        /// <param name="projeKimligi">İşin ait olduğu projenin kimliği</param>
+        /// <param name="surecKimligi">İşin ait olduğu sürecin kimliği</param>
+        /// <param name="isKimligi">Detayları gösterilecek işin kimliği</param>
         /// <returns></returns>
         public ActionResult IsDetay(int projeKimligi, int surecKimligi, int isKimligi)
         {
@@ -170,65 +176,86 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        ///
+        /// Süreci kaydeder.
         /// </summary>
-        /// <param name="surec"></param>
-        /// <returns></returns>
+        /// <param name="surec">Kaydedilecek süreç</param>
+        /// <returns>Kaydetme durumunu gönderir</returns>
         public JsonResult SurecKaydet(Surec surec)
         {
-            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-            TimeSpan Sure = Convert.ToDateTime(surec.BitisTarihi) - Convert.ToDateTime(surec.BaslamaTarihi);
-            surec.OlusturanKullaniciID = kullaniciKimligi;
-            surec.Sure = Convert.ToInt32(Sure.TotalDays);
-            surec.TamamlanmaOrani = 0;
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                TimeSpan Sure = Convert.ToDateTime(surec.BitisTarihi) - Convert.ToDateTime(surec.BaslamaTarihi);
+                surec.OlusturanKullaniciID = kullaniciKimligi;
+                surec.Sure = Convert.ToInt32(Sure.TotalDays);
+                surec.TamamlanmaOrani = 0;
 
-            db.Surec.Add(surec);
-            db.SaveChanges();
+                db.Surec.Add(surec);
+                db.SaveChanges();
 
-            return Json("başarılı");
+                return Json("başarılı");
+            }
+            catch
+            {
+                return Json("başarısız");
+            }
         }
 
         /// <summary>
-        ///
+        /// Sistemdeki diğer kullanıcıları getirir.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Kullanıcıları döndürür</returns>
         public JsonResult KullanicilariGetir()
         {
-            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-            var kullanicilar = (from k in db.Kullanici
-                                where k.ID != kullaniciKimligi
-                                select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).ToList();
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                var kullanicilar = (from k in db.Kullanici
+                                    where k.ID != kullaniciKimligi
+                                    select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).ToList();
 
-            return Json(kullanicilar);
+                return Json(kullanicilar);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
-        ///
+        /// Projeye kullanıcı atar.
         /// </summary>
-        /// <param name="kpr"></param>
-        /// <returns></returns>
+        /// <param name="kpr">Eklenecek rol</param>
+        /// <returns>Kayıt durumunu döndürür</returns>
         public JsonResult ProjeyeAta(KullaniciProjeRol kpr)
         {
-            var rolDurum = (from r in db.KullaniciProjeRol
-                            where r.KullaniciID == kpr.KullaniciID && r.ProjeID == kpr.ProjeID && r.RolID == kpr.RolID
-                            select r).SingleOrDefault();
-            if (rolDurum == null)
+            try
             {
-                db.KullaniciProjeRol.Add(kpr);
-                db.SaveChanges();
-                return Json("Kayıt başarılı.");
+                var rolDurum = (from r in db.KullaniciProjeRol
+                                where r.KullaniciID == kpr.KullaniciID && r.ProjeID == kpr.ProjeID && r.RolID == kpr.RolID
+                                select r).SingleOrDefault();
+                if (rolDurum == null)
+                {
+                    db.KullaniciProjeRol.Add(kpr);
+                    db.SaveChanges();
+                    return Json("Kayıt başarılı.");
+                }
+                else
+                {
+                    return Json("Kayıt başarısız.");
+                }
             }
-            else
+            catch
             {
                 return Json("Kayıt başarısız.");
             }
         }
 
         /// <summary>
-        ///
+        /// İş ekler.
         /// </summary>
-        /// <param name="eklenecekIs"></param>
-        /// <returns></returns>
+        /// <param name="eklenecekIs">Eklenecek iş</param>
+        /// <returns>Ekleme durumunu döndürür</returns>
         public JsonResult IsEkle(Is eklenecekIs)
         {
             try
@@ -252,25 +279,25 @@ namespace MEZBELE.Controllers
                         tamamlanan++;
                 }
 
-                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                bolum = (tamamlanan / surec.Is.Count) * 100;
                 surec.TamamlanmaOrani = Convert.ToInt32(bolum);
 
                 db.SaveChanges();
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        ///
+        /// Sürece not ekler.
         /// </summary>
-        /// <param name="surecKimligi"></param>
-        /// <param name="eklenecekNot"></param>
-        /// <returns></returns>
+        /// <param name="surecKimligi">Not eklenecek sürecin kimliği</param>
+        /// <param name="eklenecekNot">Eklenecek not</param>
+        /// <returns>Ekleme durumunu döndürür</returns>
         public JsonResult SureceNotEkle(int surecKimligi, string eklenecekNot)
         {
             try
@@ -278,22 +305,25 @@ namespace MEZBELE.Controllers
                 var surec = (from s in db.Surec
                              where s.ID == surecKimligi
                              select s).SingleOrDefault();
+
                 surec.Notlar = eklenecekNot;
+
                 db.SaveChanges();
+
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        ///
+        /// Kullanıcıyı projeden çıkartır.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <param name="kullaniciKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Kullanıcının dahil olduğu projenin kimliği</param>
+        /// <param name="kullaniciKimligi">Projeden çıkartılacak kullanıcının kimliği</param>
+        /// <returns>Çıkarma durumunu döndürür</returns>
         public JsonResult ProjedenCikar(int projeKimligi, int kullaniciKimligi)
         {
             try
@@ -327,10 +357,10 @@ namespace MEZBELE.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Proje bilgilerini günceller.
         /// </summary>
-        /// <param name="proje"></param>
-        /// <returns></returns>
+        /// <param name="proje">Güncel proje bilgileri</param>
+        /// <returns>Güncelleme durumunu döndürür</returns>
         public JsonResult ProjeGuncelle(Proje proje)
         {
             try
@@ -348,17 +378,17 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Süreç bilgilerini günceller.
         /// </summary>
-        /// <param name="surec"></param>
-        /// <returns></returns>
+        /// <param name="surec">Güncel süreç bilgileri</param>
+        /// <returns>Güncelleme durumunu döndürür</returns>
         public JsonResult SurecGuncelle(Surec surec)
         {
             try
@@ -375,17 +405,17 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Projeyi sistemden siler.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Silinecek projenin kimliği</param>
+        /// <returns>Silme durumunu döndürür</returns>
         public JsonResult ProjeSil(int projeKimligi)
         {
             try
@@ -433,20 +463,20 @@ namespace MEZBELE.Controllers
                 db.Proje.Remove(proje);
 
                 db.SaveChanges();
-                
+
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Süreci projeden siler.
         /// </summary>
-        /// <param name="surecKimlik"></param>
-        /// <returns></returns>
+        /// <param name="surecKimlik">Silinecek sürecin kimliği</param>
+        /// <returns>Silme durumunu döndürür</returns>
         public JsonResult SureciSil(int surecKimlik)
         {
             try
@@ -488,17 +518,17 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız.");
             }
         }
 
         /// <summary>
-        /// 
+        /// İşi süreçten siler.
         /// </summary>
-        /// <param name="isKimligi"></param>
-        /// <returns></returns>
+        /// <param name="isKimligi">Silinecek işin kimliği</param>
+        /// <returns>Silme durumunu döndürür</returns>
         public JsonResult IsiSil(int isKimligi)
         {
             try
@@ -532,25 +562,24 @@ namespace MEZBELE.Controllers
                         tamamlanan++;
                 }
 
-                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                bolum = (tamamlanan / surec.Is.Count) * 100;
                 surec.TamamlanmaOrani = Convert.ToInt32(bolum);
 
                 db.SaveChanges();
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// İşi kulllanıcıya atar.
         /// </summary>
-        /// <param name="kullaniciKimligi"></param>
-        /// <param name="isKimligi"></param>
-        /// <returns></returns>
+        /// <param name="ik">Atama ilişki bilgisi</param>
+        /// <returns>Atama durumunu döndürür</returns>
         public JsonResult IsiAta(IsKullanici ik)
         {
             try
@@ -560,17 +589,17 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Sistemdeki kullanıcıyı işe atar.
         /// </summary>
-        /// <param name="isKimligi"></param>
-        /// <returns></returns>
+        /// <param name="isKimligi">Atanılacak işin kimliği</param>
+        /// <returns>Atama durumunu döndürür</returns>
         public JsonResult IsiAl(int isKimligi)
         {
             try
@@ -588,17 +617,17 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Sistemdeki kullanıcıyı işten çıkartır.
         /// </summary>
-        /// <param name="isKimligi"></param>
-        /// <returns></returns>
+        /// <param name="isKimligi">Çıkılacak işin kimliği</param>
+        /// <returns>Çıkma durumunu döndürür</returns>
         public JsonResult IsiBirak(int isKimligi)
         {
             try
@@ -613,32 +642,40 @@ namespace MEZBELE.Controllers
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
         }
 
         /// <summary>
-        /// 
+        /// Projeye dahil olan kullanıcıları getirir.
         /// </summary>
-        /// <param name="projeKimligi"></param>
-        /// <returns></returns>
+        /// <param name="projeKimligi">Projenin kimliği</param>
+        /// <returns>Projede çalışanları döndürür</returns>
         public JsonResult ProjedekiKullanicilariGetir(int projeKimligi)
         {
-            int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
-            var kullanicilar = (from kpr in db.KullaniciProjeRol join k in db.Kullanici on kpr.KullaniciID equals k.ID
-                                where kpr.ProjeID == projeKimligi  && kpr.KullaniciID != kullaniciKimligi
-                                select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).Distinct().ToList();
+            try
+            {
+                int kullaniciKimligi = Convert.ToInt32(Request.Cookies["KullaniciKimligi"].Value);
+                var kullanicilar = (from kpr in db.KullaniciProjeRol
+                                    join k in db.Kullanici on kpr.KullaniciID equals k.ID
+                                    where kpr.ProjeID == projeKimligi && kpr.KullaniciID != kullaniciKimligi
+                                    select new { Adi = k.Adi, Soyadi = k.Soyadi, ID = k.ID, Avatar = k.Avatar }).Distinct().ToList();
 
-            return Json(kullanicilar);
+                return Json(kullanicilar);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
-        /// 
+        /// İşi tamamlandı olarak işaretler.
         /// </summary>
-        /// <param name="isKimligi"></param>
-        /// <returns></returns>
+        /// <param name="isKimligi">İşaretlenecek işin kimliği</param>
+        /// <returns>İşaretleme durumunu döndürür</returns>
         public JsonResult IsiTamamla(int isKimligi)
         {
             try
@@ -664,17 +701,30 @@ namespace MEZBELE.Controllers
                         tamamlanan++;
                 }
 
-                bolum = (tamamlanan / surec.Is.Count()) * 100;
+                bolum = (tamamlanan / surec.Is.Count) * 100;
                 surec.TamamlanmaOrani = Convert.ToInt32(bolum);
 
                 db.SaveChanges();
 
                 return Json("Başarılı.");
             }
-            catch (Exception)
+            catch
             {
                 return Json("Başarısız!");
             }
+        }
+
+        /// <summary>
+        /// Standart db dispose metodu.
+        /// </summary>
+        /// <param name="disposing">Dispose durumu</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
