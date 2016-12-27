@@ -16,9 +16,17 @@
 
                     <div class="col s9">
                         <span class="card-title">@Model.AktifProje.ProjeAdi - Proje Detayı</span>
-                        <p>
-                            @Model.AktifProje.Aciklama
-                        </p>
+                        <div class="divider"></div>
+                        <br />
+                        <div class="row">
+                            <div class="col s12">
+                                <p class="flow-text" style="text-align:justify;font-size:1.5rem;">
+                                    @Model.AktifProje.Aciklama
+                                </p>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <br />
                         <a class="waves-effect waves-light btn" href="#ProjeBilgGüncelle" onclick="ProjeKimlikGetir(@Model.AktifProje.ID)">Bilgileri Güncelle</a>
                         <a class="waves-effect waves-light red btn" href="#ProjeSil" onclick="ProjeKimlikGetir(@Model.AktifProje.ID)">Projeyi Sil</a>
                     </div>
@@ -310,24 +318,25 @@ else
             </div>
         </div>
     </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="row">
-                                                            <div class="col s12">
-                                                                <div class="card-panel teal">
-                                                                    <span class="white-text">
-                                                                        @Model.AktifProje.ProjeAdi isimli projede yönetici dışında çalışan bir kullanıcı yok.
-                                                                        <br />
-                                                                        @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
-                {
-                                                                            <a class="waves-effect waves-light btn right" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
-                                                                        }
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    }
+}
+else
+{
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel teal">
+                <span class="white-text">
+                    @Model.AktifProje.ProjeAdi isimli projede yönetici dışında çalışan bir kullanıcı yok.
+                    <br />
+                    @if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                    {
+                    <a class="waves-effect waves-light teal darken-3 btn right" href="#RolAta" onclick="KullaniciGetir()">Kullanıcı Ekle</a>
+                    }
+                </span>
+            </div>
+        </div>
+    </div>
+}
+
 <!-- Rol Atama Modal -->
 <div id="RolAta" class="modal">
     <div class="modal-content">
@@ -355,6 +364,7 @@ else
     </div>
 </div>
 <!-- Rol Atama Modal Sonu-->
+
 <!-- Proje Bilgileri Güncelleme Modal -->
 <div id="ProjeBilgGüncelle" class="modal">
     <div class="modal-content">
