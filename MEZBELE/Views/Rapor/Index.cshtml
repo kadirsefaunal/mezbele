@@ -189,5 +189,13 @@
             </ul>
         </div>
     </div>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.print();
+        });
+    </script>
 </body>
 </html>
