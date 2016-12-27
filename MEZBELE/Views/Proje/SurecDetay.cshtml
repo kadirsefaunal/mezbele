@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/App/_AppLayout.cshtml";
 }
 <br />
+
 <div class="row">
     <nav>
         <div class="nav-wrapper blue-grey darken-1">
@@ -256,15 +257,15 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="IsAdi" type="text" class="validate" name="İş Adı">
+                        <input id="IsAdi" type="text"class="validate" name="İş Adı">
                         <label for="IsAdi">İş Adı</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="IsAciklama" class="materialize-textarea" name="Açıklama"></textarea>
+                        <textarea id="IsAciklama" class="materialize-textarea" name="İş Açıklama"></textarea>
                         <label for="IsAciklama">Açıklama</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="BitisTarihi" type="date" class="datepicker" placeholder="Bitiş Tarihi" name="Bitiş Tarihi">
+                        <input id="BitisTarihi" type="date" class="datepicker" placeholder="Bitiş Tarihi" name="İş Bitiş Tarihi">
                     </div>
                 </div>
             </form>
@@ -294,7 +295,7 @@
                         <label class="white-text">Öncelik</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="Aciklama" class="materialize-textarea"></textarea>
+                        <textarea id="Aciklama" class="materialize-textarea" name="Süreç Açıklaması"></textarea>
                         <label for="Aciklama">Açıklama</label>
                     </div>
                 </div>
@@ -306,6 +307,7 @@
     </div>
 </div>
 <!-- Süreç Bilgilerini Güncelleme Modalı Bitiş -->
+
 <!-- Süreç Sil Modal -->
 <div id="SurecSil" class="modal">
     <div class="modal-content">
@@ -357,7 +359,7 @@
 
     function isEkle() {
         var kontrol = true;
-        $('input').each(function () {
+        $('#IsEkle input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
             if ($.trim($(this).val()) == "") {
                 Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
                 kontrol = false;
@@ -368,7 +370,7 @@
         });
 
         if ($.trim($('#IsAciklama').val()) == "") {
-            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
+            Materialize.toast('İş açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
             kontrol = false;
             $('#IsAciklama').addClass("invalid");
         } else {
@@ -397,7 +399,7 @@
 
     function SurecGuncelle() {
         var kontrol = true;
-        $('input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
+        $('#SurecBilGuncelle input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
             if ($.trim($(this).val()) == "") {
                 Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
                 kontrol = false;
@@ -407,7 +409,7 @@
             }
         });
         if ($.trim($('#Aciklama').val()) == "") {
-            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
+            Materialize.toast('Süreç açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
             kontrol = false;
             $('#Aciklama').addClass("invalid");
         } else {
