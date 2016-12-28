@@ -90,6 +90,7 @@
                                         <th>Açıklama</th>
                                         <th>Oluşturma Tarihi</th>
                                         <th>Bitiş Tarihi</th>
+                                        <th>Atanan Kişi</th>
                                     </tr>
                                 </thead>
 
@@ -101,6 +102,16 @@
                                         <td>@i.Aciklama</td>
                                         <td>@DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()</td>
                                         <td>@DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+
+                                        @if (i.IsKullanici.Count > 0)
+                                        {
+                                        <td>@i.IsKullanici.FirstOrDefault().Kullanici.Adi @i.IsKullanici.FirstOrDefault().Kullanici.Soyadi</td>
+                                        }
+                                        else
+                                        {
+                                        <td>Atama yok</td>
+                                        }
+
                                     </tr>
                                     }
                                 </tbody>
@@ -161,6 +172,7 @@
                                                     <th>Açıklama</th>
                                                     <th>Oluşturma Tarihi</th>
                                                     <th>Bitiş Tarihi</th>
+                                                    <th>Atanan Kişi</th>
                                                 </tr>
                                             </thead>
 
@@ -172,6 +184,16 @@
                                                     <td>@i.Aciklama</td>
                                                     <td>@DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()</td>
                                                     <td>@DateTime.Parse(i.BitisTarihi.Value.ToString()).ToShortDateString()</td>
+
+                                                    @if (i.IsKullanici.Count > 0)
+                                                    {
+                                                    <td>@i.IsKullanici.FirstOrDefault().Kullanici.Adi @i.IsKullanici.FirstOrDefault().Kullanici.Soyadi</td>
+                                                    }
+                                                    else
+                                                    {
+                                                    <td>Atama yok</td>
+                                                    }
+
                                                 </tr>
                                                 }
                                             </tbody>
