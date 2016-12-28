@@ -130,7 +130,14 @@ namespace MEZBELE.Controllers
                                  where p.ID == projeKimligi
                                  select p).SingleOrDefault();
 
-                return View(vm);
+                var kullaniciProjeRol = (from kpr in db.KullaniciProjeRol
+                                         where kpr.KullaniciID == kullaniciKimligi && kpr.ProjeID == projeKimligi
+                                         select kpr).SingleOrDefault();
+
+                if (kullaniciProjeRol != null)
+                    return View(vm);
+                else
+                    return RedirectToAction("Index", "App");
             }
             return RedirectToAction("Index", "Landing");
         }
@@ -170,7 +177,14 @@ namespace MEZBELE.Controllers
                                  where a.IsID == isKimligi
                                  select a).SingleOrDefault();
 
-                return View(vm);
+                var kullaniciProjeRol = (from kpr in db.KullaniciProjeRol
+                                         where kpr.KullaniciID == kullaniciKimligi && kpr.ProjeID == projeKimligi
+                                         select kpr).SingleOrDefault();
+
+                if (kullaniciProjeRol != null)
+                    return View(vm);
+                else
+                    return RedirectToAction("Index", "App");
             }
             return RedirectToAction("Index", "Landing");
         }
