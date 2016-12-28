@@ -178,22 +178,25 @@ namespace MEZBELE.Controllers
         /// <param name="webLink">Yeni kullanıcı web bağlantısı</param>
         /// <param name="avatarLink">Yeni kullanıcı resim bağlantısı</param>
         /// <returns>Güncelleme durumunu döndürür</returns>
-        public JsonResult UpdateUserInfo(string isim, string soyisim, string eposta,
-                                         string parola, string webLink, string avatarLink)
+        public JsonResult KullaniciBilgileriniGuncelle(string isim, string soyisim, string eposta,
+                                                       string yparola, string mparola, string webLink, string avatarLink)
         {
             try
             {
                 if (Request.Cookies["KullaniciKimligi"] != null)
                 {
                     int kullaniciID = int.Parse(Request.Cookies["KullaniciKimligi"].Value);
-                    var kullanici = (from k in db.Kullanici where k.ID == kullaniciID select k).SingleOrDefault();
+                    var kullanici = (from k in db.Kullanici where k.ID == kullaniciID && k.Parola == mparola select k).SingleOrDefault();
 
                     if (kullanici != null)
                     {
                         kullanici.Adi = isim;
                         kullanici.Soyadi = soyisim;
                         kullanici.EMail = eposta;
-                        kullanici.Parola = parola;
+                        if (yparola != null && yparola != "")
+                        {
+                            kullanici.Parola = yparola;
+                        }
                         kullanici.WebAdresi = webLink;
                         kullanici.Avatar = avatarLink;
 
@@ -207,7 +210,7 @@ namespace MEZBELE.Controllers
 
                         return Json("Güncelleme başarılı.");
                     }
-                    return Json("Güncelleme başarısız.");
+                    return Json("Kullanıcı bulunamadı.");
                 }
                 return Json("Güncelleme başarısız.");
             }
