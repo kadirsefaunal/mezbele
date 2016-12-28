@@ -35,8 +35,8 @@
                                 <label for="eposta">Eposta</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="Yeni Parolanız" id="parola" name="Parola" type="password" class="validate">
-                                <label for="parola">Parola</label>
+                                <input placeholder="Yeni Parolanız" id="yparola" name="Yeni Parola" type="password" class="validate">
+                                <label for="yparola">Yeni Parola</label>
                             </div>
                         </div>
                         <div class="row">
@@ -49,6 +49,12 @@
                             <div class="input-field col s12">
                                 <input placeholder="@Model.Kullanici.Avatar" value="@Model.Kullanici.Avatar" id="avatarLink" name="Avatar Bağlantısı" type="text" class="validate">
                                 <label for="avatarLink">Avatar Bağlantısı</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input placeholder="Mevcut Parolanız" id="mparola" name="Mevcut Parola" type="password" class="validate">
+                                <label for="mparola">Mevcut Parola</label>
                             </div>
                         </div>
                     </form>
@@ -69,9 +75,9 @@
 
     function kaydet() {
         var kontrol = true;
-        $('input').each(function () {
+        $('input').not('#yparola').each(function () {
             if ($.trim($(this).val()) == "") {
-                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
                 kontrol = false;
                 $(this).addClass("invalid");
             } else {
@@ -91,18 +97,23 @@
                 isim: $("#isim").val(),
                 soyisim: $("#soyisim").val(),
                 eposta: $("#eposta").val(),
-                parola: $("#parola").val(),
+                yparola: $.trim($('#yparola').val()),
+                mparola: $("#mparola").val(),
                 webLink: $("#webLink").val(),
                 avatarLink: $('#avatarLink').val()
             };
 
-            $.post("/App/UpdateUserInfo", veri, function (cevap) {
+            $.post("/App/KullaniciBilgileriniGuncelle", veri, function (cevap) {
                 if (cevap == 'Güncelleme başarılı.') {
-                    Materialize.toast('Bilgiler başarıyla güncellendi!', 3000, 'rounded');
-                    window.location = "/App/Profile";
+                    Materialize.toast('Bilgiler başarıyla güncellendi!', 3000, 'teal rounded');
+                    window.location = "/App/Profil";
                 }
-                else
-                    Materialize.toast('Güncelleme başarısız! Boş alan bırakmadan tekrar deneyiniz!', 3000, 'rounded');
+                else if (cevap == 'Kullanıcı bulunamadı') {
+                    Materialize.toast('Mevcut şifreniz hatalı!', 3000, 'red rounded');
+                }
+                else {
+                    Materialize.toast('Güncelleme başarısız! Boş alan bırakmadan tekrar deneyiniz!', 3000, 'red rounded');
+                }
             });
         }
     }
