@@ -32,26 +32,30 @@
                         <p>
                             @Model.AktifIs.Aciklama
                         </p>
-                        <a class="waves-effect waves-light red btn" href="#İsiSil" onclick="isKimligiGetir(@Model.AktifIs.ID)">İşi Sil</a>
-                        @if (Model.AktifIs.AktifMi == true)
-	                    {
-		                     if (Model.AtananKisi == null)
-                             {
-                                <a class="waves-effect waves-light orange btn" href="#!" onclick="isiAl(@Model.AktifIs.ID)">İşi Al</a>
-                                 if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
-                                 {
-                                    <a class="waves-effect waves-light deep-orange btn" href="#isAtaModal" onclick="isKimligiGetir(@Model.AktifIs.ID); KullaniciGetir(@Model.AktifProje.ID);">İşi Ata</a>
-                                 }
-                             }
-                             else
-                             {
-                                 if (Model.Kullanici.ID == Model.AtananKisi.KullaniciID)
-                                 {
-                                    <a class="waves-effect waves-light orange btn" href="#!" onclick="isiBirak(@Model.AktifIs.ID)">İşi Bırak</a>
-                                    <a class="waves-effect waves-light green btn" href="#!" onclick="isiTamamla(@Model.AktifIs.ID)">İşi Tamamla</a>
-                                 }
-                             }
-                        }
+                        <br />
+                        <div class="divider"></div><br />
+                        <div class="row">
+                            <a class="waves-effect waves-light red btn" href="#İsiSil" onclick="isKimligiGetir(@Model.AktifIs.ID)">İşi Sil</a>
+                            @if (Model.AktifIs.AktifMi == true)
+                            {
+                                if (Model.AtananKisi == null)
+                                {
+                                    <a class="waves-effect waves-light orange btn" href="#!" onclick="isiAl(@Model.AktifIs.ID)">İşi Al</a>
+                                    if (Model.AktifProje.YoneticiID == Model.Kullanici.ID)
+                                    {
+                                        <a class="waves-effect waves-light deep-orange btn" href="#isAtaModal" onclick="isKimligiGetir(@Model.AktifIs.ID); KullaniciGetir(@Model.AktifProje.ID);">İşi Ata</a>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.Kullanici.ID == Model.AtananKisi.KullaniciID)
+                                    {
+                                        <a class="waves-effect waves-light orange btn" href="#!" onclick="isiBirak(@Model.AktifIs.ID)">İşi Bırak</a>
+                                        <a class="waves-effect waves-light green btn" href="#!" onclick="isiTamamla(@Model.AktifIs.ID)">İşi Tamamla</a>
+                                    }
+                                }
+                            }
+                        </div>
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">

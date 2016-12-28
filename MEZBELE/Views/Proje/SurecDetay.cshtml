@@ -12,7 +12,7 @@
                 <a href="/Proje/Detay?projeKimligi=@Model.AktifProje.ID" class="breadcrumb">@Model.AktifSurec.Proje.ProjeAdi </a>
                 @if (Model.AktifSurec.Surec2 != null)
                 {
-                <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.Surec2.ID" class="breadcrumb">@Model.AktifSurec.Surec2.SurecAdi</a>
+                    <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.Surec2.ID" class="breadcrumb">@Model.AktifSurec.Surec2.SurecAdi</a>
                 }
                 <a href="/Proje/SurecDetay?projeKimligi=@Model.AktifProje.ID&surecKimligi=@Model.AktifSurec.ID" class="breadcrumb">@Model.AktifSurec.SurecAdi</a>
                 <a href="#!" class="breadcrumb">Süreç Detayı</a>
@@ -37,10 +37,13 @@
                             </div>
                         </div>
                         <div class="divider"></div><br />
-                        <div class="row">
-                            <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
-                            <a class="waves-effect waves-light red btn" href="#SurecSil" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Süreci Sil</a>
-                        </div>
+                        @if (Model.Kullanici.ID == Model.AktifProje.YoneticiID)
+                        {
+                            <div class="row">
+                                <a class="waves-effect waves-light btn" href="#SurecBilGuncelle" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Bilgileri Güncelle</a>
+                                <a class="waves-effect waves-light red btn" href="#SurecSil" onclick="surecKimligiGetir(@Model.AktifSurec.ID)">Süreci Sil</a>
+                            </div>
+                        }
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
@@ -77,16 +80,27 @@
                             <form class="col s12">
                                 <div class="input-field col s12">
                                     <i class="material-icons prefix white-text">mode_edit</i>
-                                    <textarea id="surecNotlari" name="Notlar" class="materialize-textarea white-text">@Model.AktifSurec.Notlar</textarea>
-                                    <label for="surecNotlari" class="white-text">Notlar</label>
+                                    @if (Model.Kullanici.ID != Model.AktifProje.YoneticiID)
+                                    {
+                                        <textarea disabled id="surecNotlari" name="Notlar" class="materialize-textarea white-text">@Model.AktifSurec.Notlar</textarea>
+                                        <label disabled for="surecNotlari" class="white-text">Notlar</label>
+                                    }
+                                    else
+                                    {
+                                        <textarea id="surecNotlari" name="Notlar" class="materialize-textarea white-text">@Model.AktifSurec.Notlar</textarea>
+                                        <label for="surecNotlari" class="white-text">Notlar</label>
+                                    }
                                 </div>
                             </form>
                         </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <a href="#!" class="waves-effect waves-green btn green right" onclick="notuKaydet(@Model.AktifSurec.ID)">Kaydet</a>
+                        @if (Model.Kullanici.ID == Model.AktifProje.YoneticiID)
+                        {
+                            <div class="row">
+                                <div class="col s12">
+                                    <a href="#!" class="waves-effect waves-green btn green right" onclick="notuKaydet(@Model.AktifSurec.ID)">Kaydet</a>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -234,9 +248,9 @@
                             </div>
                             }
                             <div class="right">
-                                @if (Model.AktifSurec.AnaSurecID == null)
+                                @if (Model.AktifSurec.AnaSurecID == null && Model.Kullanici.ID == Model.AktifProje.YoneticiID)
                                 {
-                                @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = Model.AktifSurec.ID }, new { @class = "waves-effect waves-green btn green valign"})
+                                    @Html.ActionLink("Süreç Ekle", "SurecEkle", "Proje", new { projeKimligi = Model.AktifProje.ID, anaSurecKimligi = Model.AktifSurec.ID }, new { @class = "waves-effect waves-green btn green valign" })
                                 }
                                 <a href="#IsEkle" class="waves-effect waves-green btn green" onclick="surecKimligiGetir(@Model.AktifSurec.ID)" style="margin-right:1rem;">İş Ekle</a>
                             </div>
