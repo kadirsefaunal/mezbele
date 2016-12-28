@@ -92,7 +92,7 @@
         var kontrol = true;
         $('input').not(':button, :submit, :reset, :hidden, :radio, :checkbox').each(function () {
             if ($.trim($(this).val()) == "") {
-                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'rounded');
+                Materialize.toast(this.name + ' alanı boş bırakılamaz!', 3000, 'red rounded');
                 kontrol = false;
                 $(this).addClass("invalid");
             } else {
@@ -100,11 +100,19 @@
             }
         });
         if ($.trim($('#projeAciklama').val()) == "") {
-            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'rounded');
+            Materialize.toast('Açıklama alanı boş bırakılamaz!', 3000, 'red rounded');
             kontrol = false;
             $('#projeAciklama').addClass("invalid");
         } else {
             $('#projeAciklama').removeClass("invalid");
+        }
+
+        if (isNaN($('#butce').val() / 1) == true) {
+            Materialize.toast('Bütçe alanı sadece sayısal değer içermelidir!', 3000, 'red rounded');
+            $('#butce').addClass("invalid");
+            kontrol = false;
+        } else {
+            $('#butce').removeClass("invalid");
         }
 
         if (kontrol) {
