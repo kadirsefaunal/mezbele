@@ -89,6 +89,16 @@
             $('#SurecAciklama').removeClass("invalid");
         }
 
+        if($("#BitisTarihi").val() < $("#BaslangicTarihi").val()) {
+            Materialize.toast('Bitiş tarihi başlangıç tarihinden küçük olamaz!', 3000, 'red rounded');
+            kontrol = false;
+            $('#BitisTarihi').addClass("invalid");
+            $('#BaslangicTarihi').addClass("invalid");
+        } else {
+            $('#BitisTarihi').removeClass("invalid");
+            $('#BaslangicTarihi').removeClass("invalid");
+        }
+
         if (kontrol) {
             var surec = {
                 SurecAdi: $("#SurecAdi").val(),
