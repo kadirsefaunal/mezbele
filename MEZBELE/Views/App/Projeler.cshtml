@@ -24,7 +24,7 @@
         {
         <li class="collection-item">
             <p class="flow-text">
-                @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:2rem;" })
+                @Html.ActionLink((string)proje.ProjeAdi, "Detay", "Proje", new { projeKimligi = proje.ID }, new { @class = "teal-text text-darken-1", style = "font-size:1.5rem;" })
             </p>
             @foreach (var rol in proje.KullaniciProjeRol)
             {

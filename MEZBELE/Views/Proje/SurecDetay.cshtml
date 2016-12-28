@@ -47,19 +47,19 @@
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
-                            <span class="badge teal white-text">@DateTime.Parse(Model.AktifSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()</span>
+                            <span class="badge teal white-text" style="width:100%;">@DateTime.Parse(Model.AktifSurec.BaslamaTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
-                            <span class="badge red white-text">@DateTime.Parse(Model.AktifSurec.BitisTarihi.Value.ToString()).ToShortDateString()</span>
+                            <span class="badge red white-text" style="width:100%;">@DateTime.Parse(Model.AktifSurec.BitisTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
-                            <span class="badge indigo darken-1 white-text">@Model.AktifSurec.Proje.ProjeAdi</span>
+                            <span class="badge indigo darken-1 white-text" style="width:100%;">@Model.AktifSurec.Proje.ProjeAdi</span>
                         </div>
                         <div class="row">
-                            <span class="badge orange white-text">@Model.AktifSurec.Surec1.Count Alt Süreç</span>
+                            <span class="badge orange white-text" style="width:100%;">@Model.AktifSurec.Surec1.Count Alt Süreç</span>
                         </div>
                         <div class="row">
-                            <span class="badge green white-text">@Model.AktifSurec.Is.Count İş Öğesi</span>
+                            <span class="badge green white-text" style="width:100%;">@Model.AktifSurec.Is.Count İş Öğesi</span>
                         </div>
                     </div>
                 </div>
@@ -129,12 +129,12 @@
                                                 <b>#</b>@i.ID
                                             </p>
                                         </div>
-                                        <div class="col s5">
-                                            <p class="flow-text">
+                                        <div class="col s5 m4">
+                                            <p class="flow-text" style="font-size:1.5rem;">
                                                 @i.IsAdi
                                             </p>
                                         </div>
-                                        <div class="col s1">
+                                        <div class="col s1 m2">
                                             @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
                                         </div>
                                         <div class="col s1">
@@ -166,7 +166,7 @@
                                 @foreach (var altSurec in Model.AktifSurec.Surec1)
                                 {
                                 <li>
-                                    <div class="collapsible-header">
+                                    <div class="collapsible-header blue-grey darken-1 white-text">
                                         <div class="row valign-wrapper" style="margin-bottom:-1rem;">
                                             <div class="col s4">
                                                 @altSurec.SurecAdi
@@ -209,13 +209,13 @@
                                             {
                                             <li class="collection-item">
                                                 <div class="row valign-wrapper" style="margin-bottom:-1rem;">
-                                                    <div class="col s7">
-                                                        <p class="flow-text">
+                                                    <div class="col s7 m6">
+                                                        <p class="flow-text" style="font-size:1.5rem;">
                                                             <b>#@i.ID </b>
                                                             @i.IsAdi
                                                         </p>
                                                     </div>
-                                                    <div class="col s1">
+                                                    <div class="col s1 m2">
                                                         @DateTime.Parse(i.OlusturmaTarihi.Value.ToString()).ToShortDateString()
                                                     </div>
                                                     <div class="col s1">

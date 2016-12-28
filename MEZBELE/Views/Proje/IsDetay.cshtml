@@ -59,26 +59,26 @@
                     </div>
                     <div class="col s2" style="padding-right:2.5rem;">
                         <div class="row">
-                            <span class="badge teal white-text">@DateTime.Parse(Model.AktifIs.OlusturmaTarihi.Value.ToString()).ToShortDateString()</span>
+                            <span class="badge teal white-text" style="width:100%;">@DateTime.Parse(Model.AktifIs.OlusturmaTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
-                            <span class="badge red white-text">@DateTime.Parse(Model.AktifIs.BitisTarihi.Value.ToString()).ToShortDateString()</span>
+                            <span class="badge red white-text" style="width:100%;">@DateTime.Parse(Model.AktifIs.BitisTarihi.Value.ToString()).ToShortDateString()</span>
                         </div>
                         <div class="row">
-                            <span class="badge deep-orange white-text">@Model.AktifIs.Surec.Proje.ProjeAdi</span>
+                            <span class="badge deep-orange white-text" style="width:100%;">@Model.AktifIs.Surec.Proje.ProjeAdi</span>
                         </div>
 
                         @if (Model.AktifSurec.Surec2 != null)
                         {
-                            <div class="row">
-                                <span class="badge indigo darken-2 white-text">@Model.AktifSurec.Surec2.SurecAdi</span>
-                            </div>
+                        <div class="row">
+                            <span class="badge indigo darken-2 white-text" style="width:100%;">@Model.AktifSurec.Surec2.SurecAdi</span>
+                        </div>
                         }
                         <div class="row">
-                            <span class="badge orange white-text">@Model.AktifIs.Surec.SurecAdi</span>
+                            <span class="badge orange white-text" style="width:100%;">@Model.AktifIs.Surec.SurecAdi</span>
                         </div>
                         <div class="row">
-                            <span class="badge green white-text">@Model.AktifIs.IsKullanici.Count Çalışan</span>
+                            <span class="badge green white-text" style="width:100%;">@Model.AktifIs.IsKullanici.Count Çalışan</span>
                         </div>
                     </div>
                 </div>
