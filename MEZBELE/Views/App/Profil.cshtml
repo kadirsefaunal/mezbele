@@ -79,6 +79,13 @@
             }
         });
 
+        var filtre = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (filtre.test($("#eposta").val()) != true) {
+            Materialize.toast('Geçerli bir Eposta adresi girmelisiniz!', 3000, 'red rounded');
+            kontrol = false;
+        }
+
         if (kontrol == true) {
             var veri = {
                 isim: $("#isim").val(),
